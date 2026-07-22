@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: devine
+      POSTGRES_PASSWORD: devine_pass
+      POSTGRES_DB: devine_adventure
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    environment:
+      DATABASE_URL: postgresql://devine:devine_pass@postgres:5432/devine_adventure
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  pgdata:
