@@ -53,11 +53,11 @@ export default function AdminLayout({
   if (!isAuthenticated || user?.role !== 'ADMIN') return null;
 
   return (
-    <div className="min-h-screen flex bg-stone-950">
-      <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
-        <div className="p-6 border-b border-stone-800 flex items-center gap-2">
+    <div className="min-h-screen flex bg-neutral-50">
+      <aside className="w-64 bg-white border-r border-neutral-200 flex flex-col fixed h-full z-20">
+        <div className="p-6 border-b border-neutral-200 flex items-center gap-2">
           <Shield className="w-5 h-5 text-forest" />
-          <span className="font-display font-normal text-white uppercase tracking-normal">
+          <span className="font-display font-normal text-ink uppercase tracking-normal">
             Admin<span className="text-forest">.</span>
           </span>
         </div>
@@ -71,7 +71,7 @@ export default function AdminLayout({
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors',
                 pathname === href
                   ? 'bg-forest/10 text-forest font-medium'
-                  : 'text-stone-400 hover:text-white hover:bg-stone-800',
+                  : 'text-neutral-500 hover:text-ink hover:bg-neutral-100',
               )}
             >
               <Icon className="w-4 h-4" />
@@ -80,16 +80,16 @@ export default function AdminLayout({
           ))}
         </nav>
 
-        <div className="p-4 border-t border-stone-800">
+        <div className="p-4 border-t border-neutral-200">
           <Link
             href="/"
-            className="block text-stone-400 hover:text-white text-sm px-3 py-2 mb-1"
+            className="block text-neutral-500 hover:text-ink text-sm px-3 py-2 mb-1"
           >
             ← Public Site
           </Link>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 text-stone-400 hover:text-white text-sm px-3 py-2 w-full"
+            className="flex items-center gap-3 text-neutral-500 hover:text-ink text-sm px-3 py-2 w-full"
           >
             <LogOut className="w-4 h-4" /> Sign Out
           </button>

@@ -39,7 +39,7 @@ export default function AdminDashboardPage() {
   const { data, isLoading } = useAdminDashboard();
 
   if (isLoading || !data) {
-    return <div className="text-stone-400">Loading dashboard...</div>;
+    return <div className="text-neutral-500">Loading dashboard...</div>;
   }
 
   const { kpis, recentBookings, upcomingEvents } = data;
@@ -47,10 +47,10 @@ export default function AdminDashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+        <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
           Dashboard
         </h1>
-        <p className="text-stone-400 mt-1">Platform overview — live data</p>
+        <p className="text-neutral-500 mt-1">Platform overview — live data</p>
       </div>
 
       {/* KPIs */}
@@ -83,11 +83,11 @@ export default function AdminDashboardPage() {
         ].map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
-            className="bg-stone-900 border border-neutral-700 rounded-2xl p-5"
+            className="bg-white border border-neutral-200 rounded-2xl p-5"
           >
             <Icon className={`w-5 h-5 ${color} mb-3`} />
-            <div className="text-2xl font-black text-white">{value}</div>
-            <div className="text-stone-500 text-sm">{label}</div>
+            <div className="text-2xl font-black text-ink">{value}</div>
+            <div className="text-neutral-500 text-sm">{label}</div>
           </div>
         ))}
       </div>
@@ -96,10 +96,10 @@ export default function AdminDashboardPage() {
       <div className="bg-gradient-to-r from-forest/15 to-forest/5 border border-forest/25 rounded-2xl p-6 mb-10 flex items-center gap-6">
         <TrendingUp className="w-10 h-10 text-forest flex-shrink-0" />
         <div>
-          <div className="text-stone-400 text-sm mb-1">
+          <div className="text-neutral-500 text-sm mb-1">
             Total Revenue (All Time)
           </div>
-          <div className="font-display text-4xl font-normal tracking-normal text-white">
+          <div className="font-display text-4xl font-normal tracking-normal text-ink">
             {formatKES(kpis.totalRevenue)}
           </div>
         </div>
@@ -108,19 +108,19 @@ export default function AdminDashboardPage() {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Recent bookings */}
         <div>
-          <h2 className="text-white font-bold mb-4">Recent Bookings</h2>
+          <h2 className="text-ink font-bold mb-4">Recent Bookings</h2>
           <div className="space-y-3">
             {recentBookings.map((b) => (
               <div
                 key={b.id}
-                className="bg-stone-900 border border-stone-800 rounded-xl p-4 flex items-center justify-between"
+                className="bg-white border border-neutral-200 rounded-xl p-4 flex items-center justify-between"
               >
                 <div>
-                  <div className="text-white text-sm font-semibold">
+                  <div className="text-ink text-sm font-semibold">
                     {b.user.name}
                   </div>
-                  <div className="text-stone-400 text-xs">{b.event.title}</div>
-                  <div className="text-stone-500 text-xs font-mono mt-0.5">
+                  <div className="text-neutral-500 text-xs">{b.event.title}</div>
+                  <div className="text-neutral-500 text-xs font-mono mt-0.5">
                     {b.referenceCode}
                   </div>
                 </div>
@@ -142,31 +142,31 @@ export default function AdminDashboardPage() {
 
         {/* Upcoming events */}
         <div>
-          <h2 className="text-white font-bold mb-4">Upcoming Events</h2>
+          <h2 className="text-ink font-bold mb-4">Upcoming Events</h2>
           <div className="space-y-3">
             {upcomingEvents.map((e) => {
               const fill = Math.round((e.enrolled / e.capacity) * 100);
               return (
                 <div
                   key={e.id}
-                  className="bg-stone-900 border border-stone-800 rounded-xl p-4"
+                  className="bg-white border border-neutral-200 rounded-xl p-4"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <div className="text-white text-sm font-semibold">
+                    <div className="text-ink text-sm font-semibold">
                       {e.title}
                     </div>
-                    <div className="text-stone-400 text-xs">
+                    <div className="text-neutral-500 text-xs">
                       {new Date(e.dateTime).toLocaleDateString('en-KE')}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-stone-800 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-forest rounded-full"
                         style={{ width: `${fill}%` }}
                       />
                     </div>
-                    <div className="text-stone-400 text-xs">
+                    <div className="text-neutral-500 text-xs">
                       {e.enrolled}/{e.capacity}
                     </div>
                   </div>

@@ -23,22 +23,22 @@ export default function DashboardSubscriptionPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+        <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
           Membership
         </h1>
-        <p className="text-stone-400 mt-1">Manage your Devine Adventure plan</p>
+        <p className="text-neutral-500 mt-1">Manage your Devine Adventure plan</p>
       </div>
 
       {isLoading ? (
-        <div className="text-stone-400">Loading...</div>
+        <div className="text-neutral-500">Loading...</div>
       ) : subscription?.status === 'ACTIVE' ? (
-        <div className="bg-stone-900 border border-neutral-700 rounded-2xl p-6">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-forest/10 rounded-full flex items-center justify-center">
               <CreditCard className="w-5 h-5 text-forest" />
             </div>
             <div>
-              <div className="text-white font-bold capitalize">
+              <div className="text-ink font-bold capitalize">
                 {subscription.planType.toLowerCase()} Membership
               </div>
               <span className="text-forest text-xs font-semibold">
@@ -48,17 +48,17 @@ export default function DashboardSubscriptionPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-stone-800/50 rounded-xl p-4">
-              <div className="text-stone-500 text-xs mb-1">Started</div>
-              <div className="text-white text-sm font-medium">
+            <div className="bg-neutral-100 rounded-xl p-4">
+              <div className="text-neutral-500 text-xs mb-1">Started</div>
+              <div className="text-ink text-sm font-medium">
                 {new Date(subscription.startDate).toLocaleDateString('en-KE', {
                   dateStyle: 'long',
                 })}
               </div>
             </div>
-            <div className="bg-stone-800/50 rounded-xl p-4">
-              <div className="text-stone-500 text-xs mb-1">Renews / Expires</div>
-              <div className="text-white text-sm font-medium">
+            <div className="bg-neutral-100 rounded-xl p-4">
+              <div className="text-neutral-500 text-xs mb-1">Renews / Expires</div>
+              <div className="text-ink text-sm font-medium">
                 {new Date(subscription.endDate).toLocaleDateString('en-KE', {
                   dateStyle: 'long',
                 })}
@@ -66,9 +66,9 @@ export default function DashboardSubscriptionPage() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-stone-800 mb-6">
-            <span className="text-stone-400 text-sm">Amount paid</span>
-            <span className="text-white font-bold">
+          <div className="flex items-center justify-between pt-4 border-t border-neutral-200 mb-6">
+            <span className="text-neutral-500 text-sm">Amount paid</span>
+            <span className="text-ink font-bold">
               {formatKES(subscription.amount)}
             </span>
           </div>
@@ -82,11 +82,11 @@ export default function DashboardSubscriptionPage() {
           </button>
         </div>
       ) : (
-        <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center">
-          <div className="text-white font-bold text-lg mb-2">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-8 text-center">
+          <div className="text-ink font-bold text-lg mb-2">
             You&apos;re not a member yet
           </div>
-          <p className="text-stone-400 text-sm mb-6 max-w-sm mx-auto">
+          <p className="text-neutral-500 text-sm mb-6 max-w-sm mx-auto">
             Get discounts on every adventure, free access to selected hikes,
             and priority booking.
           </p>
@@ -98,7 +98,7 @@ export default function DashboardSubscriptionPage() {
             ].map((f) => (
               <li
                 key={f}
-                className="flex items-center gap-2 text-stone-300 text-sm"
+                className="flex items-center gap-2 text-neutral-600 text-sm"
               >
                 <Check className="w-4 h-4 text-forest flex-shrink-0" />
                 {f}

@@ -40,17 +40,17 @@ export default function AdminSubscriptionsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+          <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
             Subscriptions
           </h1>
-          <p className="text-stone-400 mt-1">
+          <p className="text-neutral-500 mt-1">
             {subscriptions.length} subscriptions
           </p>
         </div>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
+          className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
         >
           <option value="">All Statuses</option>
           <option value="ACTIVE">Active</option>
@@ -59,15 +59,15 @@ export default function AdminSubscriptionsPage() {
         </select>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-stone-800">
+            <tr className="border-b border-neutral-200">
               {['User', 'Plan', 'Amount', 'Status', 'Started', 'Expires', 'Actions'].map(
                 (h) => (
                   <th
                     key={h}
-                    className="text-left text-stone-400 font-medium px-4 py-4"
+                    className="text-left text-neutral-500 font-medium px-4 py-4"
                   >
                     {h}
                   </th>
@@ -78,7 +78,7 @@ export default function AdminSubscriptionsPage() {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={7} className="text-center py-10 text-stone-500">
+                <td colSpan={7} className="text-center py-10 text-neutral-500">
                   Loading...
                 </td>
               </tr>
@@ -86,18 +86,18 @@ export default function AdminSubscriptionsPage() {
               subscriptions.map((s) => (
                 <tr
                   key={s.id}
-                  className="border-b border-stone-800/50 hover:bg-stone-800/30"
+                  className="border-b border-neutral-200 hover:bg-neutral-50"
                 >
                   <td className="px-4 py-3">
-                    <div className="text-white text-xs font-medium">
+                    <div className="text-ink text-xs font-medium">
                       {s.user.name}
                     </div>
-                    <div className="text-stone-500 text-xs">{s.user.email}</div>
+                    <div className="text-neutral-500 text-xs">{s.user.email}</div>
                   </td>
-                  <td className="px-4 py-3 text-stone-300 text-xs capitalize">
+                  <td className="px-4 py-3 text-neutral-600 text-xs capitalize">
                     {s.planType.toLowerCase()}
                   </td>
-                  <td className="px-4 py-3 text-stone-300">
+                  <td className="px-4 py-3 text-neutral-600">
                     {formatKES(s.amount)}
                   </td>
                   <td className="px-4 py-3">
@@ -106,17 +106,17 @@ export default function AdminSubscriptionsPage() {
                         s.status === 'ACTIVE'
                           ? 'bg-forest/15 text-forest border border-forest/30'
                           : s.status === 'EXPIRED'
-                            ? 'bg-stone-700 text-stone-400 border border-stone-600'
+                            ? 'bg-neutral-200 text-neutral-500 border border-neutral-300'
                             : 'bg-clay/15 text-clay border border-clay/30'
                       }`}
                     >
                       {s.status}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-stone-500 text-xs">
+                  <td className="px-4 py-3 text-neutral-500 text-xs">
                     {new Date(s.startDate).toLocaleDateString('en-KE')}
                   </td>
-                  <td className="px-4 py-3 text-stone-500 text-xs">
+                  <td className="px-4 py-3 text-neutral-500 text-xs">
                     {new Date(s.endDate).toLocaleDateString('en-KE')}
                   </td>
                   <td className="px-4 py-3">

@@ -43,11 +43,11 @@ export default function EventDetailPage() {
             alt={event.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-50 via-neutral-50/40 to-ink/20" />
           <div className="absolute bottom-6 left-6">
             <Link
               href="/events"
-              className="inline-flex items-center gap-2 text-stone-300 hover:text-white text-sm mb-4"
+              className="inline-flex items-center gap-2 text-ink bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm mb-4 shadow-sm hover:bg-white"
             >
               <ArrowLeft className="w-4 h-4" /> All Adventures
             </Link>
@@ -70,7 +70,7 @@ export default function EventDetailPage() {
                 </span>
               </div>
 
-              <h1 className="font-display text-4xl md:text-5xl font-normal text-white mb-6 uppercase tracking-normal">
+              <h1 className="font-display text-4xl md:text-5xl font-normal text-ink mb-6 uppercase tracking-normal">
                 {event.title}
               </h1>
 
@@ -90,19 +90,19 @@ export default function EventDetailPage() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div
                     key={label}
-                    className="bg-stone-900 border border-stone-800 rounded-xl p-4"
+                    className="bg-white border border-neutral-200 rounded-xl p-4"
                   >
                     <Icon className="w-4 h-4 text-forest mb-2" />
-                    <div className="text-xs text-stone-500 mb-0.5">{label}</div>
-                    <div className="text-stone-200 text-sm font-medium">
+                    <div className="text-xs text-neutral-500 mb-0.5">{label}</div>
+                    <div className="text-neutral-700 text-sm font-medium">
                       {value}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="prose prose-invert prose-stone max-w-none">
-                <p className="text-stone-300 text-lg leading-relaxed">
+              <div className="prose prose prose-neutral max-w-none">
+                <p className="text-neutral-600 text-lg leading-relaxed">
                   {event.description}
                 </p>
               </div>
@@ -110,11 +110,11 @@ export default function EventDetailPage() {
 
             {/* Booking card */}
             <div className="lg:col-span-1">
-              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 sticky top-28">
+              <div className="bg-white border border-neutral-200 rounded-2xl p-6 sticky top-28">
                 <div className="mb-6">
                   {pricing ? (
                     <>
-                      <div className="text-stone-400 text-sm mb-1">
+                      <div className="text-neutral-500 text-sm mb-1">
                         {pricing.reason}
                       </div>
                       {pricing.finalPrice === 0 ? (
@@ -122,22 +122,26 @@ export default function EventDetailPage() {
                           Free
                         </div>
                       ) : (
-                        <div className="flex items-baseline gap-3">
-                          <div className="font-display text-3xl font-normal tracking-normal text-white">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <div className="font-display text-3xl font-normal tracking-normal text-ink">
                             {formatKES(pricing.finalPrice)}
                           </div>
                           {pricing.discount > 0 && (
-                            <div className="text-stone-500 line-through">
+                            <div className="text-neutral-500 line-through">
                               {formatKES(event.price)}
                             </div>
                           )}
+                          <MpesaMark showLabel />
                         </div>
                       )}
                     </>
                   ) : (
                     <>
-                      <div className="font-display text-3xl font-normal tracking-normal text-white">
-                        {formatKES(event.price)}
+                      <div className="flex flex-wrap items-center gap-3">
+                        <div className="font-display text-3xl font-normal tracking-normal text-ink">
+                          {formatKES(event.price)}
+                        </div>
+                        {Number(event.price) > 0 && <MpesaMark showLabel />}
                       </div>
                       {event.memberPrice !== null &&
                         event.memberPrice !== undefined && (
@@ -153,11 +157,11 @@ export default function EventDetailPage() {
 
                 {/* Capacity bar */}
                 <div className="mb-6">
-                  <div className="flex justify-between text-sm text-stone-400 mb-2">
+                  <div className="flex justify-between text-sm text-neutral-500 mb-2">
                     <span>{event.enrolled} booked</span>
                     <span>{spotsLeft} spots left</span>
                   </div>
-                  <div className="h-2 bg-stone-800 rounded-full overflow-hidden">
+                  <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-forest rounded-full"
                       style={{
@@ -176,7 +180,7 @@ export default function EventDetailPage() {
                 </button>
 
                 {!isAuthenticated && (
-                  <p className="text-center text-stone-500 text-xs mt-4">
+                  <p className="text-center text-neutral-500 text-xs mt-4">
                     <Link href="/login" className="text-forest underline">
                       Sign in
                     </Link>{' '}
@@ -185,8 +189,8 @@ export default function EventDetailPage() {
                 )}
 
                 {/* What's included */}
-                <div className="mt-6 pt-6 border-t border-stone-800">
-                  <div className="text-stone-400 text-sm font-medium mb-3">
+                <div className="mt-6 pt-6 border-t border-neutral-200">
+                  <div className="text-neutral-500 text-sm font-medium mb-3">
                     What&apos;s included
                   </div>
                   {[
@@ -197,7 +201,7 @@ export default function EventDetailPage() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="flex items-center gap-2 text-stone-300 text-sm mb-2"
+                      className="flex items-center gap-2 text-neutral-600 text-sm mb-2"
                     >
                       <CheckCircle className="w-4 h-4 text-forest flex-shrink-0" />
                       {item}
@@ -216,14 +220,14 @@ export default function EventDetailPage() {
 function PageSkeleton() {
   return (
     <div className="min-h-screen pt-20 animate-pulse">
-      <div className="h-[50vh] bg-stone-800" />
+      <div className="h-[50vh] bg-neutral-100" />
       <div className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-4">
-          <div className="h-8 bg-stone-800 rounded w-1/4" />
-          <div className="h-12 bg-stone-800 rounded w-3/4" />
-          <div className="h-48 bg-stone-800 rounded" />
+          <div className="h-8 bg-neutral-100 rounded w-1/4" />
+          <div className="h-12 bg-neutral-100 rounded w-3/4" />
+          <div className="h-48 bg-neutral-100 rounded" />
         </div>
-        <div className="h-80 bg-stone-800 rounded-2xl" />
+        <div className="h-80 bg-neutral-100 rounded-2xl" />
       </div>
     </div>
   );

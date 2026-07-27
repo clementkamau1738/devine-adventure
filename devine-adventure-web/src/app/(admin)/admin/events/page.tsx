@@ -63,10 +63,10 @@ export default function AdminEventsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+          <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
             Events
           </h1>
-          <p className="text-stone-400 mt-1">
+          <p className="text-neutral-500 mt-1">
             {data?.meta?.total ?? 0} total events
           </p>
         </div>
@@ -81,15 +81,15 @@ export default function AdminEventsPage() {
         </button>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-stone-800">
+            <tr className="border-b border-neutral-200">
               {['Event', 'Date', 'Price', 'Capacity', 'Status', 'Actions'].map(
                 (h) => (
                   <th
                     key={h}
-                    className="text-left text-stone-400 font-medium px-5 py-4"
+                    className="text-left text-neutral-500 font-medium px-5 py-4"
                   >
                     {h}
                   </th>
@@ -100,7 +100,7 @@ export default function AdminEventsPage() {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={6} className="text-center py-10 text-stone-500">
+                <td colSpan={6} className="text-center py-10 text-neutral-500">
                   Loading...
                 </td>
               </tr>
@@ -108,23 +108,23 @@ export default function AdminEventsPage() {
               data?.events?.map((event) => (
                 <tr
                   key={event.id}
-                  className="border-b border-stone-800/50 hover:bg-stone-800/30"
+                  className="border-b border-neutral-200 hover:bg-neutral-50"
                 >
                   <td className="px-5 py-4">
-                    <div className="text-white font-medium line-clamp-1">
+                    <div className="text-ink font-medium line-clamp-1">
                       {event.title}
                     </div>
-                    <div className="text-stone-500 text-xs">
+                    <div className="text-neutral-500 text-xs">
                       {event.category} · {event.difficulty}
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-stone-300 text-xs">
+                  <td className="px-5 py-4 text-neutral-600 text-xs">
                     {formatEventDate(event.dateTime)}
                   </td>
-                  <td className="px-5 py-4 text-stone-300">
+                  <td className="px-5 py-4 text-neutral-600">
                     {formatKES(event.price)}
                   </td>
-                  <td className="px-5 py-4 text-stone-300">
+                  <td className="px-5 py-4 text-neutral-600">
                     {event.enrolled}/{event.capacity}
                   </td>
                   <td className="px-5 py-4">
@@ -132,7 +132,7 @@ export default function AdminEventsPage() {
                       className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                         event.isPublished
                           ? 'bg-forest/15 text-forest border border-forest/30'
-                          : 'bg-stone-700 text-stone-400 border border-stone-600'
+                          : 'bg-neutral-200 text-neutral-500 border border-neutral-300'
                       }`}
                     >
                       {event.isPublished ? 'Published' : 'Draft'}
@@ -147,7 +147,7 @@ export default function AdminEventsPage() {
                             isPublished: !event.isPublished,
                           })
                         }
-                        className="p-1.5 text-stone-400 hover:text-white rounded"
+                        className="p-1.5 text-neutral-500 hover:text-ink rounded"
                         title={event.isPublished ? 'Unpublish' : 'Publish'}
                       >
                         {event.isPublished ? (
@@ -158,7 +158,7 @@ export default function AdminEventsPage() {
                       </button>
                       <button
                         onClick={() => handleEdit(event)}
-                        className="p-1.5 text-stone-400 hover:text-forest rounded"
+                        className="p-1.5 text-neutral-500 hover:text-forest rounded"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -167,7 +167,7 @@ export default function AdminEventsPage() {
                           if (confirm('Delete this event?'))
                             deleteEvent.mutate(event.id);
                         }}
-                        className="p-1.5 text-stone-400 hover:text-clay rounded"
+                        className="p-1.5 text-neutral-500 hover:text-clay rounded"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

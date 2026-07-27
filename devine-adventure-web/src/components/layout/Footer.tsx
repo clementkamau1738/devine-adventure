@@ -33,14 +33,14 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-stone-800 bg-stone-950">
+    <footer className="border-t border-neutral-200 bg-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
           <div>
             <div className="mb-4">
-              <Logo theme="dark" height={40} />
+              <Logo theme="light" height={40} />
             </div>
-            <p className="text-stone-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
               Kenya&apos;s premier outdoor adventure booking platform. Hikes,
               bikes, and wilderness experiences across the highlands, forests,
               and valleys.
@@ -52,7 +52,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-stone-500 hover:text-forest transition-colors"
+                className="text-neutral-500 hover:text-forest transition-colors"
               >
                 <Share2 className="w-5 h-5" />
               </a>
@@ -61,14 +61,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-stone-500 hover:text-forest transition-colors"
+                className="text-neutral-500 hover:text-forest transition-colors"
               >
                 <Globe className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 aria-label="Email"
-                className="text-stone-500 hover:text-forest transition-colors"
+                className="text-neutral-500 hover:text-forest transition-colors"
               >
                 <Mail className="w-5 h-5" />
               </a>
@@ -77,7 +77,7 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <div className="text-stone-200 text-sm font-semibold mb-4">
+              <div className="text-ink text-sm font-semibold mb-4">
                 {col.title}
               </div>
               <ul className="space-y-3">
@@ -85,7 +85,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-stone-400 hover:text-white text-sm transition-colors"
+                      className="text-neutral-500 hover:text-ink text-sm transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -96,7 +96,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-500 text-sm">
+        <div className="pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-sm">
           <span>
             © {new Date().getFullYear()} Devine Adventure. All rights
             reserved.

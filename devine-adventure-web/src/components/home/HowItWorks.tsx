@@ -23,13 +23,13 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="bg-stone-900/40 border-y border-stone-800">
+    <section className="bg-neutral-100 border-y border-neutral-200">
       <div className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             How it works
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
             Three Steps to Your Next Trail
           </h2>
         </div>
@@ -41,14 +41,14 @@ export function HowItWorks() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-forest/10 border border-forest/30">
                   <Icon className="w-5 h-5 text-forest" />
                 </div>
-                <span className="font-display text-3xl font-normal tracking-normal text-stone-700">
+                <span className="font-display text-3xl font-normal tracking-normal text-neutral-700">
                   0{i + 1}
                 </span>
               </div>
-              <h3 className="font-display font-normal uppercase tracking-normal text-white text-lg mb-2">
+              <h3 className="font-display font-normal uppercase tracking-normal text-ink text-lg mb-2">
                 {title}
               </h3>
-              <p className="text-stone-400 text-sm leading-relaxed">
+              <p className="text-neutral-500 text-sm leading-relaxed">
                 {description}
               </p>
             </div>

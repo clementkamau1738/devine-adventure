@@ -39,7 +39,7 @@ export function FloatingWhatsApp() {
         'fixed z-[60] bottom-5 right-5 sm:bottom-6 sm:right-6',
         'group flex items-center gap-0 rounded-full',
         'bg-[#25D366] text-white shadow-lg shadow-black/30',
-        'hover:bg-[#1ebe57] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950',
+        'hover:bg-[#1ebe57] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50',
         'transition-all duration-300 ease-out',
         visible
           ? 'opacity-100 translate-y-0'

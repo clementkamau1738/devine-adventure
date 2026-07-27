@@ -15,15 +15,13 @@ const navLinks = [
   { label: 'About', href: '/about' },
 ];
 
+/** Sitewide light chrome (Phase B). */
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, isAuthenticated, clearAuth } = useAuthStore();
   const pathname = usePathname();
   const router = useRouter();
-
-  /** Phase A: light chrome on homepage only (pairs with light hero). */
-  const light = pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -45,17 +43,13 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        light
-          ? scrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-neutral-200 py-3 shadow-sm'
-            : 'bg-neutral-50 py-5'
-          : scrolled
-            ? 'bg-stone-950/95 backdrop-blur-md border-b border-stone-800 py-3'
-            : 'py-6',
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md border-b border-neutral-200 py-3 shadow-sm'
+          : 'bg-neutral-50 py-5',
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Logo priority theme={light ? 'light' : 'dark'} height={44} />
+        <Logo priority theme="light" height={44} />
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map(({ label, href }) => (
@@ -66,9 +60,7 @@ export function Navbar() {
                 'text-sm font-medium transition-colors',
                 pathname === href
                   ? 'text-forest'
-                  : light
-                    ? 'text-neutral-600 hover:text-ink'
-                    : 'text-stone-300 hover:text-white',
+                  : 'text-neutral-600 hover:text-ink',
               )}
             >
               {label}
@@ -89,24 +81,14 @@ export function Navbar() {
               )}
               <Link
                 href="/dashboard"
-                className={cn(
-                  'flex items-center gap-2 text-sm transition-colors',
-                  light
-                    ? 'text-neutral-600 hover:text-ink'
-                    : 'text-stone-300 hover:text-white',
-                )}
+                className="flex items-center gap-2 text-sm text-neutral-600 hover:text-ink transition-colors"
               >
                 <User className="w-4 h-4" />
                 {user?.name.split(' ')[0]}
               </Link>
               <button
                 onClick={handleLogout}
-                className={cn(
-                  'flex items-center gap-1.5 text-sm',
-                  light
-                    ? 'text-neutral-500 hover:text-ink'
-                    : 'text-stone-400 hover:text-stone-200',
-                )}
+                className="flex items-center gap-1.5 text-sm text-neutral-500 hover:text-ink"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -115,12 +97,7 @@ export function Navbar() {
             <>
               <Link
                 href="/login"
-                className={cn(
-                  'text-sm',
-                  light
-                    ? 'text-neutral-600 hover:text-ink'
-                    : 'text-stone-300 hover:text-white',
-                )}
+                className="text-sm text-neutral-600 hover:text-ink"
               >
                 Sign In
               </Link>
@@ -135,10 +112,7 @@ export function Navbar() {
         </div>
 
         <button
-          className={cn(
-            'md:hidden',
-            light ? 'text-ink' : 'text-stone-300',
-          )}
+          className="md:hidden text-ink"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
@@ -147,40 +121,20 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div
-          className={cn(
-            'md:hidden border-t px-6 py-6 space-y-4',
-            light
-              ? 'bg-white border-neutral-200'
-              : 'bg-stone-950 border-stone-800',
-          )}
-        >
+        <div className="md:hidden bg-white border-t border-neutral-200 px-6 py-6 space-y-4">
           {navLinks.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className={cn(
-                'block',
-                light
-                  ? 'text-neutral-700 hover:text-ink'
-                  : 'text-stone-300 hover:text-white',
-              )}
+              className="block text-neutral-700 hover:text-ink"
             >
               {label}
             </Link>
           ))}
           {!isAuthenticated ? (
-            <div
-              className={cn(
-                'pt-4 flex flex-col gap-3 border-t',
-                light ? 'border-neutral-200' : 'border-stone-800',
-              )}
-            >
-              <Link
-                href="/login"
-                className={light ? 'text-neutral-700' : 'text-stone-300'}
-              >
+            <div className="pt-4 flex flex-col gap-3 border-t border-neutral-200">
+              <Link href="/login" className="text-neutral-700">
                 Sign In
               </Link>
               <Link
@@ -191,28 +145,11 @@ export function Navbar() {
               </Link>
             </div>
           ) : (
-            <div
-              className={cn(
-                'pt-4 border-t',
-                light ? 'border-neutral-200' : 'border-stone-800',
-              )}
-            >
-              <Link
-                href="/dashboard"
-                className={cn(
-                  'block mb-3',
-                  light ? 'text-neutral-700' : 'text-stone-300',
-                )}
-              >
+            <div className="pt-4 border-t border-neutral-200">
+              <Link href="/dashboard" className="block text-neutral-700 mb-3">
                 Dashboard
               </Link>
-              <button
-                onClick={handleLogout}
-                className={cn(
-                  'text-sm',
-                  light ? 'text-neutral-500' : 'text-stone-400',
-                )}
-              >
+              <button onClick={handleLogout} className="text-neutral-500 text-sm">
                 Sign Out
               </button>
             </div>

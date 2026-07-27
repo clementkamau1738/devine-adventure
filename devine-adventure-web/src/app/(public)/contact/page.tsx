@@ -40,10 +40,10 @@ export default function ContactPage() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Contact
           </span>
-          <h1 className="font-display text-5xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
+          <h1 className="font-display text-5xl font-normal text-ink mt-3 mb-4 uppercase tracking-normal">
             Get in Touch
           </h1>
-          <p className="text-stone-400 text-lg">
+          <p className="text-neutral-500 text-lg">
             Questions about an upcoming adventure, group bookings, or
             membership? Reach out — we usually reply within a day.
           </p>
@@ -57,10 +57,10 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto px-6 grid sm:grid-cols-2 gap-4">
           {channels.map(({ icon: Icon, label, value, href }) => {
             const content = (
-              <div className="bg-stone-900 border border-neutral-700 rounded-2xl p-5 h-full hover:border-forest/40 transition-colors">
+              <div className="bg-white border border-neutral-200 rounded-2xl p-5 h-full hover:border-forest/40 transition-colors">
                 <Icon className="w-5 h-5 text-forest mb-3" />
-                <div className="text-stone-500 text-xs mb-0.5">{label}</div>
-                <div className="text-white font-semibold text-sm">{value}</div>
+                <div className="text-neutral-500 text-xs mb-0.5">{label}</div>
+                <div className="text-ink font-semibold text-sm">{value}</div>
               </div>
             );
             return href ? (

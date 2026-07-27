@@ -32,7 +32,7 @@ const eventFormSchema = z.object({
 type EventFormValues = z.infer<typeof eventFormSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors';
+  'w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-2.5 text-ink text-sm placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors';
 
 function Field({
   label,
@@ -45,7 +45,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-stone-300 text-sm font-medium mb-1.5">
+      <label className="block text-neutral-600 text-sm font-medium mb-1.5">
         {label}
       </label>
       {children}
@@ -125,13 +125,13 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
   return (
     <Dialog.Root open onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-40" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg max-h-[90vh] overflow-y-auto bg-stone-900 border border-stone-800 rounded-2xl p-6 z-50">
+        <Dialog.Overlay className="fixed inset-0 bg-white/80 backdrop-blur-sm z-40" />
+        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white border border-neutral-200 rounded-2xl p-6 z-50">
           <div className="flex items-center justify-between mb-6">
-            <Dialog.Title className="text-white font-normal text-xl font-display uppercase tracking-normal">
+            <Dialog.Title className="text-ink font-normal text-xl font-display uppercase tracking-normal">
               {event ? 'Edit Event' : 'New Event'}
             </Dialog.Title>
-            <Dialog.Close className="text-stone-400 hover:text-white">
+            <Dialog.Close className="text-neutral-500 hover:text-ink">
               <X className="w-5 h-5" />
             </Dialog.Close>
           </div>
@@ -231,12 +231,12 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
               name="isFeatured"
               control={control}
               render={({ field }) => (
-                <label className="flex items-center gap-2 text-stone-300 text-sm">
+                <label className="flex items-center gap-2 text-neutral-600 text-sm">
                   <input
                     type="checkbox"
                     checked={field.value}
                     onChange={(e) => field.onChange(e.target.checked)}
-                    className="rounded border-stone-700 bg-stone-800 text-forest focus:ring-forest"
+                    className="rounded border-neutral-200 bg-neutral-100 text-forest focus:ring-forest"
                   />
                   Featured event
                 </label>
@@ -247,7 +247,7 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 border border-stone-700 text-stone-300 font-semibold py-3 rounded-xl hover:border-stone-500 transition-colors"
+                className="flex-1 border border-neutral-200 text-neutral-600 font-semibold py-3 rounded-xl hover:border-neutral-300 transition-colors"
               >
                 Cancel
               </button>

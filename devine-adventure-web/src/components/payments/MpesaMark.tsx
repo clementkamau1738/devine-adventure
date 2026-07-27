@@ -16,7 +16,7 @@ export function MpesaMark({ className, showLabel = false }: MpesaMarkProps) {
       className={cn('inline-flex flex-col items-start gap-0.5', className)}
       title="Pay with M-Pesa"
     >
-      <span className="inline-flex items-center gap-1.5 rounded-md border border-neutral-700 bg-void/60 px-1.5 py-0.5">
+      <span className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 bg-neutral-50 px-1.5 py-0.5">
         {/* Minimal STK / phone glyph — not an official Safaricom asset */}
         <svg
           width="12"
@@ -42,7 +42,7 @@ export function MpesaMark({ className, showLabel = false }: MpesaMarkProps) {
         </span>
       </span>
       {showLabel && (
-        <span className="text-[10px] text-stone-500 font-sans leading-none">
+        <span className="text-[10px] text-neutral-500 font-sans leading-none">
           Instant STK push
         </span>
       )}

@@ -68,10 +68,10 @@ export function DestinationBrowse() {
         <span className="text-forest text-sm font-semibold tracking-widest uppercase">
           Destinations
         </span>
-        <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
+        <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
           Where would you like to go?
         </h2>
-        <p className="text-stone-400 mt-3 max-w-xl">
+        <p className="text-neutral-500 mt-3 max-w-xl">
           Browse by place — from city forests to summit ridges — using the
           routes we already run.
         </p>
@@ -83,7 +83,7 @@ export function DestinationBrowse() {
             <div
               key={i}
               className={cn(
-                'rounded-2xl bg-stone-900 border border-neutral-700 animate-pulse',
+                'rounded-2xl bg-white border border-neutral-200 animate-pulse',
                 i === 0 && 'md:col-span-2 md:row-span-2',
                 i === 1 && 'md:col-span-2',
               )}
@@ -100,7 +100,7 @@ export function DestinationBrowse() {
                 key={dest.key}
                 href={`/events?search=${encodeURIComponent(dest.locationQuery)}`}
                 className={cn(
-                  'group relative overflow-hidden rounded-2xl border border-neutral-700',
+                  'group relative overflow-hidden rounded-2xl border border-neutral-200',
                   'hover:border-forest/40 transition-all duration-300 ease-out',
                   featured && 'col-span-2 row-span-2 min-h-[280px] md:min-h-0',
                   wide && 'md:col-span-2',
@@ -112,8 +112,7 @@ export function DestinationBrowse() {
                   alt={dest.name}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
-                <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/10 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                   <h3
                     className={cn(
@@ -123,7 +122,7 @@ export function DestinationBrowse() {
                   >
                     {dest.name}
                   </h3>
-                  <p className="text-stone-300 text-xs md:text-sm mt-1 font-sans">
+                  <p className="text-white/80 text-xs md:text-sm mt-1 font-sans">
                     {dest.count} adventure{dest.count === 1 ? '' : 's'}
                   </p>
                 </div>

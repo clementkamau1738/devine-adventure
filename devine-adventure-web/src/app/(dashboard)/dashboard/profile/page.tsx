@@ -20,7 +20,7 @@ const profileSchema = z.object({
 type ProfileValues = z.infer<typeof profileSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors disabled:opacity-50';
+  'w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-2.5 text-ink text-sm placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors disabled:opacity-50';
 
 export default function DashboardProfilePage() {
   const { user, updateUser } = useAuthStore();
@@ -57,13 +57,13 @@ export default function DashboardProfilePage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+        <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
           Profile
         </h1>
-        <p className="text-stone-400 mt-1">Manage your account details</p>
+        <p className="text-neutral-500 mt-1">Manage your account details</p>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 max-w-lg">
+      <div className="bg-white border border-neutral-200 rounded-2xl p-6 max-w-lg">
         <div className="flex items-center gap-3 mb-6">
           {user?.role === 'MEMBER' && (
             <span className="bg-forest/15 text-forest border border-forest/30 text-xs font-semibold px-2.5 py-1 rounded-full">
@@ -79,7 +79,7 @@ export default function DashboardProfilePage() {
             className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
               user?.isVerified
                 ? 'bg-forest/15 text-forest border border-forest/30'
-                : 'bg-stone-700 text-stone-400 border border-stone-600'
+                : 'bg-neutral-200 text-neutral-500 border border-neutral-300'
             }`}
           >
             {user?.isVerified ? 'Verified' : 'Unverified'}
@@ -88,7 +88,7 @@ export default function DashboardProfilePage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-stone-300 text-sm font-medium mb-1.5">
+            <label className="block text-neutral-600 text-sm font-medium mb-1.5">
               Email
             </label>
             <input
@@ -99,7 +99,7 @@ export default function DashboardProfilePage() {
           </div>
 
           <div>
-            <label className="block text-stone-300 text-sm font-medium mb-1.5">
+            <label className="block text-neutral-600 text-sm font-medium mb-1.5">
               Full Name
             </label>
             <input {...register('name')} className={inputClass} />
@@ -109,7 +109,7 @@ export default function DashboardProfilePage() {
           </div>
 
           <div>
-            <label className="block text-stone-300 text-sm font-medium mb-1.5">
+            <label className="block text-neutral-600 text-sm font-medium mb-1.5">
               Phone
             </label>
             <input

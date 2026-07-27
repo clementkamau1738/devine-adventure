@@ -15,10 +15,10 @@ export default function BlogPage() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Stories from the Trail
           </span>
-          <h1 className="font-display text-4xl md:text-5xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
+          <h1 className="font-display text-4xl md:text-5xl font-normal text-ink mt-3 mb-4 uppercase tracking-normal">
             Coming soon
           </h1>
-          <p className="text-stone-400 text-lg leading-relaxed mb-8">
+          <p className="text-neutral-500 text-lg leading-relaxed mb-8">
             We&apos;re putting together trip reports, route guides, and
             member stories from across the highlands, forests, and valleys.
             Check back soon — or follow along on the adventures happening

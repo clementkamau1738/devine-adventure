@@ -11,10 +11,10 @@ export default function BookingCancelPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-clay/10 rounded-full mb-5">
             <XCircle className="w-8 h-8 text-clay" />
           </div>
-          <h1 className="font-display text-3xl font-normal text-white mb-2 uppercase tracking-normal">
+          <h1 className="font-display text-3xl font-normal text-ink mb-2 uppercase tracking-normal">
             Payment Cancelled
           </h1>
-          <p className="text-stone-400 mb-8">
+          <p className="text-neutral-500 mb-8">
             No charge was made. Your booking is still saved as pending — you
             can pick up where you left off from your dashboard.
           </p>
@@ -22,7 +22,7 @@ export default function BookingCancelPage() {
           <div className="flex gap-3">
             <Link
               href="/dashboard/bookings"
-              className="flex-1 text-center border border-stone-700 text-stone-200 font-semibold py-3 rounded-xl hover:border-stone-500 transition-colors"
+              className="flex-1 text-center border border-neutral-200 text-neutral-700 font-semibold py-3 rounded-xl hover:border-neutral-300 transition-colors"
             >
               My Bookings
             </Link>

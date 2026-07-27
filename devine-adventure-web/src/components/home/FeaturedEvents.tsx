@@ -14,13 +14,13 @@ export function FeaturedEvents() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Handpicked
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
             Featured Adventures
           </h2>
         </div>
         <Link
           href="/events"
-          className="hidden sm:inline-flex items-center gap-2 text-stone-300 hover:text-forest text-sm font-medium transition-colors"
+          className="hidden sm:inline-flex items-center gap-2 text-neutral-600 hover:text-forest text-sm font-medium transition-colors"
         >
           View all <ArrowRight className="w-4 h-4" />
         </Link>
@@ -31,12 +31,12 @@ export function FeaturedEvents() {
           {Array.from({ length: 3 }, (_, i) => (
             <div
               key={i}
-              className="h-96 bg-stone-900 border border-stone-800 rounded-2xl animate-pulse"
+              className="h-96 bg-white border border-neutral-200 rounded-2xl animate-pulse"
             />
           ))}
         </div>
       ) : !events || events.length === 0 ? (
-        <p className="text-stone-500 text-center py-16">
+        <p className="text-neutral-500 text-center py-16">
           No featured adventures right now — check back soon.
         </p>
       ) : (

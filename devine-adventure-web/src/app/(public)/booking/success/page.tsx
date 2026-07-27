@@ -15,10 +15,10 @@ function BookingSuccessContent() {
   if (!ref || isError) {
     return (
       <div className="max-w-lg mx-auto px-6 text-center py-20">
-        <div className="text-white font-semibold mb-2">
+        <div className="text-ink font-semibold mb-2">
           We couldn&apos;t find that booking
         </div>
-        <p className="text-stone-400 text-sm mb-8">
+        <p className="text-neutral-500 text-sm mb-8">
           Check your dashboard for your latest bookings.
         </p>
         <Link
@@ -33,7 +33,7 @@ function BookingSuccessContent() {
 
   if (isLoading || !booking) {
     return (
-      <div className="max-w-lg mx-auto px-6 py-20 text-center text-stone-400">
+      <div className="max-w-lg mx-auto px-6 py-20 text-center text-neutral-500">
         Loading your booking...
       </div>
     );
@@ -45,17 +45,17 @@ function BookingSuccessContent() {
         <div className="inline-flex items-center justify-center w-16 h-16 bg-forest/10 rounded-full mb-5">
           <CheckCircle className="w-8 h-8 text-forest" />
         </div>
-        <h1 className="font-display text-3xl font-normal text-white mb-2 uppercase tracking-normal">
+        <h1 className="font-display text-3xl font-normal text-ink mb-2 uppercase tracking-normal">
           Booking Confirmed
         </h1>
-        <p className="text-stone-400">
+        <p className="text-neutral-500">
           A confirmation has been sent to your email.
         </p>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-4 pb-4 border-b border-stone-800">
-          <span className="text-stone-400 text-sm">Reference</span>
+      <div className="bg-white border border-neutral-200 rounded-2xl p-6">
+        <div className="flex items-center justify-between mb-4 pb-4 border-b border-neutral-200">
+          <span className="text-neutral-500 text-sm">Reference</span>
           <span className="text-forest font-mono font-semibold">
             {booking.referenceCode}
           </span>
@@ -63,28 +63,28 @@ function BookingSuccessContent() {
 
         {booking.event && (
           <div className="mb-4">
-            <div className="text-white font-bold text-lg mb-2">
+            <div className="text-ink font-bold text-lg mb-2">
               {booking.event.title}
             </div>
-            <div className="flex items-center gap-1.5 text-stone-400 text-sm mb-1.5">
+            <div className="flex items-center gap-1.5 text-neutral-500 text-sm mb-1.5">
               <MapPin className="w-3.5 h-3.5" /> {booking.event.location}
             </div>
-            <div className="flex items-center gap-1.5 text-stone-400 text-sm">
+            <div className="flex items-center gap-1.5 text-neutral-500 text-sm">
               <Clock className="w-3.5 h-3.5" />{' '}
               {formatEventDate(booking.event.dateTime)}
             </div>
           </div>
         )}
 
-        <div className="flex items-center justify-between pt-4 border-t border-stone-800">
-          <span className="text-stone-400 text-sm">Status</span>
+        <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+          <span className="text-neutral-500 text-sm">Status</span>
           <span className="text-forest text-sm font-semibold">
             {booking.status}
           </span>
         </div>
         <div className="flex items-center justify-between mt-2">
-          <span className="text-stone-400 text-sm">Amount Paid</span>
-          <span className="font-display font-normal tracking-normal text-white">
+          <span className="text-neutral-500 text-sm">Amount Paid</span>
+          <span className="font-display font-normal tracking-normal text-ink">
             {formatKES(booking.totalAmount)}
           </span>
         </div>
@@ -93,7 +93,7 @@ function BookingSuccessContent() {
       <div className="flex gap-3 mt-8">
         <Link
           href="/dashboard/bookings"
-          className="flex-1 text-center border border-stone-700 text-stone-200 font-semibold py-3 rounded-xl hover:border-stone-500 transition-colors"
+          className="flex-1 text-center border border-neutral-200 text-neutral-700 font-semibold py-3 rounded-xl hover:border-neutral-300 transition-colors"
         >
           My Bookings
         </Link>
@@ -115,7 +115,7 @@ export default function BookingSuccessPage() {
       <main className="min-h-screen pt-20">
         <Suspense
           fallback={
-            <div className="max-w-lg mx-auto px-6 py-20 text-center text-stone-400">
+            <div className="max-w-lg mx-auto px-6 py-20 text-center text-neutral-500">
               Loading...
             </div>
           }

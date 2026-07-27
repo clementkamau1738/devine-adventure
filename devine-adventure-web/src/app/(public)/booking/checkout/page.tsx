@@ -62,19 +62,19 @@ export default function CheckoutPage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
-          <h1 className="font-display text-4xl font-normal text-white mb-2 uppercase tracking-normal">
+          <h1 className="font-display text-4xl font-normal text-ink mb-2 uppercase tracking-normal">
             Payment
           </h1>
-          <p className="text-stone-400 mb-8">
+          <p className="text-neutral-500 mb-8">
             Ref:{' '}
             <span className="text-forest font-mono">
               {currentBooking.referenceCode}
             </span>
           </p>
 
-          <div className="bg-stone-900 border border-stone-800 rounded-xl p-4 mb-8 flex justify-between items-center">
-            <span className="text-stone-300">Amount due</span>
-            <span className="font-display font-normal tracking-normal text-white text-2xl">
+          <div className="bg-white border border-neutral-200 rounded-xl p-4 mb-8 flex justify-between items-center">
+            <span className="text-neutral-600">Amount due</span>
+            <span className="font-display font-normal tracking-normal text-ink text-2xl">
               {formatKES(pricing.finalPrice)}
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function CheckoutPage() {
           {/* Payment method selection */}
           {!stkSent && (
             <div className="space-y-4 mb-8">
-              <h2 className="text-stone-300 font-semibold">
+              <h2 className="text-neutral-600 font-semibold">
                 Choose payment method
               </h2>
 
@@ -92,13 +92,13 @@ export default function CheckoutPage() {
                 className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all ${
                   paymentMethod === 'mpesa'
                     ? 'border-forest bg-forest/5'
-                    : 'border-stone-700 hover:border-stone-500'
+                    : 'border-neutral-200 hover:border-neutral-300'
                 }`}
               >
                 <Smartphone className="w-6 h-6 text-forest" />
                 <div className="text-left">
-                  <div className="text-white font-semibold">M-Pesa</div>
-                  <div className="text-stone-400 text-sm">
+                  <div className="text-ink font-semibold">M-Pesa</div>
+                  <div className="text-neutral-500 text-sm">
                     Pay via Safaricom STK Push
                   </div>
                 </div>
@@ -110,15 +110,15 @@ export default function CheckoutPage() {
                 className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all ${
                   paymentMethod === 'card'
                     ? 'border-forest bg-forest/5'
-                    : 'border-stone-700 hover:border-stone-500'
+                    : 'border-neutral-200 hover:border-neutral-300'
                 }`}
               >
                 <CreditCard className="w-6 h-6 text-forest" />
                 <div className="text-left">
-                  <div className="text-white font-semibold">
+                  <div className="text-ink font-semibold">
                     Card (Visa / Mastercard)
                   </div>
-                  <div className="text-stone-400 text-sm">
+                  <div className="text-neutral-500 text-sm">
                     Secure payment via Stripe
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function CheckoutPage() {
           {/* M-Pesa phone input */}
           {paymentMethod === 'mpesa' && !stkSent && (
             <div className="mb-6">
-              <label className="block text-stone-300 text-sm font-medium mb-2">
+              <label className="block text-neutral-600 text-sm font-medium mb-2">
                 M-Pesa Phone Number
               </label>
               <input
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+254712345678"
-                className="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-forest"
+                className="w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-ink placeholder-neutral-400 focus:outline-none focus:border-forest"
               />
             </div>
           )}
@@ -146,8 +146,8 @@ export default function CheckoutPage() {
           {stkSent && (
             <div className="bg-forest/10 border border-forest/30 rounded-xl p-6 mb-6 text-center">
               <div className="text-4xl mb-3">📱</div>
-              <div className="text-white font-bold mb-2">STK Push Sent!</div>
-              <div className="text-stone-300 text-sm">
+              <div className="text-ink font-bold mb-2">STK Push Sent!</div>
+              <div className="text-neutral-600 text-sm">
                 Enter your M-Pesa PIN on your phone to complete the payment.
                 Your booking will be confirmed automatically.
               </div>

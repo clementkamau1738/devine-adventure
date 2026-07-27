@@ -30,7 +30,7 @@ const DIFFICULTIES = [
 ];
 
 const selectClass =
-  'bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 text-sm text-stone-200 focus:outline-none focus:border-forest transition-colors';
+  'bg-white border border-neutral-200 rounded-xl px-4 py-3 text-sm text-neutral-700 focus:outline-none focus:border-forest transition-colors';
 
 export function EventFilters({ filters, onChange }: Props) {
   const hasActiveFilters =
@@ -39,7 +39,7 @@ export function EventFilters({ filters, onChange }: Props) {
   return (
     <div className="flex flex-col sm:flex-row gap-3">
       <div className="relative flex-1">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
         <input
           type="text"
           value={filters.search}
@@ -47,7 +47,7 @@ export function EventFilters({ filters, onChange }: Props) {
             onChange((f) => ({ ...f, search: e.target.value, page: 1 }))
           }
           placeholder="Search by name, location, or description"
-          className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-11 pr-4 py-3 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-forest transition-colors"
+          className="w-full bg-white border border-neutral-200 rounded-xl pl-11 pr-4 py-3 text-sm text-neutral-700 placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors"
         />
       </div>
 
@@ -90,7 +90,7 @@ export function EventFilters({ filters, onChange }: Props) {
               page: 1,
             }))
           }
-          className="flex items-center justify-center gap-1.5 text-stone-400 hover:text-white text-sm px-4 py-3 rounded-xl border border-stone-800 hover:border-stone-600 transition-colors"
+          className="flex items-center justify-center gap-1.5 text-neutral-500 hover:text-ink text-sm px-4 py-3 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-colors"
         >
           <X className="w-4 h-4" /> Clear
         </button>

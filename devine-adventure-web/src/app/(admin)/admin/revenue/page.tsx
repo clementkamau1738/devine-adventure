@@ -48,39 +48,39 @@ export default function AdminRevenuePage() {
     <div>
       <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+          <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
             Revenue
           </h1>
-          <p className="text-stone-400 mt-1">Payment analytics</p>
+          <p className="text-neutral-500 mt-1">Payment analytics</p>
         </div>
         <div className="flex items-center gap-3">
           <input
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
+            className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           />
-          <span className="text-stone-500 text-sm">to</span>
+          <span className="text-neutral-500 text-sm">to</span>
           <input
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
+            className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           />
         </div>
       </div>
 
       {isLoading || !data ? (
-        <div className="text-stone-400">Loading...</div>
+        <div className="text-neutral-500">Loading...</div>
       ) : (
         <>
           <div className="bg-gradient-to-r from-forest/15 to-forest/5 border border-forest/25 rounded-2xl p-6 mb-8 flex items-center gap-6">
             <TrendingUp className="w-10 h-10 text-forest flex-shrink-0" />
             <div>
-              <div className="text-stone-400 text-sm mb-1">
+              <div className="text-neutral-500 text-sm mb-1">
                 Total Revenue{from || to ? ' (filtered)' : ''}
               </div>
-              <div className="font-display text-4xl font-normal tracking-normal text-white">
+              <div className="font-display text-4xl font-normal tracking-normal text-ink">
                 {formatKES(data.total)}
               </div>
             </div>
@@ -92,13 +92,13 @@ export default function AdminRevenuePage() {
               return (
                 <div
                   key={m.method}
-                  className="bg-stone-900 border border-stone-800 rounded-2xl p-5"
+                  className="bg-white border border-neutral-200 rounded-2xl p-5"
                 >
                   <Icon className="w-5 h-5 text-forest mb-3" />
-                  <div className="text-2xl font-black text-white">
+                  <div className="text-2xl font-black text-ink">
                     {formatKES(Number(m._sum.amount ?? 0))}
                   </div>
-                  <div className="text-stone-500 text-sm">
+                  <div className="text-neutral-500 text-sm">
                     {methodLabel[m.method]} · {m._count} payments
                   </div>
                 </div>
@@ -106,15 +106,15 @@ export default function AdminRevenuePage() {
             })}
           </div>
 
-          <div className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden">
+          <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-stone-800">
+                <tr className="border-b border-neutral-200">
                   {['Event', 'Method', 'Reference', 'Amount', 'Date'].map(
                     (h) => (
                       <th
                         key={h}
-                        className="text-left text-stone-400 font-medium px-4 py-4"
+                        className="text-left text-neutral-500 font-medium px-4 py-4"
                       >
                         {h}
                       </th>
@@ -127,7 +127,7 @@ export default function AdminRevenuePage() {
                   <tr>
                     <td
                       colSpan={5}
-                      className="text-center py-10 text-stone-500"
+                      className="text-center py-10 text-neutral-500"
                     >
                       No payments in this range
                     </td>
@@ -136,21 +136,21 @@ export default function AdminRevenuePage() {
                   data.payments.map((p) => (
                     <tr
                       key={p.id}
-                      className="border-b border-stone-800/50 hover:bg-stone-800/30"
+                      className="border-b border-neutral-200 hover:bg-neutral-50"
                     >
-                      <td className="px-4 py-3 text-stone-300 text-xs line-clamp-1">
+                      <td className="px-4 py-3 text-neutral-600 text-xs line-clamp-1">
                         {p.booking?.event.title ?? '—'}
                       </td>
-                      <td className="px-4 py-3 text-stone-300 text-xs">
+                      <td className="px-4 py-3 text-neutral-600 text-xs">
                         {methodLabel[p.method]}
                       </td>
                       <td className="px-4 py-3 font-mono text-forest text-xs">
                         {p.transactionRef}
                       </td>
-                      <td className="px-4 py-3 text-stone-300">
+                      <td className="px-4 py-3 text-neutral-600">
                         {formatKES(Number(p.amount))}
                       </td>
-                      <td className="px-4 py-3 text-stone-500 text-xs">
+                      <td className="px-4 py-3 text-neutral-500 text-xs">
                         {new Date(p.createdAt).toLocaleDateString('en-KE')}
                       </td>
                     </tr>

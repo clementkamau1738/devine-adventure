@@ -47,14 +47,14 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
-        <div className="p-6 border-b border-stone-800">
-          <Logo theme="dark" height={32} />
+      <aside className="w-64 bg-white border-r border-neutral-200 flex flex-col fixed h-full z-20">
+        <div className="p-6 border-b border-neutral-200">
+          <Logo theme="light" height={32} />
         </div>
 
-        <div className="p-4 border-b border-stone-800">
-          <div className="text-white font-semibold text-sm">{user?.name}</div>
-          <div className="text-stone-500 text-xs">{user?.email}</div>
+        <div className="p-4 border-b border-neutral-200">
+          <div className="text-ink font-semibold text-sm">{user?.name}</div>
+          <div className="text-neutral-500 text-xs">{user?.email}</div>
           {user?.role === 'MEMBER' && (
             <span className="inline-block mt-2 bg-forest/15 text-forest border border-forest/30 text-xs font-semibold px-2.5 py-0.5 rounded-full">
               Member
@@ -71,7 +71,7 @@ export default function DashboardLayout({
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors',
                 pathname === href
                   ? 'bg-forest/10 text-forest font-medium'
-                  : 'text-stone-400 hover:text-white hover:bg-stone-800',
+                  : 'text-neutral-500 hover:text-ink hover:bg-neutral-100',
               )}
             >
               <Icon className="w-4 h-4" />
@@ -80,10 +80,10 @@ export default function DashboardLayout({
           ))}
         </nav>
 
-        <div className="p-4 border-t border-stone-800">
+        <div className="p-4 border-t border-neutral-200">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 text-stone-400 hover:text-white text-sm transition-colors w-full px-3 py-2"
+            className="flex items-center gap-3 text-neutral-500 hover:text-ink text-sm transition-colors w-full px-3 py-2"
           >
             <LogOut className="w-4 h-4" />
             Sign Out
@@ -92,7 +92,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 ml-64 p-8 min-h-screen">{children}</main>
+      <main className="flex-1 ml-64 p-8 min-h-screen bg-neutral-50">{children}</main>
     </div>
   );
 }

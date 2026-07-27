@@ -32,10 +32,10 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+        <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
           Welcome back, {user?.name.split(' ')[0]} 👋
         </h1>
-        <p className="text-stone-400 mt-1">Here&apos;s your adventure summary</p>
+        <p className="text-neutral-500 mt-1">Here&apos;s your adventure summary</p>
       </div>
 
       {/* KPI cards */}
@@ -63,16 +63,16 @@ export default function DashboardPage() {
             color:
               subscription?.status === 'ACTIVE'
                 ? 'text-forest'
-                : 'text-stone-500',
+                : 'text-neutral-500',
           },
         ].map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
-            className="bg-stone-900 border border-neutral-700 rounded-2xl p-5"
+            className="bg-white border border-neutral-200 rounded-2xl p-5"
           >
             <Icon className={`w-5 h-5 ${color} mb-3`} />
-            <div className="text-2xl font-black text-white">{value}</div>
-            <div className="text-stone-500 text-sm">{label}</div>
+            <div className="text-2xl font-black text-ink">{value}</div>
+            <div className="text-neutral-500 text-sm">{label}</div>
           </div>
         ))}
       </div>
@@ -84,7 +84,7 @@ export default function DashboardPage() {
             <div className="text-forest font-semibold">
               Active {subscription.planType.toLowerCase()} membership
             </div>
-            <div className="text-stone-400 text-sm mt-1">
+            <div className="text-neutral-500 text-sm mt-1">
               Expires{' '}
               {new Date(subscription.endDate).toLocaleDateString('en-KE', {
                 dateStyle: 'long',
@@ -104,7 +104,7 @@ export default function DashboardPage() {
             <div className="text-forest font-semibold">
               Become a member
             </div>
-            <div className="text-stone-400 text-sm mt-1">
+            <div className="text-neutral-500 text-sm mt-1">
               Get discounts and free access to selected hikes
             </div>
           </div>
@@ -120,19 +120,19 @@ export default function DashboardPage() {
       {/* Recent bookings */}
       <div>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-white font-bold text-lg">Recent Bookings</h2>
+          <h2 className="text-ink font-bold text-lg">Recent Bookings</h2>
           <Link href="/dashboard/bookings" className="text-forest text-sm">
             View all →
           </Link>
         </div>
 
         {bookings.length === 0 ? (
-          <div className="bg-stone-900 border border-stone-800 rounded-2xl p-12 text-center">
+          <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center">
             <div className="text-4xl mb-4">🏔️</div>
-            <div className="text-white font-semibold mb-2">
+            <div className="text-ink font-semibold mb-2">
               No adventures yet
             </div>
-            <div className="text-stone-400 text-sm mb-6">
+            <div className="text-neutral-500 text-sm mb-6">
               Your bookings will appear here
             </div>
             <Link
@@ -147,7 +147,7 @@ export default function DashboardPage() {
             {bookings.slice(0, 5).map((b) => (
               <div
                 key={b.id}
-                className="bg-stone-900 border border-stone-800 rounded-xl p-4 flex items-center gap-4"
+                className="bg-white border border-neutral-200 rounded-xl p-4 flex items-center gap-4"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -159,10 +159,10 @@ export default function DashboardPage() {
                   className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="text-white font-semibold text-sm truncate">
+                  <div className="text-ink font-semibold text-sm truncate">
                     {b.event?.title}
                   </div>
-                  <div className="text-stone-400 text-xs">
+                  <div className="text-neutral-500 text-xs">
                     {b.event?.dateTime ? formatEventDate(b.event.dateTime) : '—'}
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                       {b.status}
                     </span>
                   </div>
-                  <div className="text-stone-400 text-xs mt-1">
+                  <div className="text-neutral-500 text-xs mt-1">
                     {formatKES(b.totalAmount)}
                   </div>
                 </div>

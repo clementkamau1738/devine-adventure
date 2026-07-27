@@ -40,7 +40,7 @@ export default function BookingInitiatePage() {
 
   if (pricingLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-stone-400">
+      <div className="min-h-screen flex items-center justify-center text-neutral-500">
         Loading pricing...
       </div>
     );
@@ -51,14 +51,14 @@ export default function BookingInitiatePage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
-          <h1 className="font-display text-4xl font-normal text-white mb-8 uppercase tracking-normal">
+          <h1 className="font-display text-4xl font-normal text-ink mb-8 uppercase tracking-normal">
             Confirm Booking
           </h1>
 
           {pricing && (
-            <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 mb-6">
-              <div className="text-stone-400 text-sm mb-1">Price breakdown</div>
-              <div className="flex justify-between text-stone-300 mb-2">
+            <div className="bg-white border border-neutral-200 rounded-2xl p-6 mb-6">
+              <div className="text-neutral-500 text-sm mb-1">Price breakdown</div>
+              <div className="flex justify-between text-neutral-600 mb-2">
                 <span>Event price</span>
                 <span>{formatKES(pricing.originalPrice)}</span>
               </div>
@@ -68,7 +68,7 @@ export default function BookingInitiatePage() {
                   <span>- {formatKES(pricing.discount)}</span>
                 </div>
               )}
-              <div className="border-t border-stone-700 pt-3 flex justify-between text-white text-lg">
+              <div className="border-t border-neutral-200 pt-3 flex justify-between text-ink text-lg">
                 <span className="font-sans font-bold">Total</span>
                 <span className="font-display font-normal tracking-normal">
                   {pricing.finalPrice === 0

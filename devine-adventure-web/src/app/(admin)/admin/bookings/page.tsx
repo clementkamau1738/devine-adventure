@@ -51,10 +51,10 @@ export default function AdminBookingsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+          <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
             Bookings
           </h1>
-          <p className="text-stone-400 mt-1">
+          <p className="text-neutral-500 mt-1">
             {data?.meta?.total ?? 0} total bookings
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function AdminBookingsPage() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
+            className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           >
             <option value="">All Statuses</option>
             <option value="PENDING">Pending</option>
@@ -71,17 +71,17 @@ export default function AdminBookingsPage() {
           </select>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl hover:border-stone-500 transition-colors"
+            className="flex items-center gap-2 border border-neutral-200 text-neutral-700 text-sm px-4 py-2.5 rounded-xl hover:border-neutral-300 transition-colors"
           >
             <Download className="w-4 h-4" /> Export CSV
           </button>
         </div>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-stone-800">
+            <tr className="border-b border-neutral-200">
               {[
                 'Reference',
                 'User',
@@ -93,7 +93,7 @@ export default function AdminBookingsPage() {
               ].map((h) => (
                 <th
                   key={h}
-                  className="text-left text-stone-400 font-medium px-4 py-4"
+                  className="text-left text-neutral-500 font-medium px-4 py-4"
                 >
                   {h}
                 </th>
@@ -103,7 +103,7 @@ export default function AdminBookingsPage() {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={7} className="text-center py-10 text-stone-500">
+                <td colSpan={7} className="text-center py-10 text-neutral-500">
                   Loading...
                 </td>
               </tr>
@@ -111,23 +111,23 @@ export default function AdminBookingsPage() {
               data?.bookings?.map((b) => (
                 <tr
                   key={b.id}
-                  className="border-b border-stone-800/50 hover:bg-stone-800/30"
+                  className="border-b border-neutral-200 hover:bg-neutral-50"
                 >
                   <td className="px-4 py-3 font-mono text-forest text-xs">
                     {b.referenceCode}
                   </td>
                   <td className="px-4 py-3">
-                    <div className="text-white text-xs font-medium">
+                    <div className="text-ink text-xs font-medium">
                       {b.user.name}
                     </div>
-                    <div className="text-stone-500 text-xs">
+                    <div className="text-neutral-500 text-xs">
                       {b.user.email}
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-stone-300 text-xs line-clamp-1">
+                  <td className="px-4 py-3 text-neutral-600 text-xs line-clamp-1">
                     {b.event.title}
                   </td>
-                  <td className="px-4 py-3 text-stone-300">
+                  <td className="px-4 py-3 text-neutral-600">
                     {formatKES(b.totalAmount)}
                   </td>
                   <td className="px-4 py-3">
@@ -156,7 +156,7 @@ export default function AdminBookingsPage() {
                       {b.paymentStatus}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-stone-500 text-xs">
+                  <td className="px-4 py-3 text-neutral-500 text-xs">
                     {new Date(b.createdAt).toLocaleDateString('en-KE')}
                   </td>
                 </tr>

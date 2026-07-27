@@ -45,13 +45,13 @@ export default function AdminUsersPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">Users</h1>
-          <p className="text-stone-400 mt-1">{data?.meta?.total ?? 0} total users</p>
+          <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">Users</h1>
+          <p className="text-neutral-500 mt-1">{data?.meta?.total ?? 0} total users</p>
         </div>
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
+          className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
         >
           <option value="">All Roles</option>
           {ROLES.map((r) => (
@@ -62,14 +62,14 @@ export default function AdminUsersPage() {
         </select>
       </div>
 
-      <div className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-stone-800">
+            <tr className="border-b border-neutral-200">
               {['User', 'Contact', 'Role', 'Activity', 'Joined'].map((h) => (
                 <th
                   key={h}
-                  className="text-left text-stone-400 font-medium px-5 py-4"
+                  className="text-left text-neutral-500 font-medium px-5 py-4"
                 >
                   {h}
                 </th>
@@ -79,7 +79,7 @@ export default function AdminUsersPage() {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={5} className="text-center py-10 text-stone-500">
+                <td colSpan={5} className="text-center py-10 text-neutral-500">
                   Loading...
                 </td>
               </tr>
@@ -87,19 +87,19 @@ export default function AdminUsersPage() {
               data?.users?.map((u) => (
                 <tr
                   key={u.id}
-                  className="border-b border-stone-800/50 hover:bg-stone-800/30"
+                  className="border-b border-neutral-200 hover:bg-neutral-50"
                 >
                   <td className="px-5 py-4">
-                    <div className="text-white font-medium">{u.name}</div>
+                    <div className="text-ink font-medium">{u.name}</div>
                     <span
-                      className={`text-xs font-semibold ${u.isVerified ? 'text-forest' : 'text-stone-500'}`}
+                      className={`text-xs font-semibold ${u.isVerified ? 'text-forest' : 'text-neutral-500'}`}
                     >
                       {u.isVerified ? 'Verified' : 'Unverified'}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-stone-300 text-xs">
+                  <td className="px-5 py-4 text-neutral-600 text-xs">
                     <div>{u.email}</div>
-                    <div className="text-stone-500">{u.phone ?? '—'}</div>
+                    <div className="text-neutral-500">{u.phone ?? '—'}</div>
                   </td>
                   <td className="px-5 py-4">
                     <select
@@ -107,7 +107,7 @@ export default function AdminUsersPage() {
                       onChange={(e) =>
                         updateRole.mutate({ id: u.id, role: e.target.value })
                       }
-                      className="bg-stone-800 border border-stone-700 text-stone-200 text-xs px-2.5 py-1.5 rounded-lg focus:outline-none focus:border-forest"
+                      className="bg-neutral-100 border border-neutral-200 text-neutral-700 text-xs px-2.5 py-1.5 rounded-lg focus:outline-none focus:border-forest"
                     >
                       {ROLES.map((r) => (
                         <option key={r} value={r}>
@@ -116,10 +116,10 @@ export default function AdminUsersPage() {
                       ))}
                     </select>
                   </td>
-                  <td className="px-5 py-4 text-stone-300 text-xs">
+                  <td className="px-5 py-4 text-neutral-600 text-xs">
                     {u._count.bookings} bookings · {u._count.subscriptions} subs
                   </td>
-                  <td className="px-5 py-4 text-stone-500 text-xs">
+                  <td className="px-5 py-4 text-neutral-500 text-xs">
                     {new Date(u.createdAt).toLocaleDateString('en-KE')}
                   </td>
                 </tr>

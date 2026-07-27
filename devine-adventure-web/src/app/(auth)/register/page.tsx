@@ -36,7 +36,7 @@ const registerSchema = z
 type RegisterValues = z.infer<typeof registerSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors';
+  'w-full bg-neutral-100 border border-neutral-200 rounded-xl px-4 py-3 text-ink text-sm placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors';
 
 function RegisterForm() {
   const router = useRouter();
@@ -68,7 +68,7 @@ function RegisterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div>
-        <label className="block text-stone-300 text-sm font-medium mb-1.5">
+        <label className="block text-neutral-600 text-sm font-medium mb-1.5">
           Full Name
         </label>
         <input
@@ -82,7 +82,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="block text-stone-300 text-sm font-medium mb-1.5">
+        <label className="block text-neutral-600 text-sm font-medium mb-1.5">
           Email
         </label>
         <input
@@ -97,8 +97,8 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="block text-stone-300 text-sm font-medium mb-1.5">
-          Phone <span className="text-stone-500 font-normal">(optional)</span>
+        <label className="block text-neutral-600 text-sm font-medium mb-1.5">
+          Phone <span className="text-neutral-500 font-normal">(optional)</span>
         </label>
         <input
           {...register('phone')}
@@ -111,7 +111,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="block text-stone-300 text-sm font-medium mb-1.5">
+        <label className="block text-neutral-600 text-sm font-medium mb-1.5">
           Password
         </label>
         <input
@@ -128,7 +128,7 @@ function RegisterForm() {
       </div>
 
       <div>
-        <label className="block text-stone-300 text-sm font-medium mb-1.5">
+        <label className="block text-neutral-600 text-sm font-medium mb-1.5">
           Confirm Password
         </label>
         <input
@@ -163,11 +163,11 @@ export default function RegisterPage() {
           <Logo className="h-12" priority />
         </div>
 
-        <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8">
-          <h1 className="font-display text-2xl font-normal text-white mb-1 uppercase tracking-normal">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-8">
+          <h1 className="font-display text-2xl font-normal text-ink mb-1 uppercase tracking-normal">
             Create your account
           </h1>
-          <p className="text-stone-400 text-sm mb-8">
+          <p className="text-neutral-500 text-sm mb-8">
             Join Kenya&apos;s adventure collective
           </p>
 
@@ -176,7 +176,7 @@ export default function RegisterPage() {
           </Suspense>
         </div>
 
-        <p className="text-center text-stone-500 text-sm mt-6">
+        <p className="text-center text-neutral-500 text-sm mt-6">
           Already have an account?{' '}
           <Link href="/login" className="text-forest hover:underline">
             Sign in

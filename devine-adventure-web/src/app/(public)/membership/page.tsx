@@ -16,7 +16,7 @@ const PLANS = [
     price: 2500,
     period: '/month',
     tagline: 'Try it out',
-    color: 'border-stone-700',
+    color: 'border-neutral-200',
     features: [
       'Member discounts on all events',
       'Free access to freemium hikes',
@@ -45,7 +45,7 @@ const PLANS = [
     price: 22000,
     period: '/year',
     tagline: 'Best value',
-    color: 'border-stone-700',
+    color: 'border-neutral-200',
     features: [
       'Everything in Quarterly',
       'Save KES 8,000',
@@ -84,10 +84,10 @@ export default function MembershipPage() {
             <span className="text-forest text-sm font-semibold tracking-widest uppercase">
               Membership
             </span>
-            <h1 className="font-display text-5xl md:text-6xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
+            <h1 className="font-display text-5xl md:text-6xl font-normal text-ink mt-3 mb-4 uppercase tracking-normal">
               Adventure Unlimited
             </h1>
-            <p className="text-stone-400 text-xl max-w-xl mx-auto">
+            <p className="text-neutral-500 text-xl max-w-xl mx-auto">
               Get member discounts, free access to selected hikes, and
               priority booking on all events.
             </p>
@@ -100,7 +100,7 @@ export default function MembershipPage() {
                 ✓ You have an active {subscription.planType.toLowerCase()}{' '}
                 membership
               </div>
-              <div className="text-stone-400 text-sm mt-1">
+              <div className="text-neutral-500 text-sm mt-1">
                 Expires{' '}
                 {new Date(subscription.endDate).toLocaleDateString('en-KE', {
                   dateStyle: 'long',
@@ -114,32 +114,33 @@ export default function MembershipPage() {
             {PLANS.map((plan) => (
               <div
                 key={plan.type}
-                className={`bg-stone-900 border-2 ${plan.color} rounded-2xl p-6 relative ${plan.featured ? 'scale-105' : ''}`}
+                className={`bg-white border-2 ${plan.color} rounded-2xl p-6 relative ${plan.featured ? 'scale-105' : ''}`}
               >
                 {plan.featured && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sun text-ink text-xs font-bold px-4 py-1.5 rounded-full">
                     Most Popular
                   </div>
                 )}
-                <div className="text-stone-400 text-sm mb-1">
+                <div className="text-neutral-500 text-sm mb-1">
                   {plan.tagline}
                 </div>
-                <div className="font-display text-2xl font-normal uppercase tracking-normal text-white mb-1">
+                <div className="font-display text-2xl font-normal uppercase tracking-normal text-ink mb-1">
                   {plan.label}
                 </div>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="font-display text-4xl font-normal tracking-normal text-white">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-2 mb-6">
+                  <span className="font-display text-4xl font-normal tracking-normal text-ink">
                     KES {plan.price.toLocaleString()}
                   </span>
-                  <span className="text-stone-500 text-sm font-sans">
+                  <span className="text-neutral-500 text-sm font-sans">
                     {plan.period}
                   </span>
+                  <MpesaMark className="self-center" />
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
                     <li
                       key={f}
-                      className="flex items-start gap-2 text-stone-300 text-sm"
+                      className="flex items-start gap-2 text-neutral-600 text-sm"
                     >
                       <Check className="w-4 h-4 text-forest flex-shrink-0 mt-0.5" />
                       {f}
@@ -152,7 +153,7 @@ export default function MembershipPage() {
                   className={`w-full py-3.5 rounded-xl font-bold transition-colors ${
                     plan.featured
                       ? 'bg-forest text-neutral-50 hover:bg-forest-hover'
-                      : 'border border-stone-600 text-white hover:border-stone-400'
+                      : 'border border-neutral-300 text-ink hover:border-neutral-300'
                   } disabled:opacity-50`}
                 >
                   {subscription?.status === 'ACTIVE'

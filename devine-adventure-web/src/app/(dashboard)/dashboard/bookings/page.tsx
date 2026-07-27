@@ -34,18 +34,18 @@ export default function DashboardBookingsPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
+        <h1 className="text-3xl font-normal text-ink font-display uppercase tracking-normal">
           My Bookings
         </h1>
-        <p className="text-stone-400 mt-1">{bookings.length} total bookings</p>
+        <p className="text-neutral-500 mt-1">{bookings.length} total bookings</p>
       </div>
 
       {isLoading ? (
-        <div className="text-stone-400">Loading...</div>
+        <div className="text-neutral-500">Loading...</div>
       ) : bookings.length === 0 ? (
-        <div className="bg-stone-900 border border-stone-800 rounded-2xl p-12 text-center">
+        <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center">
           <div className="text-4xl mb-4">🏔️</div>
-          <div className="text-white font-semibold mb-2">No bookings yet</div>
+          <div className="text-ink font-semibold mb-2">No bookings yet</div>
           <Link
             href="/events"
             className="inline-block bg-forest text-neutral-50 font-bold px-6 py-3 rounded-full hover:bg-forest-hover transition-colors text-sm mt-4"
@@ -58,7 +58,7 @@ export default function DashboardBookingsPage() {
           {bookings.map((b) => (
             <div
               key={b.id}
-              className="bg-stone-900 border border-stone-800 rounded-xl p-5 flex items-center gap-4"
+              className="bg-white border border-neutral-200 rounded-xl p-5 flex items-center gap-4"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -70,13 +70,13 @@ export default function DashboardBookingsPage() {
                 className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <div className="text-white font-semibold truncate">
+                <div className="text-ink font-semibold truncate">
                   {b.event?.title}
                 </div>
-                <div className="text-stone-400 text-sm">
+                <div className="text-neutral-500 text-sm">
                   {b.event?.dateTime ? formatEventDate(b.event.dateTime) : '—'}
                 </div>
-                <div className="text-stone-500 text-xs font-mono mt-1">
+                <div className="text-neutral-500 text-xs font-mono mt-1">
                   {b.referenceCode}
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function DashboardBookingsPage() {
                     {b.status}
                   </span>
                 </div>
-                <div className="text-stone-300 text-sm font-semibold">
+                <div className="text-neutral-600 text-sm font-semibold">
                   {formatKES(b.totalAmount)}
                 </div>
                 {b.status !== 'CANCELLED' && (

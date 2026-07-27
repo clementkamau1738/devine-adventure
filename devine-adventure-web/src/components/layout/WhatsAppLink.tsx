@@ -39,7 +39,7 @@ export function WhatsAppLink({
         rel="noopener noreferrer"
         aria-label="WhatsApp us"
         className={cn(
-          'text-stone-500 hover:text-[#25D366] transition-colors',
+          'text-neutral-500 hover:text-[#25D366] transition-colors',
           className,
         )}
       >
@@ -55,7 +55,7 @@ export function WhatsAppLink({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          'inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white text-sm font-semibold px-4 py-2 hover:bg-[#1ebe57] transition-colors',
+          'inline-flex items-center gap-2 rounded-full bg-[#25D366] text-neutral-50 text-sm font-semibold px-4 py-2 hover:bg-[#1ebe57] transition-colors',
           className,
         )}
       >
@@ -71,7 +71,7 @@ export function WhatsAppLink({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'inline-flex items-center gap-1.5 text-sm text-stone-300 hover:text-[#25D366] transition-colors',
+        'inline-flex items-center gap-1.5 text-sm text-neutral-600 hover:text-[#25D366] transition-colors',
         className,
       )}
     >

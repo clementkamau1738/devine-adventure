@@ -28,13 +28,13 @@ export function DifficultyFilterStrip({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        'border-y border-neutral-700 bg-void/80 backdrop-blur-sm',
+        'border-y border-neutral-200 bg-neutral-100 backdrop-blur-sm',
         className,
       )}
       aria-label="Filter adventures by difficulty"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-        <span className="text-stone-500 text-xs font-semibold tracking-widest uppercase shrink-0">
+        <span className="text-neutral-500 text-xs font-semibold tracking-widest uppercase shrink-0">
           Difficulty
         </span>
         <div
@@ -58,7 +58,7 @@ export function DifficultyFilterStrip({ className }: { className?: string }) {
                   'px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-out',
                   isActive
                     ? 'bg-forest text-neutral-50'
-                    : 'border border-neutral-700 text-stone-300 hover:border-forest/50 hover:text-white',
+                    : 'border border-neutral-200 text-neutral-600 hover:border-forest/50 hover:text-ink',
                 )}
               >
                 {label}

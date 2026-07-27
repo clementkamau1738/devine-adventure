@@ -40,10 +40,10 @@ function EventsPageInner() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-6 mb-8">
-          <h1 className="font-display text-5xl font-normal text-white mb-3 uppercase tracking-normal">
+          <h1 className="font-display text-5xl font-normal text-ink mb-3 uppercase tracking-normal">
             Adventures
           </h1>
-          <p className="text-stone-400 text-lg">
+          <p className="text-neutral-500 text-lg">
             {data?.meta.total ?? '...'} experiences across Kenya
           </p>
         </div>
@@ -66,7 +66,7 @@ function EventsPageInner() {
                   className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${
                     filters.page === i + 1
                       ? 'bg-forest text-neutral-50'
-                      : 'border border-stone-700 text-stone-400 hover:border-stone-500'
+                      : 'border border-neutral-200 text-neutral-500 hover:border-neutral-300'
                   }`}
                 >
                   {i + 1}
@@ -88,7 +88,7 @@ export default function EventsPage() {
         <>
           <Navbar />
           <main className="min-h-screen pt-28 pb-20">
-            <div className="max-w-7xl mx-auto px-6 text-stone-400">
+            <div className="max-w-7xl mx-auto px-6 text-neutral-500">
               Loading adventures…
             </div>
           </main>

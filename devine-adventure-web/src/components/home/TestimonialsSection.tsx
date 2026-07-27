@@ -28,7 +28,7 @@ export function TestimonialsSection() {
         <span className="text-forest text-sm font-semibold tracking-widest uppercase">
           Community
         </span>
-        <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
+        <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
           Adventurers Love Devine
         </h2>
       </div>
@@ -37,7 +37,7 @@ export function TestimonialsSection() {
         {testimonials.map(({ name, role, quote }) => (
           <div
             key={name}
-            className="bg-stone-900 border border-neutral-700 rounded-2xl p-6"
+            className="bg-white border border-neutral-200 rounded-2xl p-6"
           >
             <div className="flex gap-1 mb-4">
               {Array.from({ length: 5 }, (_, i) => (
@@ -47,11 +47,11 @@ export function TestimonialsSection() {
                 />
               ))}
             </div>
-            <p className="text-stone-300 text-sm leading-relaxed mb-6">
+            <p className="text-neutral-600 text-sm leading-relaxed mb-6">
               &ldquo;{quote}&rdquo;
             </p>
-            <div className="text-white font-semibold text-sm">{name}</div>
-            <div className="text-stone-500 text-xs">{role}</div>
+            <div className="text-ink font-semibold text-sm">{name}</div>
+            <div className="text-neutral-500 text-xs">{role}</div>
           </div>
         ))}
       </div>

@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} ${anton.variable}`}
     >
-      <body className="bg-stone-950 text-stone-100 font-sans antialiased">
+      <body className="bg-neutral-50 text-ink font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>
