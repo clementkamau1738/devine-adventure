@@ -123,11 +123,24 @@ export default function MembershipPage() {
                 <div className="text-stone-400 text-sm mb-1">
                   {plan.tagline}
                 </div>
-                <div className="font-display text-2xl font-black text-white mb-1">
+                {/* Phase 2 preview: display face only on featured pricing card */}
+                <div
+                  className={
+                    plan.featured
+                      ? 'font-display-preview text-2xl font-normal uppercase tracking-tight text-white mb-1'
+                      : 'font-display text-2xl font-black text-white mb-1'
+                  }
+                >
                   {plan.label}
                 </div>
                 <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-black text-white">
+                  <span
+                    className={
+                      plan.featured
+                        ? 'font-display-preview text-4xl font-normal tracking-tight text-white'
+                        : 'text-4xl font-black text-white'
+                    }
+                  >
                     KES {plan.price.toLocaleString()}
                   </span>
                   <span className="text-stone-500 text-sm">{plan.period}</span>

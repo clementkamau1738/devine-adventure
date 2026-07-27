@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Anton, Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/Providers';
 
@@ -8,6 +8,12 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   weight: ['400', '700', '900'],
+});
+/** Block display face — branding.md §3 (H1–H3 / price numerals). */
+const anton = Anton({
+  subsets: ['latin'],
+  variable: '--font-anton',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} ${anton.variable}`}
+    >
       <body className="bg-stone-950 text-stone-100 font-sans antialiased">
         <Providers>{children}</Providers>
       </body>

@@ -21,7 +21,8 @@ export function HeroSection() {
             Kenya&apos;s Adventure Collective
           </span>
 
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-none mb-6 text-white">
+          {/* Phase 2 preview: Anton display face — approve before site-wide font-display */}
+          <h1 className="font-display-preview text-6xl md:text-7xl lg:text-8xl font-normal uppercase tracking-tight leading-none mb-6 text-white">
             Find Your <em className="not-italic text-sun">Wild</em>
           </h1>
 
