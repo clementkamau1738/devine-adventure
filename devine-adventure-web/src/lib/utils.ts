@@ -47,8 +47,17 @@ export function difficultyColor(diff: string) {
       BEGINNER: 'bg-forest/15 text-forest border border-forest/30',
       MODERATE: 'bg-ink text-sun border border-sun/25',
       ADVANCED: 'bg-clay/15 text-clay border border-clay/30',
-    }[diff] ?? 'bg-stone-800 text-stone-400 border border-stone-700'
+    }[diff] ?? 'bg-neutral-100 text-neutral-500 border border-neutral-200'
   );
+}
+
+/** Short place name from full event location string. */
+export function destinationLabel(location: string): string {
+  const main = location.split(',')[0]?.trim() ?? location;
+  return main
+    .replace(/\s+National Park$/i, '')
+    .replace(/\s+Forest$/i, ' Forest')
+    .trim();
 }
 
 export function categoryIcon(cat: string) {

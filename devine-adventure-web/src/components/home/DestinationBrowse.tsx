@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 import { useEvents } from '@/hooks/useEvents';
 import { Event } from '@/types';
-import { cn } from '@/lib/utils';
+import { cn, destinationLabel } from '@/lib/utils';
 
 type Destination = {
   key: string;
@@ -14,14 +14,7 @@ type Destination = {
   count: number;
 };
 
-/** Short display name from full location string. */
-export function destinationLabel(location: string): string {
-  const main = location.split(',')[0]?.trim() ?? location;
-  return main
-    .replace(/\s+National Park$/i, '')
-    .replace(/\s+Forest$/i, ' Forest')
-    .trim();
-}
+export { destinationLabel };
 
 function groupDestinations(events: Event[]): Destination[] {
   const map = new Map<string, Destination>();

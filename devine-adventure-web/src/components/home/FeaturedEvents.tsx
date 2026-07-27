@@ -9,18 +9,13 @@ export function FeaturedEvents() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-24">
-      <div className="flex items-end justify-between mb-10">
-        <div>
-          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
-            Handpicked
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
-            Featured Adventures
-          </h2>
-        </div>
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal">
+          Featured Adventures
+        </h2>
         <Link
           href="/events"
-          className="hidden sm:inline-flex items-center gap-2 text-neutral-600 hover:text-forest text-sm font-medium transition-colors"
+          className="hidden sm:inline-flex items-center gap-1.5 text-forest hover:text-forest-hover text-sm font-semibold transition-colors"
         >
           View all <ArrowRight className="w-4 h-4" />
         </Link>
@@ -31,8 +26,14 @@ export function FeaturedEvents() {
           {Array.from({ length: 3 }, (_, i) => (
             <div
               key={i}
-              className="h-96 bg-white border border-neutral-200 rounded-2xl animate-pulse"
-            />
+              className="rounded-3xl bg-white p-3 shadow-[0_8px_30px_rgba(17,15,13,0.06)] animate-pulse"
+            >
+              <div className="aspect-[4/3] rounded-2xl bg-neutral-100" />
+              <div className="px-1.5 pt-4 space-y-2">
+                <div className="h-4 w-3/4 bg-neutral-100 rounded" />
+                <div className="h-3 w-1/2 bg-neutral-100 rounded" />
+              </div>
+            </div>
           ))}
         </div>
       ) : !events || events.length === 0 ? (
