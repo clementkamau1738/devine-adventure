@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Globe, Share2, Mail } from 'lucide-react';
+import { Logo } from '@/components/layout/Logo';
 
 const columns = [
   {
@@ -35,19 +35,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image
-                src="/devine-icon.png"
-                alt=""
-                width={512}
-                height={512}
-                className="w-8 h-8"
-              />
-              <span className="font-display font-black text-lg leading-none">
-                <span className="text-white">Devine</span>{' '}
-                <span className="text-[#29692f]">Adventures</span>
-              </span>
-            </Link>
+            <div className="mb-4">
+              <Logo className="h-9" />
+            </div>
             <p className="text-stone-400 text-sm leading-relaxed max-w-xs">
               Kenya&apos;s premier outdoor adventure booking platform. Hikes,
               bikes, and wilderness experiences across the highlands, forests,

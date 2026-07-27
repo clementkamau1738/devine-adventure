@@ -1,12 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { useAuthStore } from '@/store/auth.store';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
+import { Logo } from '@/components/layout/Logo';
 
 const navLinks = [
   { label: 'Adventures', href: '/events' },
@@ -48,21 +48,7 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/devine-icon.png"
-            alt=""
-            width={512}
-            height={512}
-            className="w-10 h-10"
-            priority
-          />
-          <span className="font-display font-black text-xl leading-none">
-            <span className="text-white">Devine</span>{' '}
-            <span className="text-[#29692f]">Adventures</span>
-          </span>
-        </Link>
+        <Logo priority className="h-9 md:h-11" />
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">

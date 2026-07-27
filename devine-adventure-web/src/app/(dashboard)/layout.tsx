@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useAuthStore } from '@/store/auth.store';
 import {
   LayoutDashboard,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
+import { Logo } from '@/components/layout/Logo';
 
 const navItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
@@ -49,19 +49,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-stone-800">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/devine-icon.png"
-              alt=""
-              width={512}
-              height={512}
-              className="w-8 h-8"
-            />
-            <span className="font-display font-black text-base leading-none">
-              <span className="text-white">Devine</span>{' '}
-              <span className="text-[#29692f]">Adventures</span>
-            </span>
-          </Link>
+          <Logo className="h-8" />
         </div>
 
         <div className="p-4 border-b border-stone-800">

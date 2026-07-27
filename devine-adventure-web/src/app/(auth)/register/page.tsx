@@ -1,7 +1,6 @@
 'use client';
 import { Suspense } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +8,7 @@ import { z } from 'zod';
 import toast from 'react-hot-toast';
 import { useRegister } from '@/hooks/useAuth';
 import { getApiErrorMessage } from '@/lib/utils';
+import { Logo } from '@/components/layout/Logo';
 
 const registerSchema = z
   .object({
@@ -159,22 +159,9 @@ export default function RegisterPage() {
   return (
     <main className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="w-full max-w-sm">
-        <Link
-          href="/"
-          className="flex items-center justify-center gap-2.5 mb-10"
-        >
-          <Image
-            src="/devine-icon.png"
-            alt=""
-            width={512}
-            height={512}
-            className="w-11 h-11"
-          />
-          <span className="font-display font-black text-xl leading-none">
-            <span className="text-white">Devine</span>{' '}
-            <span className="text-[#29692f]">Adventures</span>
-          </span>
-        </Link>
+        <div className="flex justify-center mb-10">
+          <Logo className="h-12" priority />
+        </div>
 
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8">
           <h1 className="font-display text-2xl font-black text-white mb-1">
