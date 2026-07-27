@@ -1,18 +1,35 @@
 'use client';
-import { useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { EventGrid } from '@/components/events/EventGrid';
-import { EventFilters, EventFiltersState } from '@/components/events/EventFilters';
+import {
+  EventFilters,
+  EventFiltersState,
+} from '@/components/events/EventFilters';
 import { useEvents } from '@/hooks/useEvents';
+import { DifficultyFilterStrip } from '@/components/home/DifficultyFilterStrip';
 
-export default function EventsPage() {
+function EventsPageInner() {
+  const searchParams = useSearchParams();
+  const difficultyParam = searchParams.get('difficulty') ?? '';
+
   const [filters, setFilters] = useState<EventFiltersState>({
     category: '',
-    difficulty: '',
+    difficulty: difficultyParam,
     search: '',
     page: 1,
   });
+
+  // Keep filters in sync when strip navigates with ?difficulty=
+  useEffect(() => {
+    setFilters((f) => ({
+      ...f,
+      difficulty: difficultyParam,
+      page: 1,
+    }));
+  }, [difficultyParam]);
 
   const { data, isLoading } = useEvents(filters);
 
@@ -20,8 +37,7 @@ export default function EventsPage() {
     <>
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
-        {/* Header */}
-        <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="max-w-7xl mx-auto px-6 mb-8">
           <h1 className="font-display text-5xl font-normal text-white mb-3 uppercase tracking-normal">
             Adventures
           </h1>
@@ -30,16 +46,15 @@ export default function EventsPage() {
           </p>
         </div>
 
-        {/* Filters */}
+        <DifficultyFilterStrip className="mb-8" />
+
         <div className="max-w-7xl mx-auto px-6 mb-10">
           <EventFilters filters={filters} onChange={setFilters} />
         </div>
 
-        {/* Grid */}
         <div className="max-w-7xl mx-auto px-6">
           <EventGrid events={data?.events ?? []} isLoading={isLoading} />
 
-          {/* Pagination */}
           {data && data.meta.totalPages > 1 && (
             <div className="mt-12 flex items-center justify-center gap-3">
               {Array.from({ length: data.meta.totalPages }, (_, i) => (
@@ -61,5 +76,25 @@ export default function EventsPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function EventsPage() {
+  return (
+    <Suspense
+      fallback={
+        <>
+          <Navbar />
+          <main className="min-h-screen pt-28 pb-20">
+            <div className="max-w-7xl mx-auto px-6 text-stone-400">
+              Loading adventures…
+            </div>
+          </main>
+          <Footer />
+        </>
+      }
+    >
+      <EventsPageInner />
+    </Suspense>
   );
 }
