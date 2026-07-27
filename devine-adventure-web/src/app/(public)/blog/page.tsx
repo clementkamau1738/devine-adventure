@@ -7,7 +7,7 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-24">
+      <main className="flex-1 min-h-0 pt-28 pb-24">
         <div className="max-w-2xl mx-auto px-6 text-center py-20">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-forest/10 rounded-full mb-6">
             <BookOpen className="w-8 h-8 text-forest" />

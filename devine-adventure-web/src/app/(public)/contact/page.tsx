@@ -35,7 +35,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-24">
+      <main className="flex-1 min-h-0 pt-28 pb-24">
         <div className="max-w-3xl mx-auto px-6 text-center mb-14">
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Contact

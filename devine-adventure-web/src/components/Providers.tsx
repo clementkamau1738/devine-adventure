@@ -17,7 +17,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      {/* Full-viewport shell: footer pins to bottom on short pages */}
+      <div className="flex min-h-dvh flex-col">{children}</div>
       <FloatingWhatsApp />
       <Toaster position="top-right" />
       <ReactQueryDevtools initialIsOpen={false} />

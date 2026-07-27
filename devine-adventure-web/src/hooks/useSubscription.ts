@@ -2,13 +2,16 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { PricingResult, Subscription } from '@/types';
 
-export function useMySubscription() {
+/** Only call when the user is signed in — public pages must not hit this. */
+export function useMySubscription(enabled = true) {
   return useQuery({
     queryKey: ['subscription', 'me'],
     queryFn: async () => {
       const { data } = await api.get('/subscriptions/me');
       return data.data as Subscription | null;
     },
+    enabled,
+    retry: false,
   });
 }
 

@@ -112,7 +112,7 @@ export default function BookingSuccessPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-20">
+      <main className="flex-1 min-h-0 pt-20">
         <Suspense
           fallback={
             <div className="max-w-lg mx-auto px-6 py-20 text-center text-neutral-500">

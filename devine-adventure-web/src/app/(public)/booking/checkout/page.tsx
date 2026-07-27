@@ -60,7 +60,7 @@ export default function CheckoutPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-20">
+      <main className="flex-1 min-h-0 pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
           <h1 className="font-display text-4xl font-normal text-ink mb-2 uppercase tracking-normal">
             Payment

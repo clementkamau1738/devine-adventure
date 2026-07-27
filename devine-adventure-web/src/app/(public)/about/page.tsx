@@ -27,7 +27,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-neutral-50">
+      <main className="flex-1 min-h-0 bg-neutral-50">
         {/* Full-bleed atmospheric hero — Playfair Regular (not italic) */}
         <section className="relative min-h-[70vh] md:min-h-[78vh] flex items-center justify-center overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}

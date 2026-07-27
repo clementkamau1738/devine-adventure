@@ -36,6 +36,17 @@
   --color-neutral-900: #110f0d;
 }
 
+/* Full viewport height — use dynamic units so mobile browser chrome is covered */
+html {
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 /* Component tokens (branding.md §6) — for CSS / future components */
 :root {
   --btn-primary-bg: var(--color-forest);

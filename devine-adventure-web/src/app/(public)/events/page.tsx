@@ -37,7 +37,7 @@ function EventsPageInner() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-neutral-50 pt-28 pb-16 md:pb-20">
+      <main className="flex-1 min-h-0 bg-neutral-50 pt-28 pb-16 md:pb-20">
         {/* Page header — homepage eyebrow + Anton scale */}
         <div className="max-w-7xl mx-auto px-6 mb-8 md:mb-10">
           <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
@@ -98,7 +98,7 @@ export default function EventsPage() {
       fallback={
         <>
           <Navbar />
-          <main className="min-h-screen bg-neutral-50 pt-28 pb-20">
+          <main className="flex-1 min-h-0 bg-neutral-50 pt-28 pb-20">
             <div className="max-w-7xl mx-auto px-6 text-neutral-500 font-sans">
               Loading adventures…
             </div>

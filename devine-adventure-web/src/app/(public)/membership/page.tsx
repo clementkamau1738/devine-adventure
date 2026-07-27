@@ -57,13 +57,15 @@ const PLANS = [
 
 export default function MembershipPage() {
   const { isAuthenticated } = useAuthStore();
-  const { data: subscription } = useMySubscription();
+  // Do not fetch /subscriptions/me as a guest — that 401 used to bounce to login
+  const { data: subscription } = useMySubscription(isAuthenticated);
   const { mutateAsync: subscribe, isPending } = useSubscribe();
   const router = useRouter();
 
   const handleSubscribe = async (planType: string) => {
     if (!isAuthenticated) {
-      router.push('/login?redirect=/membership');
+      // Explicit action only — browsing plans stays public
+      router.push('/register?redirect=/membership');
       return;
     }
     try {
@@ -78,7 +80,7 @@ export default function MembershipPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-24">
+      <main className="flex-1 min-h-0 pt-28 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-forest text-sm font-semibold tracking-widest uppercase">

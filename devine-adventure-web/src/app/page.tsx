@@ -13,8 +13,8 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="bg-neutral-50">
-        {/* Hero locked — do not alter */}
+      <main className="flex flex-1 flex-col bg-neutral-50">
+        {/* Hero fills first viewport; structure/copy locked */}
         <HeroSection />
         <Suspense fallback={null}>
           <DifficultyFilterStrip />

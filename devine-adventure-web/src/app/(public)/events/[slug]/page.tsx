@@ -34,7 +34,7 @@ export default function EventDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-20">
+      <main className="flex-1 min-h-0 pt-20">
         {/* Hero image */}
         <div className="relative h-[50vh] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -219,7 +219,7 @@ export default function EventDetailPage() {
 
 function PageSkeleton() {
   return (
-    <div className="min-h-screen pt-20 animate-pulse">
+    <div className="flex-1 min-h-0 pt-20 animate-pulse">
       <div className="h-[50vh] bg-neutral-100" />
       <div className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-4">

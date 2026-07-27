@@ -53,7 +53,7 @@ export default function AdminLayout({
   if (!isAuthenticated || user?.role !== 'ADMIN') return null;
 
   return (
-    <div className="min-h-screen flex bg-neutral-50">
+    <div className="min-h-dvh flex-1 flex bg-neutral-50">
       <aside className="w-64 bg-white border-r border-neutral-200 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-neutral-200 flex items-center gap-2">
           <Shield className="w-5 h-5 text-forest" />

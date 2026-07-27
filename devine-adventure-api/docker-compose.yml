@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: devine_pass
       POSTGRES_DB: devine_adventure
     ports:
-      - '5432:5432'
+      - '5434:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 

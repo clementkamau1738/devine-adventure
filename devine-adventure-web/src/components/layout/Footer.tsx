@@ -31,16 +31,17 @@ const columns = [
   },
 ];
 
+/** Sitewide light chrome footer — classes must stay static (no window/Date branches). */
 export function Footer() {
   return (
-    <footer className="bg-neutral-100 border-t border-neutral-200">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
+    <footer className="mt-auto border-t border-neutral-200 bg-neutral-100">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-12 grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
             <div className="mb-4">
               <Logo theme="light" height={40} />
             </div>
-            <p className="text-neutral-600 text-sm leading-relaxed max-w-xs font-sans">
+            <p className="max-w-xs font-sans text-sm leading-relaxed text-neutral-600">
               Kenya&apos;s premier outdoor adventure booking platform. Hikes,
               bikes, and wilderness experiences across the highlands, forests,
               and valleys.

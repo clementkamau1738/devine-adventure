@@ -157,7 +157,7 @@ function RegisterForm() {
 
 export default function RegisterPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-6 py-20">
+    <main className="flex-1 min-h-0 flex items-center justify-center px-6 py-20">
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-10">
           <Logo className="h-12" priority />

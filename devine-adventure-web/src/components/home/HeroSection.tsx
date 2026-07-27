@@ -76,9 +76,9 @@ export function HeroSection() {
     'w-full bg-transparent text-sm text-ink placeholder:text-neutral-400 focus:outline-none font-sans min-w-0';
 
   return (
-    <section className="bg-neutral-50 text-ink pt-28 md:pt-32 pb-16 md:pb-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="flex min-h-dvh flex-col justify-center bg-neutral-50 text-ink pt-28 md:pt-32 pb-16 md:pb-24">
+      <div className="mx-auto w-full max-w-7xl px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ── Left: copy + search + stats ── */}
           <div className="order-2 lg:order-1">
             <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-5">

@@ -40,7 +40,7 @@ export default function BookingInitiatePage() {
 
   if (pricingLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-neutral-500">
+      <div className="flex-1 min-h-0 flex items-center justify-center text-neutral-500">
         Loading pricing...
       </div>
     );
@@ -49,7 +49,7 @@ export default function BookingInitiatePage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-20">
+      <main className="flex-1 min-h-0 pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
           <h1 className="font-display text-4xl font-normal text-ink mb-8 uppercase tracking-normal">
             Confirm Booking

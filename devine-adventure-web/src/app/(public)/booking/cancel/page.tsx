@@ -6,7 +6,7 @@ export default function BookingCancelPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-20 flex items-center">
+      <main className="flex-1 min-h-0 pt-20 flex items-center">
         <div className="max-w-lg mx-auto px-6 py-20 text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-clay/10 rounded-full mb-5">
             <XCircle className="w-8 h-8 text-clay" />
