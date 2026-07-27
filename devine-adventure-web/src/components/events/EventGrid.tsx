@@ -43,7 +43,7 @@ export function EventGrid({ events, isLoading }: Props) {
   }
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {events.map((event) => (
         <EventCard key={event.id} event={event} />
       ))}

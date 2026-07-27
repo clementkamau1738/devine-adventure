@@ -30,16 +30,16 @@ const DIFFICULTIES = [
 ];
 
 const selectClass =
-  'bg-white border border-neutral-200 rounded-xl px-4 py-3 text-sm text-neutral-700 focus:outline-none focus:border-forest transition-colors';
+  'w-full sm:w-auto bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-forest transition-colors font-sans';
 
 export function EventFilters({ filters, onChange }: Props) {
   const hasActiveFilters =
     filters.category || filters.difficulty || filters.search;
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3">
-      <div className="relative flex-1">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+      <div className="relative flex-1 min-w-0">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
         <input
           type="text"
           value={filters.search}
@@ -47,7 +47,7 @@ export function EventFilters({ filters, onChange }: Props) {
             onChange((f) => ({ ...f, search: e.target.value, page: 1 }))
           }
           placeholder="Search by name, location, or description"
-          className="w-full bg-white border border-neutral-200 rounded-xl pl-11 pr-4 py-3 text-sm text-neutral-700 placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors"
+          className="w-full bg-neutral-50 border border-neutral-200 rounded-xl pl-11 pr-4 py-3 text-sm text-ink placeholder-neutral-400 focus:outline-none focus:border-forest transition-colors font-sans"
         />
       </div>
 
@@ -81,6 +81,7 @@ export function EventFilters({ filters, onChange }: Props) {
 
       {hasActiveFilters && (
         <button
+          type="button"
           onClick={() =>
             onChange((f) => ({
               ...f,
@@ -90,7 +91,7 @@ export function EventFilters({ filters, onChange }: Props) {
               page: 1,
             }))
           }
-          className="flex items-center justify-center gap-1.5 text-neutral-500 hover:text-ink text-sm px-4 py-3 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-colors"
+          className="flex items-center justify-center gap-1.5 text-neutral-500 hover:text-forest text-sm px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 transition-colors font-sans"
         >
           <X className="w-4 h-4" /> Clear
         </button>
