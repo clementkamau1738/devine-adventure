@@ -23,32 +23,32 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="bg-neutral-100 border-y border-neutral-200">
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
+    <section className="bg-white border-y border-neutral-100">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div className="text-center mb-14 md:mb-16">
+          <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             How it works
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal">
             Three Steps to Your Next Trail
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-10 md:gap-12">
           {steps.map(({ icon: Icon, title, description }, i) => (
-            <div key={title} className="relative">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-forest/10 border border-forest/30">
-                  <Icon className="w-5 h-5 text-forest" />
+            <div key={title} className="text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-5">
+                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-forest/10">
+                  <Icon className="w-6 h-6 text-forest" strokeWidth={1.75} />
                 </div>
-                <span className="font-display text-3xl font-normal tracking-normal text-neutral-700">
+                <span className="font-display text-3xl font-normal tracking-normal text-neutral-300">
                   0{i + 1}
                 </span>
               </div>
-              <h3 className="font-display font-normal uppercase tracking-normal text-ink text-lg mb-2">
+              <h3 className="font-display text-xl font-normal uppercase tracking-normal text-ink mb-2">
                 {title}
               </h3>
-              <p className="text-neutral-500 text-sm leading-relaxed">
+              <p className="text-neutral-600 text-sm leading-relaxed font-sans max-w-sm mx-auto md:mx-0">
                 {description}
               </p>
             </div>

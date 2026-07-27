@@ -23,37 +23,44 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24">
-      <div className="text-center mb-16">
-        <span className="text-forest text-sm font-semibold tracking-widest uppercase">
-          Community
-        </span>
-        <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-2 uppercase tracking-normal">
-          Adventurers Love Devine
-        </h2>
-      </div>
+    <section className="bg-neutral-50">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div className="text-center mb-12 md:mb-14">
+          <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+            Community
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal">
+            Adventurers Love Devine
+          </h2>
+        </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {testimonials.map(({ name, role, quote }) => (
-          <div
-            key={name}
-            className="bg-white border border-neutral-200 rounded-2xl p-6"
-          >
-            <div className="flex gap-1 mb-4">
-              {Array.from({ length: 5 }, (_, i) => (
-                <Star
-                  key={i}
-                  className="w-4 h-4 text-sun fill-sun"
-                />
-              ))}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {testimonials.map(({ name, role, quote }) => (
+            <div
+              key={name}
+              className="bg-white rounded-2xl p-6 md:p-7 shadow-[0_4px_16px_rgba(17,15,13,0.08)]"
+            >
+              {/* Sun once per card as rating mark — section’s single accent role */}
+              <div className="flex gap-0.5 mb-4" aria-label="5 star rating">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star
+                    key={i}
+                    className="w-4 h-4 text-sun fill-sun"
+                  />
+                ))}
+              </div>
+              <p className="text-ink text-sm leading-relaxed font-sans mb-6">
+                &ldquo;{quote}&rdquo;
+              </p>
+              <div className="text-ink font-semibold text-sm font-sans">
+                {name}
+              </div>
+              <div className="text-neutral-600 text-xs font-sans mt-0.5">
+                {role}
+              </div>
             </div>
-            <p className="text-neutral-600 text-sm leading-relaxed mb-6">
-              &ldquo;{quote}&rdquo;
-            </p>
-            <div className="text-ink font-semibold text-sm">{name}</div>
-            <div className="text-neutral-500 text-xs">{role}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ export function DifficultyFilterStrip({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        'border-y border-neutral-200 bg-neutral-100 backdrop-blur-sm',
+        'border-y border-neutral-200 bg-white',
         className,
       )}
       aria-label="Filter adventures by difficulty"

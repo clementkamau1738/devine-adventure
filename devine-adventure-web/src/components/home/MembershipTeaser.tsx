@@ -4,21 +4,24 @@ import { ArrowRight, Check } from 'lucide-react';
 const perks = [
   'Member discounts on all events',
   'Free access to freemium hikes',
-  'Priority booking',
+  'Priority booking on every trip',
 ];
 
 export function MembershipTeaser() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24">
-      <div className="relative overflow-hidden rounded-3xl border border-forest/25 bg-gradient-to-br from-white via-white to-neutral-100 p-10 md:p-16">
-        <div className="max-w-xl">
-          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
+    <section className="bg-neutral-50">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div
+          className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 max-w-2xl
+            shadow-[0_4px_16px_rgba(17,15,13,0.08)]"
+        >
+          <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Membership
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink mt-3 mb-5 uppercase tracking-normal">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal mb-4">
             Adventure Unlimited
           </h2>
-          <p className="text-neutral-600 text-lg leading-relaxed mb-8">
+          <p className="text-neutral-600 text-base md:text-lg leading-relaxed font-sans mb-8 max-w-lg">
             Join Devine Adventure membership and unlock discounted pricing,
             free access to selected hikes, and priority booking on every
             event we host.
@@ -28,9 +31,11 @@ export function MembershipTeaser() {
             {perks.map((perk) => (
               <li
                 key={perk}
-                className="flex items-center gap-2 text-neutral-700 text-sm"
+                className="flex items-center gap-3 text-ink text-sm font-sans"
               >
-                <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-forest/10 shrink-0">
+                  <Check className="w-3.5 h-3.5 text-forest" strokeWidth={2.5} />
+                </span>
                 {perk}
               </li>
             ))}
@@ -38,9 +43,9 @@ export function MembershipTeaser() {
 
           <Link
             href="/membership"
-            className="inline-flex items-center gap-2 bg-forest text-neutral-50 font-bold px-8 py-4 rounded-full hover:bg-forest-hover transition-colors"
+            className="inline-flex items-center gap-2 bg-forest text-neutral-50 font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-forest-hover transition-colors"
           >
-            View Membership Plans <ArrowRight className="w-5 h-5" />
+            View Membership Plans <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

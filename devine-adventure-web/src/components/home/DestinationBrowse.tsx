@@ -6,6 +6,8 @@ import { useEvents } from '@/hooks/useEvents';
 import { Event } from '@/types';
 import { cn, destinationLabel } from '@/lib/utils';
 
+export { destinationLabel };
+
 type Destination = {
   key: string;
   name: string;
@@ -13,8 +15,6 @@ type Destination = {
   image: string;
   count: number;
 };
-
-export { destinationLabel };
 
 function groupDestinations(events: Event[]): Destination[] {
   const map = new Map<string, Destination>();

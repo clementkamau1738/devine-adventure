@@ -40,14 +40,35 @@ export function capacityPercent(enrolled: number, capacity: number) {
   return Math.round((enrolled / capacity) * 100);
 }
 
-/** Unified difficulty pill — branding §10: Beginner forest, Moderate sun-on-ink, Advanced clay */
+/** Soft text chips (filters, lists) */
 export function difficultyColor(diff: string) {
   return (
     {
       BEGINNER: 'bg-forest/15 text-forest border border-forest/30',
-      MODERATE: 'bg-ink text-sun border border-sun/25',
+      MODERATE: 'bg-sun/15 text-ink border border-sun/40',
       ADVANCED: 'bg-clay/15 text-clay border border-clay/30',
     }[diff] ?? 'bg-neutral-100 text-neutral-500 border border-neutral-200'
+  );
+}
+
+/** Solid pills on photography (Featured cards) */
+export function difficultyPillOnPhoto(diff: string) {
+  return (
+    {
+      BEGINNER: 'bg-forest text-neutral-50',
+      MODERATE: 'bg-sun text-ink',
+      ADVANCED: 'bg-clay text-neutral-50',
+    }[diff] ?? 'bg-neutral-800 text-neutral-50'
+  );
+}
+
+export function difficultyLabel(diff: string) {
+  return diff.charAt(0) + diff.slice(1).toLowerCase();
+}
+
+export function categoryIcon(cat: string) {
+  return (
+    { HIKE: '🏔️', BIKE: '🚵', PRIVATE: '🎯', TRAINING: '💪' }[cat] ?? '🌿'
   );
 }
 
@@ -58,10 +79,4 @@ export function destinationLabel(location: string): string {
     .replace(/\s+National Park$/i, '')
     .replace(/\s+Forest$/i, ' Forest')
     .trim();
-}
-
-export function categoryIcon(cat: string) {
-  return (
-    { HIKE: '🏔️', BIKE: '🚵', PRIVATE: '🎯', TRAINING: '💪' }[cat] ?? '🌿'
-  );
 }

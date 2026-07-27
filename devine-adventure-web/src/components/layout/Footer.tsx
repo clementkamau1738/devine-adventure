@@ -33,14 +33,14 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-neutral-200 bg-white">
+    <footer className="bg-neutral-100 border-t border-neutral-200">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
           <div>
             <div className="mb-4">
               <Logo theme="light" height={40} />
             </div>
-            <p className="text-neutral-500 text-sm leading-relaxed max-w-xs">
+            <p className="text-neutral-600 text-sm leading-relaxed max-w-xs font-sans">
               Kenya&apos;s premier outdoor adventure booking platform. Hikes,
               bikes, and wilderness experiences across the highlands, forests,
               and valleys.
@@ -77,7 +77,7 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <div className="text-ink text-sm font-semibold mb-4">
+              <div className="text-ink text-sm font-semibold mb-4 font-sans">
                 {col.title}
               </div>
               <ul className="space-y-3">
@@ -85,7 +85,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-neutral-500 hover:text-ink text-sm transition-colors"
+                      className="text-neutral-600 hover:text-forest text-sm font-medium transition-colors font-sans"
                     >
                       {link.label}
                     </Link>
@@ -96,7 +96,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-sm">
+        <div className="pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-sm font-sans">
           <span>
             © {new Date().getFullYear()} Devine Adventure. All rights
             reserved.
