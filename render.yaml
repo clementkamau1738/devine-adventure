@@ -15,7 +15,8 @@ services:
     region: oregon
     rootDir: devine-adventure-api
     buildCommand: npm ci && npm run build
-    startCommand: npx prisma migrate deploy && npm run start:prod
+    # Sets DIRECT_URL from DATABASE_URL when unset (avoids P1012 on free-tier deploys)
+    startCommand: npm run release
     healthCheckPath: /api/v1/health
     autoDeploy: true
     envVars:
