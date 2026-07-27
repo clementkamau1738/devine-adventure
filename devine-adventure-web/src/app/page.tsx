@@ -13,7 +13,8 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      {/* Phase A: light hero preview — rest of page still dark until Phase B */}
+      <main className="bg-stone-950">
         <HeroSection />
         <Suspense fallback={null}>
           <DifficultyFilterStrip />

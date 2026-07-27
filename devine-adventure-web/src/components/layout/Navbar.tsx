@@ -22,6 +22,9 @@ export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
+  /** Phase A: light chrome on homepage only (pairs with light hero). */
+  const light = pathname === '/';
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll);
@@ -32,7 +35,7 @@ export function Navbar() {
     try {
       await api.post('/auth/logout');
     } catch {
-      // ignore — clear local session regardless
+      // ignore
     }
     clearAuth();
     router.push('/');
@@ -42,15 +45,18 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-stone-950/95 backdrop-blur-md border-b border-stone-800 py-3'
-          : 'py-6',
+        light
+          ? scrolled
+            ? 'bg-white/95 backdrop-blur-md border-b border-neutral-200 py-3 shadow-sm'
+            : 'bg-neutral-50 py-5'
+          : scrolled
+            ? 'bg-stone-950/95 backdrop-blur-md border-b border-stone-800 py-3'
+            : 'py-6',
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Logo priority className="h-9 md:h-11" />
+        <Logo priority theme={light ? 'light' : 'dark'} height={44} />
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map(({ label, href }) => (
             <Link
@@ -60,7 +66,9 @@ export function Navbar() {
                 'text-sm font-medium transition-colors',
                 pathname === href
                   ? 'text-forest'
-                  : 'text-stone-300 hover:text-white',
+                  : light
+                    ? 'text-neutral-600 hover:text-ink'
+                    : 'text-stone-300 hover:text-white',
               )}
             >
               {label}
@@ -68,9 +76,7 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Auth actions */}
         <div className="hidden md:flex items-center gap-4">
-          <WhatsAppLink className="text-stone-400" />
           {isAuthenticated ? (
             <>
               {user?.role === 'ADMIN' && (
@@ -83,14 +89,24 @@ export function Navbar() {
               )}
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 text-stone-300 hover:text-white text-sm transition-colors"
+                className={cn(
+                  'flex items-center gap-2 text-sm transition-colors',
+                  light
+                    ? 'text-neutral-600 hover:text-ink'
+                    : 'text-stone-300 hover:text-white',
+                )}
               >
                 <User className="w-4 h-4" />
                 {user?.name.split(' ')[0]}
               </Link>
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-1.5 text-stone-400 hover:text-stone-200 text-sm"
+                className={cn(
+                  'flex items-center gap-1.5 text-sm',
+                  light
+                    ? 'text-neutral-500 hover:text-ink'
+                    : 'text-stone-400 hover:text-stone-200',
+                )}
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -99,7 +115,12 @@ export function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-stone-300 hover:text-white text-sm"
+                className={cn(
+                  'text-sm',
+                  light
+                    ? 'text-neutral-600 hover:text-ink'
+                    : 'text-stone-300 hover:text-white',
+                )}
               >
                 Sign In
               </Link>
@@ -113,34 +134,53 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Mobile toggle */}
         <button
-          className="md:hidden text-stone-300"
+          className={cn(
+            'md:hidden',
+            light ? 'text-ink' : 'text-stone-300',
+          )}
           onClick={() => setOpen(!open)}
+          aria-label="Menu"
         >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-stone-950 border-t border-stone-800 px-6 py-6 space-y-4">
+        <div
+          className={cn(
+            'md:hidden border-t px-6 py-6 space-y-4',
+            light
+              ? 'bg-white border-neutral-200'
+              : 'bg-stone-950 border-stone-800',
+          )}
+        >
           {navLinks.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="block text-stone-300 hover:text-white"
+              className={cn(
+                'block',
+                light
+                  ? 'text-neutral-700 hover:text-ink'
+                  : 'text-stone-300 hover:text-white',
+              )}
             >
               {label}
             </Link>
           ))}
-          <div className="pt-4 border-t border-stone-800">
-            <WhatsAppLink className="mb-4" />
-          </div>
           {!isAuthenticated ? (
-            <div className="flex flex-col gap-3">
-              <Link href="/login" className="text-stone-300">
+            <div
+              className={cn(
+                'pt-4 flex flex-col gap-3 border-t',
+                light ? 'border-neutral-200' : 'border-stone-800',
+              )}
+            >
+              <Link
+                href="/login"
+                className={light ? 'text-neutral-700' : 'text-stone-300'}
+              >
                 Sign In
               </Link>
               <Link
@@ -151,11 +191,28 @@ export function Navbar() {
               </Link>
             </div>
           ) : (
-            <div>
-              <Link href="/dashboard" className="block text-stone-300 mb-3">
+            <div
+              className={cn(
+                'pt-4 border-t',
+                light ? 'border-neutral-200' : 'border-stone-800',
+              )}
+            >
+              <Link
+                href="/dashboard"
+                className={cn(
+                  'block mb-3',
+                  light ? 'text-neutral-700' : 'text-stone-300',
+                )}
+              >
                 Dashboard
               </Link>
-              <button onClick={handleLogout} className="text-stone-400 text-sm">
+              <button
+                onClick={handleLogout}
+                className={cn(
+                  'text-sm',
+                  light ? 'text-neutral-500' : 'text-stone-400',
+                )}
+              >
                 Sign Out
               </button>
             </div>

@@ -49,7 +49,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-stone-800">
-          <Logo className="h-8" />
+          <Logo theme="dark" height={32} />
         </div>
 
         <div className="p-4 border-b border-stone-800">

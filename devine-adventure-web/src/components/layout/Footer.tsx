@@ -38,7 +38,7 @@ export function Footer() {
         <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
           <div>
             <div className="mb-4">
-              <Logo className="h-9" />
+              <Logo theme="dark" height={40} />
             </div>
             <p className="text-stone-400 text-sm leading-relaxed max-w-xs">
               Kenya&apos;s premier outdoor adventure booking platform. Hikes,
