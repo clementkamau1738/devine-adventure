@@ -14,14 +14,12 @@ export function EventGrid({ events, isLoading }: Props) {
         {Array.from({ length: 6 }, (_, i) => (
           <div
             key={i}
-            className="bg-white border border-neutral-200 rounded-2xl overflow-hidden animate-pulse"
+            className="rounded-3xl bg-white p-3 shadow-[0_8px_30px_rgba(17,15,13,0.06)] animate-pulse"
           >
-            <div className="h-52 bg-neutral-100" />
-            <div className="p-5 space-y-3">
-              <div className="h-4 w-16 bg-neutral-100 rounded" />
-              <div className="h-5 w-3/4 bg-neutral-100 rounded" />
-              <div className="h-4 w-1/2 bg-neutral-100 rounded" />
-              <div className="h-4 w-2/3 bg-neutral-100 rounded" />
+            <div className="aspect-[4/3] rounded-2xl bg-neutral-100" />
+            <div className="px-1.5 pt-4 space-y-2">
+              <div className="h-4 w-3/4 bg-neutral-100 rounded" />
+              <div className="h-3 w-1/2 bg-neutral-100 rounded" />
             </div>
           </div>
         ))}
