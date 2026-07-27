@@ -147,7 +147,7 @@ function RegisterForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full bg-amber-400 text-stone-950 font-bold py-3.5 rounded-xl hover:bg-amber-300 disabled:opacity-50 transition-colors"
+        className="w-full bg-forest text-neutral-50 font-bold py-3.5 rounded-xl hover:bg-forest-hover disabled:opacity-50 transition-colors"
       >
         {isPending ? 'Creating account...' : 'Create Account'}
       </button>

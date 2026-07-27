@@ -107,7 +107,7 @@ export default function DashboardSubscriptionPage() {
           </ul>
           <Link
             href="/membership"
-            className="inline-block bg-amber-400 text-stone-950 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition-colors text-sm"
+            className="inline-block bg-forest text-neutral-50 font-bold px-6 py-3 rounded-full hover:bg-forest-hover transition-colors text-sm"
           >
             View Plans
           </Link>

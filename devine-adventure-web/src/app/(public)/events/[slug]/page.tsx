@@ -169,7 +169,7 @@ export default function EventDetailPage() {
                 <button
                   onClick={handleBook}
                   disabled={isFull}
-                  className="w-full bg-amber-400 text-stone-950 font-bold py-4 rounded-xl hover:bg-amber-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="w-full bg-forest text-neutral-50 font-bold py-4 rounded-xl hover:bg-forest-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {isFull ? 'Fully Booked' : 'Book This Adventure'}
                 </button>

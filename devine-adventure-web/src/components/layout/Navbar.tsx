@@ -118,7 +118,7 @@ export function Navbar() {
               </Link>
               <Link
                 href="/register"
-                className="bg-amber-400 text-stone-950 font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-amber-300 transition-colors"
+                className="bg-forest text-neutral-50 font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-forest-hover transition-colors"
               >
                 Get Started
               </Link>
@@ -155,7 +155,7 @@ export function Navbar() {
               </Link>
               <Link
                 href="/register"
-                className="bg-amber-400 text-stone-950 font-semibold px-5 py-3 rounded-full text-center"
+                className="bg-forest text-neutral-50 font-semibold px-5 py-3 rounded-full text-center"
               >
                 Get Started
               </Link>

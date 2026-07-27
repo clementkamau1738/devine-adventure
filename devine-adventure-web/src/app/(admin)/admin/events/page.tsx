@@ -75,7 +75,7 @@ export default function AdminEventsPage() {
             setEditingEvent(null);
             setShowModal(true);
           }}
-          className="flex items-center gap-2 bg-amber-400 text-stone-950 font-bold px-5 py-2.5 rounded-xl hover:bg-amber-300 transition-colors"
+          className="flex items-center gap-2 bg-forest text-neutral-50 font-bold px-5 py-2.5 rounded-xl hover:bg-forest-hover transition-colors"
         >
           <Plus className="w-4 h-4" /> New Event
         </button>

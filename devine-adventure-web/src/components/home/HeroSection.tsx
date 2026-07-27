@@ -34,13 +34,13 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-4 mb-16">
             <Link
               href="/events"
-              className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 font-bold px-8 py-4 rounded-full hover:bg-amber-300 transition-colors"
+              className="inline-flex items-center gap-2 bg-forest text-neutral-50 font-bold px-8 py-4 rounded-full hover:bg-forest-hover transition-colors"
             >
               Explore Adventures <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/membership"
-              className="inline-flex items-center gap-2 border border-stone-400 text-stone-200 font-semibold px-8 py-4 rounded-full hover:border-amber-400 hover:text-amber-400 transition-colors"
+              className="inline-flex items-center gap-2 border border-stone-400 text-stone-200 font-semibold px-8 py-4 rounded-full hover:border-forest hover:text-forest transition-colors"
             >
               View Membership Plans
             </Link>

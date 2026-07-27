@@ -127,7 +127,7 @@ export default function DashboardProfilePage() {
           <button
             type="submit"
             disabled={isPending || !isDirty}
-            className="bg-amber-400 text-stone-950 font-bold px-6 py-3 rounded-xl hover:bg-amber-300 disabled:opacity-50 transition-colors text-sm"
+            className="bg-forest text-neutral-50 font-bold px-6 py-3 rounded-xl hover:bg-forest-hover disabled:opacity-50 transition-colors text-sm"
           >
             {isPending ? 'Saving...' : 'Save Changes'}
           </button>

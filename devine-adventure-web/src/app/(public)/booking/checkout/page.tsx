@@ -168,7 +168,7 @@ export default function CheckoutPage() {
             <button
               onClick={paymentMethod === 'mpesa' ? handleMpesa : handleStripe}
               disabled={processing}
-              className="w-full bg-amber-400 text-stone-950 font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-amber-300 disabled:opacity-50 transition-colors"
+              className="w-full bg-forest text-neutral-50 font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-forest-hover disabled:opacity-50 transition-colors"
             >
               {processing ? 'Processing...' : `Pay ${formatKES(pricing.finalPrice)}`}
               {!processing && <ArrowRight className="w-5 h-5" />}

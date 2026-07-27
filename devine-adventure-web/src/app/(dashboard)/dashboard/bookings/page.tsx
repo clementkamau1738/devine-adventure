@@ -48,7 +48,7 @@ export default function DashboardBookingsPage() {
           <div className="text-white font-semibold mb-2">No bookings yet</div>
           <Link
             href="/events"
-            className="inline-block bg-amber-400 text-stone-950 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition-colors text-sm mt-4"
+            className="inline-block bg-forest text-neutral-50 font-bold px-6 py-3 rounded-full hover:bg-forest-hover transition-colors text-sm mt-4"
           >
             Explore Adventures
           </Link>

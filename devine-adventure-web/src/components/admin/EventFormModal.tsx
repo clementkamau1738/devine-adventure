@@ -254,7 +254,7 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-amber-400 text-stone-950 font-bold py-3 rounded-xl hover:bg-amber-300 disabled:opacity-50 transition-colors"
+                className="flex-1 bg-forest text-neutral-50 font-bold py-3 rounded-xl hover:bg-forest-hover disabled:opacity-50 transition-colors"
               >
                 {isSubmitting
                   ? 'Saving...'

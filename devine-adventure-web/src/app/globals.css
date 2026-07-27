@@ -1,6 +1,56 @@
 @import "tailwindcss";
 
+/*
+  Brand tokens — branding.md §2 / §6
+  Tailwind v4: --color-* in @theme → bg-*, text-*, border-* utilities
+*/
 @theme inline {
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
+
+  /* Core palette */
+  --color-sun: #edba0e;
+  --color-forest: #296930;
+  --color-forest-hover: #1f5225;
+  --color-ink: #231f20;
+  --color-clay: #d51e25;
+  --color-olive: #483b1b;
+  --color-rust: #9c4e24;
+  --color-void: #110f0d;
+
+  /* Warm neutrals (override default cool gray neutral scale) */
+  --color-neutral-50: #faf8f5;
+  --color-neutral-100: #f0ece5;
+  --color-neutral-200: #e0d9cd;
+  --color-neutral-300: #c4bba9;
+  --color-neutral-400: #9c9284;
+  --color-neutral-500: #766d5f;
+  --color-neutral-600: #564f44;
+  --color-neutral-700: #3a352d;
+  --color-neutral-800: #231f20;
+  --color-neutral-900: #110f0d;
+}
+
+/* Component tokens (branding.md §6) — for CSS / future components */
+:root {
+  --btn-primary-bg: var(--color-forest);
+  --btn-primary-bg-hover: var(--color-forest-hover);
+  --btn-primary-text: var(--color-neutral-50);
+  --btn-secondary-border: var(--color-ink);
+  --btn-secondary-text: var(--color-ink);
+  --btn-accent-bg: var(--color-sun);
+  --btn-accent-text: var(--color-ink);
+
+  --card-bg: var(--color-neutral-50);
+  --card-border: var(--color-neutral-200);
+  --card-radius: 12px;
+  --card-shadow: 0 4px 16px rgba(17, 15, 13, 0.08);
+
+  --badge-availability: var(--color-forest);
+  --badge-limited: var(--color-clay);
+  --badge-featured: var(--color-sun);
+
+  --nav-bg: var(--color-neutral-50);
+  --nav-bg-scrolled: rgba(35, 31, 32, 0.92);
+  --nav-link-active: var(--color-forest);
 }

@@ -26,7 +26,7 @@ export default function BlogPage() {
           </p>
           <Link
             href="/events"
-            className="inline-block bg-amber-400 text-stone-950 font-bold px-8 py-4 rounded-full hover:bg-amber-300 transition-colors"
+            className="inline-block bg-forest text-neutral-50 font-bold px-8 py-4 rounded-full hover:bg-forest-hover transition-colors"
           >
             Explore Adventures
           </Link>

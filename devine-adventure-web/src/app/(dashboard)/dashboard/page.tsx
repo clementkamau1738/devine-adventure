@@ -110,7 +110,7 @@ export default function DashboardPage() {
           </div>
           <Link
             href="/membership"
-            className="bg-amber-400 text-stone-950 font-bold px-5 py-2 rounded-full text-sm hover:bg-amber-300 transition-colors"
+            className="bg-forest text-neutral-50 font-bold px-5 py-2 rounded-full text-sm hover:bg-forest-hover transition-colors"
           >
             View Plans
           </Link>
@@ -137,7 +137,7 @@ export default function DashboardPage() {
             </div>
             <Link
               href="/events"
-              className="inline-block bg-amber-400 text-stone-950 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition-colors text-sm"
+              className="inline-block bg-forest text-neutral-50 font-bold px-6 py-3 rounded-full hover:bg-forest-hover transition-colors text-sm"
             >
               Explore Adventures
             </Link>

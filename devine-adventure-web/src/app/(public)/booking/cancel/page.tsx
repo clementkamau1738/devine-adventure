@@ -28,7 +28,7 @@ export default function BookingCancelPage() {
             </Link>
             <Link
               href="/events"
-              className="flex-1 text-center bg-amber-400 text-stone-950 font-bold py-3 rounded-xl hover:bg-amber-300 transition-colors"
+              className="flex-1 text-center bg-forest text-neutral-50 font-bold py-3 rounded-xl hover:bg-forest-hover transition-colors"
             >
               Browse Adventures
             </Link>

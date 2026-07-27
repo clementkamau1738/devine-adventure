@@ -23,7 +23,7 @@ function BookingSuccessContent() {
         </p>
         <Link
           href="/dashboard/bookings"
-          className="inline-block bg-amber-400 text-stone-950 font-bold px-6 py-3 rounded-full hover:bg-amber-300 transition-colors text-sm"
+          className="inline-block bg-forest text-neutral-50 font-bold px-6 py-3 rounded-full hover:bg-forest-hover transition-colors text-sm"
         >
           Go to My Bookings
         </Link>
@@ -99,7 +99,7 @@ function BookingSuccessContent() {
         </Link>
         <Link
           href="/events"
-          className="flex-1 flex items-center justify-center gap-2 bg-amber-400 text-stone-950 font-bold py-3 rounded-xl hover:bg-amber-300 transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 bg-forest text-neutral-50 font-bold py-3 rounded-xl hover:bg-forest-hover transition-colors"
         >
           More Adventures <ArrowRight className="w-4 h-4" />
         </Link>

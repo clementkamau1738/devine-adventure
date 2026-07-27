@@ -148,7 +148,7 @@ export default function MembershipPage() {
                   disabled={isPending || subscription?.status === 'ACTIVE'}
                   className={`w-full py-3.5 rounded-xl font-bold transition-colors ${
                     plan.featured
-                      ? 'bg-amber-400 text-stone-950 hover:bg-amber-300'
+                      ? 'bg-forest text-neutral-50 hover:bg-forest-hover'
                       : 'border border-stone-600 text-white hover:border-stone-400'
                   } disabled:opacity-50`}
                 >

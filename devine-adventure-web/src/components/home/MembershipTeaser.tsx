@@ -38,7 +38,7 @@ export function MembershipTeaser() {
 
           <Link
             href="/membership"
-            className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 font-bold px-8 py-4 rounded-full hover:bg-amber-300 transition-colors"
+            className="inline-flex items-center gap-2 bg-forest text-neutral-50 font-bold px-8 py-4 rounded-full hover:bg-forest-hover transition-colors"
           >
             View Membership Plans <ArrowRight className="w-5 h-5" />
           </Link>
