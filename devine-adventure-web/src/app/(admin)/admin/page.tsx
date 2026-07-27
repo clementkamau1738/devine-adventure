@@ -60,30 +60,30 @@ export default function AdminDashboardPage() {
             label: 'Total Users',
             value: kpis.totalUsers.toLocaleString(),
             icon: Users,
-            color: 'text-blue-400',
+            color: 'text-forest',
           },
           {
             label: 'Published Events',
             value: kpis.totalEvents.toLocaleString(),
             icon: Calendar,
-            color: 'text-amber-400',
+            color: 'text-forest',
           },
           {
             label: 'Confirmed Bookings',
             value: kpis.totalBookings.toLocaleString(),
             icon: CheckCircle,
-            color: 'text-emerald-400',
+            color: 'text-forest',
           },
           {
             label: 'Active Members',
             value: kpis.activeSubscriptions.toLocaleString(),
             icon: CreditCard,
-            color: 'text-purple-400',
+            color: 'text-forest',
           },
         ].map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
-            className="bg-stone-900 border border-stone-800 rounded-2xl p-5"
+            className="bg-stone-900 border border-neutral-700 rounded-2xl p-5"
           >
             <Icon className={`w-5 h-5 ${color} mb-3`} />
             <div className="text-2xl font-black text-white">{value}</div>
@@ -93,8 +93,8 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Revenue highlight */}
-      <div className="bg-gradient-to-r from-amber-400/10 to-amber-400/5 border border-amber-400/20 rounded-2xl p-6 mb-10 flex items-center gap-6">
-        <TrendingUp className="w-10 h-10 text-amber-400 flex-shrink-0" />
+      <div className="bg-gradient-to-r from-forest/15 to-forest/5 border border-forest/25 rounded-2xl p-6 mb-10 flex items-center gap-6">
+        <TrendingUp className="w-10 h-10 text-forest flex-shrink-0" />
         <div>
           <div className="text-stone-400 text-sm mb-1">
             Total Revenue (All Time)
@@ -162,7 +162,7 @@ export default function AdminDashboardPage() {
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-1.5 bg-stone-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-amber-400 rounded-full"
+                        className="h-full bg-forest rounded-full"
                         style={{ width: `${fill}%` }}
                       />
                     </div>

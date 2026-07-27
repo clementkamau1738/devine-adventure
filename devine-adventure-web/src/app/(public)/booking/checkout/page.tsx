@@ -95,7 +95,7 @@ export default function CheckoutPage() {
                     : 'border-stone-700 hover:border-stone-500'
                 }`}
               >
-                <Smartphone className="w-6 h-6 text-emerald-400" />
+                <Smartphone className="w-6 h-6 text-forest" />
                 <div className="text-left">
                   <div className="text-white font-semibold">M-Pesa</div>
                   <div className="text-stone-400 text-sm">
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
                     : 'border-stone-700 hover:border-stone-500'
                 }`}
               >
-                <CreditCard className="w-6 h-6 text-blue-400" />
+                <CreditCard className="w-6 h-6 text-forest" />
                 <div className="text-left">
                   <div className="text-white font-semibold">
                     Card (Visa / Mastercard)
@@ -144,7 +144,7 @@ export default function CheckoutPage() {
 
           {/* STK sent state */}
           {stkSent && (
-            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-6 mb-6 text-center">
+            <div className="bg-forest/10 border border-forest/30 rounded-xl p-6 mb-6 text-center">
               <div className="text-4xl mb-3">📱</div>
               <div className="text-white font-bold mb-2">STK Push Sent!</div>
               <div className="text-stone-300 text-sm">

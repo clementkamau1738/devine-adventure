@@ -32,16 +32,16 @@ export default function DashboardSubscriptionPage() {
       {isLoading ? (
         <div className="text-stone-400">Loading...</div>
       ) : subscription?.status === 'ACTIVE' ? (
-        <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6">
+        <div className="bg-stone-900 border border-neutral-700 rounded-2xl p-6">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-amber-400/10 rounded-full flex items-center justify-center">
-              <CreditCard className="w-5 h-5 text-amber-400" />
+            <div className="w-10 h-10 bg-forest/10 rounded-full flex items-center justify-center">
+              <CreditCard className="w-5 h-5 text-forest" />
             </div>
             <div>
               <div className="text-white font-bold capitalize">
                 {subscription.planType.toLowerCase()} Membership
               </div>
-              <span className="text-emerald-400 text-xs font-semibold">
+              <span className="text-forest text-xs font-semibold">
                 Active
               </span>
             </div>
@@ -76,7 +76,7 @@ export default function DashboardSubscriptionPage() {
           <button
             onClick={handleCancel}
             disabled={isPending}
-            className="text-red-400 text-sm hover:underline disabled:opacity-50"
+            className="text-clay text-sm hover:underline disabled:opacity-50"
           >
             {isPending ? 'Cancelling...' : 'Cancel membership'}
           </button>
@@ -100,7 +100,7 @@ export default function DashboardSubscriptionPage() {
                 key={f}
                 className="flex items-center gap-2 text-stone-300 text-sm"
               >
-                <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <Check className="w-4 h-4 text-forest flex-shrink-0" />
                 {f}
               </li>
             ))}

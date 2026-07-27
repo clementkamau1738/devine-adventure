@@ -7,15 +7,15 @@ import { formatEventDate, formatKES } from '@/lib/utils';
 import { Calendar, CreditCard, CheckCircle, Clock, XCircle } from 'lucide-react';
 
 const statusIcon = {
-  CONFIRMED: <CheckCircle className="w-4 h-4 text-emerald-400" />,
-  PENDING: <Clock className="w-4 h-4 text-amber-400" />,
-  CANCELLED: <XCircle className="w-4 h-4 text-red-400" />,
+  CONFIRMED: <CheckCircle className="w-4 h-4 text-forest" />,
+  PENDING: <Clock className="w-4 h-4 text-sun" />,
+  CANCELLED: <XCircle className="w-4 h-4 text-clay" />,
 };
 
 const statusColor = {
-  CONFIRMED: 'text-emerald-400',
-  PENDING: 'text-amber-400',
-  CANCELLED: 'text-red-400',
+  CONFIRMED: 'text-forest',
+  PENDING: 'text-sun',
+  CANCELLED: 'text-clay',
 };
 
 export default function DashboardPage() {
@@ -45,13 +45,13 @@ export default function DashboardPage() {
             label: 'Total Bookings',
             value: bookings.length,
             icon: Calendar,
-            color: 'text-blue-400',
+            color: 'text-forest',
           },
           {
             label: 'Upcoming Trips',
             value: upcoming.length,
             icon: Calendar,
-            color: 'text-amber-400',
+            color: 'text-forest',
           },
           {
             label: 'Membership',
@@ -62,13 +62,13 @@ export default function DashboardPage() {
             icon: CreditCard,
             color:
               subscription?.status === 'ACTIVE'
-                ? 'text-emerald-400'
+                ? 'text-forest'
                 : 'text-stone-500',
           },
         ].map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
-            className="bg-stone-900 border border-stone-800 rounded-2xl p-5"
+            className="bg-stone-900 border border-neutral-700 rounded-2xl p-5"
           >
             <Icon className={`w-5 h-5 ${color} mb-3`} />
             <div className="text-2xl font-black text-white">{value}</div>
@@ -79,9 +79,9 @@ export default function DashboardPage() {
 
       {/* Membership status */}
       {subscription?.status === 'ACTIVE' ? (
-        <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-5 mb-8 flex items-center justify-between">
+        <div className="bg-forest/10 border border-forest/30 rounded-2xl p-5 mb-8 flex items-center justify-between">
           <div>
-            <div className="text-emerald-400 font-semibold">
+            <div className="text-forest font-semibold">
               Active {subscription.planType.toLowerCase()} membership
             </div>
             <div className="text-stone-400 text-sm mt-1">
@@ -93,15 +93,15 @@ export default function DashboardPage() {
           </div>
           <Link
             href="/dashboard/subscription"
-            className="text-emerald-400 text-sm underline"
+            className="text-forest text-sm underline"
           >
             Manage
           </Link>
         </div>
       ) : (
-        <div className="bg-amber-400/10 border border-amber-400/30 rounded-2xl p-5 mb-8 flex items-center justify-between">
+        <div className="bg-forest/10 border border-forest/30 rounded-2xl p-5 mb-8 flex items-center justify-between">
           <div>
-            <div className="text-amber-400 font-semibold">
+            <div className="text-forest font-semibold">
               Become a member
             </div>
             <div className="text-stone-400 text-sm mt-1">

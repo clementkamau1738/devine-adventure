@@ -92,7 +92,7 @@ export default function AdminUsersPage() {
                   <td className="px-5 py-4">
                     <div className="text-white font-medium">{u.name}</div>
                     <span
-                      className={`text-xs font-semibold ${u.isVerified ? 'text-emerald-400' : 'text-stone-500'}`}
+                      className={`text-xs font-semibold ${u.isVerified ? 'text-forest' : 'text-stone-500'}`}
                     >
                       {u.isVerified ? 'Verified' : 'Unverified'}
                     </span>

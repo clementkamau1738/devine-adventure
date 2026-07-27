@@ -50,8 +50,8 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto px-6 grid sm:grid-cols-2 gap-4">
           {channels.map(({ icon: Icon, label, value, href }) => {
             const content = (
-              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-5 h-full hover:border-stone-600 transition-colors">
-                <Icon className="w-5 h-5 text-amber-400 mb-3" />
+              <div className="bg-stone-900 border border-neutral-700 rounded-2xl p-5 h-full hover:border-forest/40 transition-colors">
+                <Icon className="w-5 h-5 text-forest mb-3" />
                 <div className="text-stone-500 text-xs mb-0.5">{label}</div>
                 <div className="text-white font-semibold text-sm">{value}</div>
               </div>

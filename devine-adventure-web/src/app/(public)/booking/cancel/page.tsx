@@ -8,8 +8,8 @@ export default function BookingCancelPage() {
       <Navbar />
       <main className="min-h-screen pt-20 flex items-center">
         <div className="max-w-lg mx-auto px-6 py-20 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-red-500/10 rounded-full mb-5">
-            <XCircle className="w-8 h-8 text-red-400" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-clay/10 rounded-full mb-5">
+            <XCircle className="w-8 h-8 text-clay" />
           </div>
           <h1 className="font-display text-3xl font-black text-white mb-2">
             Payment Cancelled

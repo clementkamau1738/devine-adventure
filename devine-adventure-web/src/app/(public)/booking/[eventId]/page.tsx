@@ -63,7 +63,7 @@ export default function BookingInitiatePage() {
                 <span>{formatKES(pricing.originalPrice)}</span>
               </div>
               {pricing.discount > 0 && (
-                <div className="flex justify-between text-emerald-400 mb-2">
+                <div className="flex justify-between text-forest mb-2">
                   <span>{pricing.reason}</span>
                   <span>- {formatKES(pricing.discount)}</span>
                 </div>

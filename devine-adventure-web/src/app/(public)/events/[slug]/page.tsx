@@ -91,7 +91,7 @@ export default function EventDetailPage() {
                     key={label}
                     className="bg-stone-900 border border-stone-800 rounded-xl p-4"
                   >
-                    <Icon className="w-4 h-4 text-amber-400 mb-2" />
+                    <Icon className="w-4 h-4 text-forest mb-2" />
                     <div className="text-xs text-stone-500 mb-0.5">{label}</div>
                     <div className="text-stone-200 text-sm font-medium">
                       {value}
@@ -117,7 +117,7 @@ export default function EventDetailPage() {
                         {pricing.reason}
                       </div>
                       {pricing.finalPrice === 0 ? (
-                        <div className="text-3xl font-black text-emerald-400">
+                        <div className="text-3xl font-black text-forest">
                           Free
                         </div>
                       ) : (
@@ -140,7 +140,7 @@ export default function EventDetailPage() {
                       </div>
                       {event.memberPrice !== null &&
                         event.memberPrice !== undefined && (
-                          <div className="text-amber-400 text-sm mt-1">
+                          <div className="text-forest text-sm mt-1">
                             {Number(event.memberPrice) === 0
                               ? '✓ Free with membership'
                               : `${formatKES(Number(event.memberPrice))} with membership`}
@@ -158,7 +158,7 @@ export default function EventDetailPage() {
                   </div>
                   <div className="h-2 bg-stone-800 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-amber-400 rounded-full"
+                      className="h-full bg-forest rounded-full"
                       style={{
                         width: `${(event.enrolled / event.capacity) * 100}%`,
                       }}
@@ -198,7 +198,7 @@ export default function EventDetailPage() {
                       key={item}
                       className="flex items-center gap-2 text-stone-300 text-sm mb-2"
                     >
-                      <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-forest flex-shrink-0" />
                       {item}
                     </div>
                   ))}

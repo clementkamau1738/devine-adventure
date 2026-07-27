@@ -6,15 +6,15 @@ import { formatEventDate, formatKES, getApiErrorMessage } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 const statusIcon = {
-  CONFIRMED: <CheckCircle className="w-4 h-4 text-emerald-400" />,
-  PENDING: <Clock className="w-4 h-4 text-amber-400" />,
-  CANCELLED: <XCircle className="w-4 h-4 text-red-400" />,
+  CONFIRMED: <CheckCircle className="w-4 h-4 text-forest" />,
+  PENDING: <Clock className="w-4 h-4 text-sun" />,
+  CANCELLED: <XCircle className="w-4 h-4 text-clay" />,
 };
 
 const statusColor = {
-  CONFIRMED: 'text-emerald-400',
-  PENDING: 'text-amber-400',
-  CANCELLED: 'text-red-400',
+  CONFIRMED: 'text-forest',
+  PENDING: 'text-sun',
+  CANCELLED: 'text-clay',
 };
 
 export default function DashboardBookingsPage() {
@@ -94,7 +94,7 @@ export default function DashboardBookingsPage() {
                   <button
                     onClick={() => handleCancel(b.id)}
                     disabled={isPending}
-                    className="text-red-400 text-xs hover:underline mt-2 disabled:opacity-50"
+                    className="text-clay text-xs hover:underline mt-2 disabled:opacity-50"
                   >
                     Cancel
                   </button>

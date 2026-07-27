@@ -26,7 +26,7 @@ export function EventCard({ event, pricingOverride }: Props) {
 
   return (
     <Link href={`/events/${event.slug}`} className="group block">
-      <article className="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden hover:border-stone-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-950/50">
+      <article className="bg-stone-900 border border-neutral-700 rounded-2xl overflow-hidden hover:border-forest/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-void/50">
         {/* Image */}
         <div className="relative h-52 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -78,7 +78,7 @@ export function EventCard({ event, pricingOverride }: Props) {
             {event.difficulty}
           </span>
 
-          <h3 className="text-white font-bold text-lg mt-2 mb-1 line-clamp-1 group-hover:text-amber-400 transition-colors">
+          <h3 className="text-white font-bold text-lg mt-2 mb-1 line-clamp-1 group-hover:text-forest transition-colors">
             {event.title}
           </h3>
 
@@ -104,7 +104,7 @@ export function EventCard({ event, pricingOverride }: Props) {
               <div
                 className={cn(
                   'h-full rounded-full transition-all',
-                  fillPct >= 90 ? 'bg-red-500' : 'bg-amber-400',
+                  fillPct >= 90 ? 'bg-clay' : 'bg-forest',
                 )}
                 style={{ width: `${fillPct}%` }}
               />
@@ -117,7 +117,7 @@ export function EventCard({ event, pricingOverride }: Props) {
               {pricingOverride ? (
                 <div>
                   {pricingOverride.finalPrice === 0 ? (
-                    <span className="text-emerald-400 font-bold">
+                    <span className="text-forest font-bold">
                       Free with membership
                     </span>
                   ) : (
@@ -143,7 +143,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                   </span>
                   {event.memberPrice !== undefined &&
                     event.memberPrice !== null && (
-                      <div className="text-xs text-amber-400">
+                      <div className="text-xs text-forest">
                         {Number(event.memberPrice) === 0
                           ? 'Free for members'
                           : `${formatKES(Number(event.memberPrice))} for members`}
@@ -152,7 +152,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                 </div>
               )}
             </div>
-            <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-amber-400 transition-colors" />
+            <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-forest transition-colors" />
           </div>
         </div>
       </article>

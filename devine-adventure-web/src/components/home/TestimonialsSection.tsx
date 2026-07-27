@@ -37,7 +37,7 @@ export function TestimonialsSection() {
         {testimonials.map(({ name, role, quote }) => (
           <div
             key={name}
-            className="bg-stone-900 border border-stone-800 rounded-2xl p-6"
+            className="bg-stone-900 border border-neutral-700 rounded-2xl p-6"
           >
             <div className="flex gap-1 mb-4">
               {Array.from({ length: 5 }, (_, i) => (

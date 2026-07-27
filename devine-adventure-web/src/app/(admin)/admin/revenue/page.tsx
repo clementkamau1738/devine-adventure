@@ -74,8 +74,8 @@ export default function AdminRevenuePage() {
         <div className="text-stone-400">Loading...</div>
       ) : (
         <>
-          <div className="bg-gradient-to-r from-amber-400/10 to-amber-400/5 border border-amber-400/20 rounded-2xl p-6 mb-8 flex items-center gap-6">
-            <TrendingUp className="w-10 h-10 text-amber-400 flex-shrink-0" />
+          <div className="bg-gradient-to-r from-forest/15 to-forest/5 border border-forest/25 rounded-2xl p-6 mb-8 flex items-center gap-6">
+            <TrendingUp className="w-10 h-10 text-forest flex-shrink-0" />
             <div>
               <div className="text-stone-400 text-sm mb-1">
                 Total Revenue{from || to ? ' (filtered)' : ''}
@@ -94,7 +94,7 @@ export default function AdminRevenuePage() {
                   key={m.method}
                   className="bg-stone-900 border border-stone-800 rounded-2xl p-5"
                 >
-                  <Icon className="w-5 h-5 text-amber-400 mb-3" />
+                  <Icon className="w-5 h-5 text-forest mb-3" />
                   <div className="text-2xl font-black text-white">
                     {formatKES(Number(m._sum.amount ?? 0))}
                   </div>

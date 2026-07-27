@@ -38,8 +38,8 @@ export function HowItWorks() {
           {steps.map(({ icon: Icon, title, description }, i) => (
             <div key={title} className="relative">
               <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/30">
-                  <Icon className="w-5 h-5 text-amber-400" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-forest/10 border border-forest/30">
+                  <Icon className="w-5 h-5 text-forest" />
                 </div>
                 <span className="font-display text-3xl font-black text-stone-700">
                   0{i + 1}

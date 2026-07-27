@@ -42,8 +42,8 @@ function BookingSuccessContent() {
   return (
     <div className="max-w-lg mx-auto px-6 py-20">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-500/10 rounded-full mb-5">
-          <CheckCircle className="w-8 h-8 text-emerald-400" />
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-forest/10 rounded-full mb-5">
+          <CheckCircle className="w-8 h-8 text-forest" />
         </div>
         <h1 className="font-display text-3xl font-black text-white mb-2">
           Booking Confirmed
@@ -78,7 +78,7 @@ function BookingSuccessContent() {
 
         <div className="flex items-center justify-between pt-4 border-t border-stone-800">
           <span className="text-stone-400 text-sm">Status</span>
-          <span className="text-emerald-400 text-sm font-semibold">
+          <span className="text-forest text-sm font-semibold">
             {booking.status}
           </span>
         </div>

@@ -58,7 +58,7 @@ export default function EventsCalendarPage() {
                     <Link
                       key={event.id}
                       href={`/events/${event.slug}`}
-                      className="flex items-center gap-4 bg-stone-900 border border-stone-800 rounded-xl p-4 hover:border-stone-600 transition-colors group"
+                      className="flex items-center gap-4 bg-stone-900 border border-neutral-700 rounded-xl p-4 hover:border-forest/40 transition-colors group"
                     >
                       <div className="flex-shrink-0 w-14 text-center">
                         <div className="text-white font-black text-xl leading-none">
@@ -72,7 +72,7 @@ export default function EventsCalendarPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span>{categoryIcon(event.category)}</span>
-                          <span className="text-white font-semibold truncate group-hover:text-amber-400 transition-colors">
+                          <span className="text-white font-semibold truncate group-hover:text-forest transition-colors">
                             {event.title}
                           </span>
                         </div>

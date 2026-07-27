@@ -45,9 +45,9 @@ export default function AboutPage() {
           {values.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="bg-stone-900 border border-stone-800 rounded-2xl p-6"
+              className="bg-stone-900 border border-neutral-700 rounded-2xl p-6"
             >
-              <Icon className="w-6 h-6 text-amber-400 mb-4" />
+              <Icon className="w-6 h-6 text-forest mb-4" />
               <div className="text-white font-bold text-lg mb-2">{title}</div>
               <p className="text-stone-400 text-sm leading-relaxed">{body}</p>
             </div>
@@ -55,14 +55,14 @@ export default function AboutPage() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 flex flex-wrap gap-10 justify-center text-center">
+          <div className="bg-ink border border-neutral-700 rounded-2xl p-8 flex flex-wrap gap-10 justify-center text-center">
             {[
               { icon: Mountain, value: '50+', label: 'Adventures run' },
               { icon: Users, value: '2,400+', label: 'Members' },
               { icon: Calendar, value: '120+', label: 'Events hosted' },
             ].map(({ icon: Icon, value, label }) => (
               <div key={label}>
-                <Icon className="w-5 h-5 text-amber-400 mx-auto mb-2" />
+                <Icon className="w-5 h-5 text-forest mx-auto mb-2" />
                 <div className="text-white font-black text-2xl">{value}</div>
                 <div className="text-stone-500 text-sm">{label}</div>
               </div>

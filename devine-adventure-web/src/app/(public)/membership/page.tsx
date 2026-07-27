@@ -94,8 +94,8 @@ export default function MembershipPage() {
 
           {/* Active subscription notice */}
           {subscription?.status === 'ACTIVE' && (
-            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-5 mb-10 text-center">
-              <div className="text-emerald-400 font-semibold">
+            <div className="bg-forest/10 border border-forest/30 rounded-2xl p-5 mb-10 text-center">
+              <div className="text-forest font-semibold">
                 ✓ You have an active {subscription.planType.toLowerCase()}{' '}
                 membership
               </div>
@@ -138,7 +138,7 @@ export default function MembershipPage() {
                       key={f}
                       className="flex items-start gap-2 text-stone-300 text-sm"
                     >
-                      <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-forest flex-shrink-0 mt-0.5" />
                       {f}
                     </li>
                   ))}

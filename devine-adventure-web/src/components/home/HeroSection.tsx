@@ -54,7 +54,7 @@ export function HeroSection() {
               { icon: Calendar, value: '120+', label: 'Events Hosted' },
             ].map(({ icon: Icon, value, label }) => (
               <div key={label} className="flex items-center gap-3">
-                <Icon className="w-5 h-5 text-amber-400" />
+                <Icon className="w-5 h-5 text-forest" />
                 <div>
                   <div className="text-white font-bold text-xl">{value}</div>
                   <div className="text-stone-400 text-sm">{label}</div>
