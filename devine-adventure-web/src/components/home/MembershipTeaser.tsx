@@ -9,10 +9,10 @@ const perks = [
 
 export function MembershipTeaser() {
   return (
-    <section className="bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+    <section className="bg-neutral-100 border-y border-neutral-200">
+      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16 flex justify-center">
         <div
-          className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 max-w-2xl
+          className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 w-full max-w-2xl
             shadow-[0_4px_16px_rgba(17,15,13,0.08)]"
         >
           <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">

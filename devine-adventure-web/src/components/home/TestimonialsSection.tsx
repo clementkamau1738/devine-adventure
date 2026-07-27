@@ -24,8 +24,8 @@ const testimonials = [
 export function TestimonialsSection() {
   return (
     <section className="bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-        <div className="text-center mb-12 md:mb-14">
+      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
+        <div className="text-center mb-10 md:mb-12">
           <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Community
           </span>

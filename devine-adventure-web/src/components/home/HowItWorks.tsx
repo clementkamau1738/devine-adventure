@@ -24,8 +24,8 @@ const steps = [
 export function HowItWorks() {
   return (
     <section className="bg-white border-y border-neutral-100">
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-        <div className="text-center mb-14 md:mb-16">
+      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
+        <div className="text-center mb-10 md:mb-12">
           <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             How it works
           </span>

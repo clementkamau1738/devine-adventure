@@ -11,8 +11,8 @@ export function FeaturedEvents() {
 
   return (
     <section className="bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-10">
           <div>
             <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
               Handpicked
