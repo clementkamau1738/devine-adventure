@@ -26,9 +26,10 @@ export class EventsService {
       from,
       to,
       search,
-      page = 1,
-      limit = 12,
     } = filters;
+    // Query params arrive as strings from HTTP — coerce for Prisma Int fields
+    const page = Math.max(1, Number(filters.page) || 1);
+    const limit = Math.min(100, Math.max(1, Number(filters.limit) || 12));
     const skip = (page - 1) * limit;
 
     const where: Prisma.EventWhereInput = { isPublished: true };

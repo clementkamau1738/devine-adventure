@@ -6,8 +6,11 @@
 */
 @theme inline {
   --font-sans: var(--font-inter);
+  /* Accent script / italic moments (e.g. hero “Wild”) */
   --font-serif: var(--font-playfair);
-  /* Branding §3: block headings = Anton; script = Playfair via font-serif */
+  /* Large atmospheric Playfair Regular headlines only (About hero, pull-quotes) */
+  --font-atmospheric: var(--font-playfair);
+  /* Branding §3: block headings = Anton */
   --font-display: var(--font-anton);
 
   /* Core palette */

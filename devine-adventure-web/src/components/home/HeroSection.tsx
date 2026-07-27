@@ -5,8 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Calendar, Mountain, Search, Users } from 'lucide-react';
 import { useEvents, useFeaturedEvents } from '@/hooks/useEvents';
 import { Event } from '@/types';
-import { destinationLabel } from '@/components/home/DestinationBrowse';
-import { cn } from '@/lib/utils';
+import { cn, destinationLabel } from '@/lib/utils';
 
 const STATS = [
   { icon: Mountain, value: '50+', label: 'Adventures' },
