@@ -89,7 +89,7 @@ export function Navbar() {
               {user?.role === 'ADMIN' && (
                 <Link
                   href="/admin"
-                  className="text-xs text-amber-400 border border-amber-400/30 px-3 py-1.5 rounded-full hover:bg-amber-400/10"
+                  className="text-xs text-forest border border-forest/30 px-3 py-1.5 rounded-full hover:bg-forest/10"
                 >
                   Admin
                 </Link>

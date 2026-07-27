@@ -29,7 +29,7 @@ const PLANS = [
     price: 6500,
     period: '/3 months',
     tagline: 'Most popular',
-    color: 'border-amber-400',
+    color: 'border-sun',
     featured: true,
     features: [
       'Everything in Monthly',
@@ -116,7 +116,7 @@ export default function MembershipPage() {
                 className={`bg-stone-900 border-2 ${plan.color} rounded-2xl p-6 relative ${plan.featured ? 'scale-105' : ''}`}
               >
                 {plan.featured && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-stone-950 text-xs font-bold px-4 py-1.5 rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sun text-ink text-xs font-bold px-4 py-1.5 rounded-full">
                     Most Popular
                   </div>
                 )}

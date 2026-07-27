@@ -66,20 +66,20 @@ export default function DashboardProfilePage() {
       <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 max-w-lg">
         <div className="flex items-center gap-3 mb-6">
           {user?.role === 'MEMBER' && (
-            <span className="bg-amber-400/10 text-amber-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-forest/15 text-forest border border-forest/30 text-xs font-semibold px-2.5 py-1 rounded-full">
               Member
             </span>
           )}
           {user?.role === 'ADMIN' && (
-            <span className="bg-purple-400/10 text-purple-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="bg-clay/15 text-clay border border-clay/30 text-xs font-semibold px-2.5 py-1 rounded-full">
               Admin
             </span>
           )}
           <span
             className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
               user?.isVerified
-                ? 'bg-emerald-400/10 text-emerald-400'
-                : 'bg-stone-700 text-stone-400'
+                ? 'bg-forest/15 text-forest border border-forest/30'
+                : 'bg-stone-700 text-stone-400 border border-stone-600'
             }`}
           >
             {user?.isVerified ? 'Verified' : 'Unverified'}

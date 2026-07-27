@@ -132,12 +132,12 @@ export default function AdminBookingsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
                         b.status === 'CONFIRMED'
-                          ? 'bg-emerald-400/10 text-emerald-400'
+                          ? 'bg-forest/15 text-forest border border-forest/30'
                           : b.status === 'PENDING'
-                            ? 'bg-amber-400/10 text-amber-400'
-                            : 'bg-red-400/10 text-red-400'
+                            ? 'bg-ink text-sun border border-sun/25'
+                            : 'bg-clay/15 text-clay border border-clay/30'
                       }`}
                     >
                       {b.status}
@@ -147,10 +147,10 @@ export default function AdminBookingsPage() {
                     <span
                       className={`text-xs font-semibold ${
                         b.paymentStatus === 'PAID'
-                          ? 'text-emerald-400'
+                          ? 'text-forest'
                           : b.paymentStatus === 'FAILED'
-                            ? 'text-red-400'
-                            : 'text-amber-400'
+                            ? 'text-clay'
+                            : 'text-sun'
                       }`}
                     >
                       {b.paymentStatus}

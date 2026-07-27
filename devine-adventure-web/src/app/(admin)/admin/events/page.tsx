@@ -129,10 +129,10 @@ export default function AdminEventsPage() {
                   </td>
                   <td className="px-5 py-4">
                     <span
-                      className={`text-xs font-semibold px-2 py-1 rounded-full ${
+                      className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                         event.isPublished
-                          ? 'bg-emerald-400/10 text-emerald-400'
-                          : 'bg-stone-700 text-stone-400'
+                          ? 'bg-forest/15 text-forest border border-forest/30'
+                          : 'bg-stone-700 text-stone-400 border border-stone-600'
                       }`}
                     >
                       {event.isPublished ? 'Published' : 'Draft'}

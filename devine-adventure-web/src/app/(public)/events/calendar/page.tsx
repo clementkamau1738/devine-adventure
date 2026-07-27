@@ -83,7 +83,7 @@ export default function EventsCalendarPage() {
 
                       <span
                         className={cn(
-                          'text-xs font-semibold px-2 py-1 rounded-md flex-shrink-0',
+                          'text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0',
                           difficultyColor(event.difficulty),
                         )}
                       >

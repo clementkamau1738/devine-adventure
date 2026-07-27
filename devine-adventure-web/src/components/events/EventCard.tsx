@@ -47,19 +47,19 @@ export function EventCard({ event, pricingOverride }: Props) {
             </span>
           </div>
 
-          {/* Featured */}
+          {/* Featured — sole sun highlight on card (badge-featured) */}
           {event.isFeatured && (
             <div className="absolute top-3 right-3">
-              <span className="bg-amber-400 text-stone-950 text-xs font-bold px-2.5 py-1 rounded-full">
+              <span className="bg-sun text-ink text-xs font-bold px-2.5 py-1 rounded-full">
                 Featured
               </span>
             </div>
           )}
 
-          {/* Capacity warning */}
+          {/* Capacity warning — badge-limited / clay */}
           {isAlmostFull && (
             <div className="absolute bottom-3 right-3">
-              <span className="bg-red-500/90 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+              <span className="bg-clay text-neutral-50 text-xs font-semibold px-2.5 py-1 rounded-full">
                 {spotsLeft} spots left
               </span>
             </div>
@@ -68,10 +68,10 @@ export function EventCard({ event, pricingOverride }: Props) {
 
         {/* Content */}
         <div className="p-5">
-          {/* Difficulty */}
+          {/* Difficulty — unified pill (same treatment as category chips) */}
           <span
             className={cn(
-              'text-xs font-semibold px-2 py-0.5 rounded-md',
+              'inline-block text-xs font-semibold px-2.5 py-1 rounded-full',
               difficultyColor(event.difficulty),
             )}
           >

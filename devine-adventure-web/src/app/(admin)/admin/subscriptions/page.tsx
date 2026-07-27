@@ -102,12 +102,12 @@ export default function AdminSubscriptionsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
                         s.status === 'ACTIVE'
-                          ? 'bg-emerald-400/10 text-emerald-400'
+                          ? 'bg-forest/15 text-forest border border-forest/30'
                           : s.status === 'EXPIRED'
-                            ? 'bg-stone-700 text-stone-400'
-                            : 'bg-red-400/10 text-red-400'
+                            ? 'bg-stone-700 text-stone-400 border border-stone-600'
+                            : 'bg-clay/15 text-clay border border-clay/30'
                       }`}
                     >
                       {s.status}

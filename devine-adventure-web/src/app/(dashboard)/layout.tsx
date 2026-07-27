@@ -68,7 +68,7 @@ export default function DashboardLayout({
           <div className="text-white font-semibold text-sm">{user?.name}</div>
           <div className="text-stone-500 text-xs">{user?.email}</div>
           {user?.role === 'MEMBER' && (
-            <span className="inline-block mt-2 bg-amber-400/10 text-amber-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="inline-block mt-2 bg-forest/15 text-forest border border-forest/30 text-xs font-semibold px-2.5 py-0.5 rounded-full">
               Member
             </span>
           )}

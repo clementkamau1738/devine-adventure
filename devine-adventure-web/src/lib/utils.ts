@@ -40,13 +40,14 @@ export function capacityPercent(enrolled: number, capacity: number) {
   return Math.round((enrolled / capacity) * 100);
 }
 
+/** Unified difficulty pill — branding §10: Beginner forest, Moderate sun-on-ink, Advanced clay */
 export function difficultyColor(diff: string) {
   return (
     {
-      BEGINNER: 'text-emerald-400 bg-emerald-400/10',
-      MODERATE: 'text-amber-400 bg-amber-400/10',
-      ADVANCED: 'text-red-400 bg-red-400/10',
-    }[diff] ?? 'text-stone-400 bg-stone-400/10'
+      BEGINNER: 'bg-forest/15 text-forest border border-forest/30',
+      MODERATE: 'bg-ink text-sun border border-sun/25',
+      ADVANCED: 'bg-clay/15 text-clay border border-clay/30',
+    }[diff] ?? 'bg-stone-800 text-stone-400 border border-stone-700'
   );
 }
 
