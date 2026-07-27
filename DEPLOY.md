@@ -4,20 +4,21 @@ This guide is for the **free tier** only:
 
 | Piece | Free host |
 |-------|-----------|
-| Web (Next.js) | Render free Web Service |
-| API (NestJS) | Render free Web Service |
+| Web (Next.js) | **Render Static Site** (`output: 'export'`) — no sleep |
+| API (NestJS) | Render free Web Service — sleeps after ~15 min idle |
 | Postgres | Supabase free project |
+
+Frontend is static HTML/JS talking to the API. You do **not** need a Node server for the web app.
 
 Repo: https://github.com/clementkamau1738/devine-adventure  
 Blueprint: `render.yaml` (`plan: free` for both services)
 
 ### Free-tier limits (expect these)
 
-- Services **sleep after ~15 minutes** of no traffic
-- First request after sleep takes **~30–60 seconds** (cold start)
-- Both API and web can sleep independently — homepage may wait on API wake-up
+- **API only** sleeps after ~15 minutes idle (first API call can take 30–60s)
+- **Static web** stays up (CDN) — page shell loads fast; data waits on API wake-up
 - Build minutes are limited per month on free accounts
-- Fine for demos; upgrade later if you need always-on
+- New event detail URLs are snapshotted at web **build** time — redeploy web after adding many new trips (listing still works via API)
 
 ---
 
@@ -74,9 +75,9 @@ You need the latest `main` (includes free-tier `render.yaml`).
 2. Click **New +** → **Blueprint**.
 3. Connect GitHub if prompted; select **`clementkamau1738/devine-adventure`**.
 4. Branch: **`main`**.
-5. Render will detect `render.yaml` and show two free services:
-   - `devine-adventure-api`
-   - `devine-adventure-web`
+5. Render will detect `render.yaml` and show:
+   - `devine-adventure-api` (Web Service, free)
+   - `devine-adventure-web` (Static Site)
 
 ### Fill env vars before you click Apply
 
@@ -130,23 +131,23 @@ Use this if you prefer **New → Web Service** twice.
 3. Environment variables (same table as Step 3 API).
 4. **Create Web Service**.
 
-### 4b. Web service
+### 4b. Web static site (recommended on free tier)
 
-1. **New +** → **Web Service** → same repo.
+1. **New +** → **Static Site** → same repo.
 2. Settings:
 
 | Field | Value |
 |-------|--------|
 | Name | `devine-adventure-web` |
 | Root Directory | `devine-adventure-web` |
-| Runtime | Node |
 | Build Command | `npm ci && npm run build` |
-| Start Command | `npm run start` |
-| Instance type | **Free** |
+| Publish Directory | `out` |
 
 3. Env: `NEXT_PUBLIC_API_URL` = `https://devine-adventure-api.onrender.com/api/v1`  
-   (use your real API URL if different)
-4. **Create Web Service**.
+   (use your real API URL if different — must be set **before** build)
+4. **Create Static Site**.
+
+> Deploy **API first**, wait until it is Live, then build the static site so `generateStaticParams` can read events from the API.
 
 ---
 
