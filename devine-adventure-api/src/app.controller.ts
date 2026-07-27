@@ -9,4 +9,10 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  /** Render / load balancer health check (prefix: /api/v1) */
+  @Get('health')
+  health() {
+    return { status: 'ok', service: 'devine-adventure-api' };
+  }
 }

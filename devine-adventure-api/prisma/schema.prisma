@@ -5,8 +5,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // Pooled URL (Supabase transaction pooler :6543) for the running app
+  url       = env("DATABASE_URL")
+  // Direct URL (Supabase session / :5432) for prisma migrate
+  directUrl = env("DIRECT_URL")
 }
 
 enum Role {

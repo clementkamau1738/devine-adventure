@@ -11,12 +11,17 @@ async function bootstrap() {
   // Global prefix
   app.setGlobalPrefix('api/v1');
 
-  // CORS — in production, restrict strictly to FRONTEND_URL; in dev, reflect
-  // the request origin so the app is reachable from a LAN IP too (not just localhost)
+  // CORS — production: FRONTEND_URL (comma-separated origins OK); dev: reflect any
+  const frontendOrigins = (process.env.FRONTEND_URL ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
   app.enableCors({
     origin:
       process.env.NODE_ENV === 'production'
-        ? process.env.FRONTEND_URL
+        ? frontendOrigins.length > 0
+          ? frontendOrigins
+          : false
         : true,
     credentials: true,
   });
@@ -44,9 +49,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  await app.listen(process.env.PORT ?? 3001);
-  console.log(
-    `🌄 Devine Adventure API running on port ${process.env.PORT ?? 3001}`,
-  );
+  const port = Number(process.env.PORT) || 3001;
+  // Bind 0.0.0.0 so Render / containers can reach the service
+  await app.listen(port, '0.0.0.0');
+  console.log(`Devine Adventure API running on port ${port}`);
 }
 void bootstrap();
