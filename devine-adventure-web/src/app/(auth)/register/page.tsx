@@ -1,11 +1,11 @@
 'use client';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Mountain } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useRegister } from '@/hooks/useAuth';
 import { getApiErrorMessage } from '@/lib/utils';
@@ -161,11 +161,18 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm">
         <Link
           href="/"
-          className="flex items-center justify-center gap-2 mb-10"
+          className="flex items-center justify-center gap-2.5 mb-10"
         >
-          <Mountain className="w-7 h-7 text-amber-400" />
-          <span className="font-display font-black text-xl text-white">
-            Devine<span className="text-amber-400">.</span>
+          <Image
+            src="/devine-icon.png"
+            alt=""
+            width={512}
+            height={512}
+            className="w-11 h-11"
+          />
+          <span className="font-display font-black text-xl leading-none">
+            <span className="text-white">Devine</span>{' '}
+            <span className="text-[#29692f]">Adventures</span>
           </span>
         </Link>
 

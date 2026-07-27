@@ -11,9 +11,13 @@ async function bootstrap() {
   // Global prefix
   app.setGlobalPrefix('api/v1');
 
-  // CORS
+  // CORS — in production, restrict strictly to FRONTEND_URL; in dev, reflect
+  // the request origin so the app is reachable from a LAN IP too (not just localhost)
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL
+        : true,
     credentials: true,
   });
 

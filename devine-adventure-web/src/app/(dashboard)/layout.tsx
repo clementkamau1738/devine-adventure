@@ -2,13 +2,13 @@
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuthStore } from '@/store/auth.store';
 import {
   LayoutDashboard,
   Calendar,
   CreditCard,
   User,
-  Mountain,
   LogOut,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -50,9 +50,16 @@ export default function DashboardLayout({
       <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-stone-800">
           <Link href="/" className="flex items-center gap-2">
-            <Mountain className="w-6 h-6 text-amber-400" />
-            <span className="font-display font-black text-lg text-white">
-              Devine<span className="text-amber-400">.</span>
+            <Image
+              src="/devine-icon.png"
+              alt=""
+              width={512}
+              height={512}
+              className="w-8 h-8"
+            />
+            <span className="font-display font-black text-base leading-none">
+              <span className="text-white">Devine</span>{' '}
+              <span className="text-[#29692f]">Adventures</span>
             </span>
           </Link>
         </div>
