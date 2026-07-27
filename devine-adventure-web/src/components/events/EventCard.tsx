@@ -9,6 +9,7 @@ import {
   capacityPercent,
   cn,
 } from '@/lib/utils';
+import { MpesaMark } from '@/components/payments/MpesaMark';
 
 interface Props {
   event: Event;
@@ -111,9 +112,9 @@ export function EventCard({ event, pricingOverride }: Props) {
             </div>
           </div>
 
-          {/* Price + CTA */}
-          <div className="flex items-center justify-between">
-            <div>
+          {/* Price + M-Pesa trust + CTA */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0">
               {pricingOverride ? (
                 <div>
                   {pricingOverride.finalPrice === 0 ? (
@@ -121,7 +122,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                       Free with membership
                     </span>
                   ) : (
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <span className="font-display font-normal tracking-normal text-white">
                         {formatKES(pricingOverride.finalPrice)}
                       </span>
@@ -130,6 +131,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                           {formatKES(event.price)}
                         </span>
                       )}
+                      <MpesaMark />
                     </div>
                   )}
                   <div className="text-xs text-stone-500">
@@ -138,9 +140,12 @@ export function EventCard({ event, pricingOverride }: Props) {
                 </div>
               ) : (
                 <div>
-                  <span className="font-display font-normal tracking-normal text-white text-lg">
-                    {formatKES(event.price)}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-display font-normal tracking-normal text-white text-lg">
+                      {formatKES(event.price)}
+                    </span>
+                    {Number(event.price) > 0 && <MpesaMark />}
+                  </div>
                   {event.memberPrice !== undefined &&
                     event.memberPrice !== null && (
                       <div className="text-xs text-forest">
@@ -152,7 +157,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                 </div>
               )}
             </div>
-            <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-forest transition-colors" />
+            <ChevronRight className="w-5 h-5 text-stone-600 group-hover:text-forest transition-colors shrink-0" />
           </div>
         </div>
       </article>

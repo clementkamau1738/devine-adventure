@@ -6,6 +6,7 @@ import { useEventPricing } from '@/hooks/useSubscription';
 import { useAuthStore } from '@/store/auth.store';
 import { formatEventDate, formatKES, difficultyColor, categoryIcon, cn } from '@/lib/utils';
 import { Navbar } from '@/components/layout/Navbar';
+import { MpesaMark } from '@/components/payments/MpesaMark';
 import Link from 'next/link';
 
 export default function EventDetailPage() {

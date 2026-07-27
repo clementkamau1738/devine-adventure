@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Check } from 'lucide-react';
 import { getApiErrorMessage } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import { MpesaMark } from '@/components/payments/MpesaMark';
 
 const PLANS = [
   {
