@@ -70,7 +70,7 @@ export default function DashboardLayout({
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors',
                 pathname === href
-                  ? 'bg-amber-400/10 text-amber-400 font-medium'
+                  ? 'bg-forest/10 text-forest font-medium'
                   : 'text-stone-400 hover:text-white hover:bg-stone-800',
               )}
             >

@@ -158,7 +158,7 @@ export default function AdminEventsPage() {
                       </button>
                       <button
                         onClick={() => handleEdit(event)}
-                        className="p-1.5 text-stone-400 hover:text-amber-400 rounded"
+                        className="p-1.5 text-stone-400 hover:text-forest rounded"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -167,7 +167,7 @@ export default function AdminEventsPage() {
                           if (confirm('Delete this event?'))
                             deleteEvent.mutate(event.id);
                         }}
-                        className="p-1.5 text-stone-400 hover:text-red-400 rounded"
+                        className="p-1.5 text-stone-400 hover:text-clay rounded"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

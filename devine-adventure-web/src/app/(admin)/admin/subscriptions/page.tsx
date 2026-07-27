@@ -50,7 +50,7 @@ export default function AdminSubscriptionsPage() {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-amber-400"
+          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
         >
           <option value="">All Statuses</option>
           <option value="ACTIVE">Active</option>
@@ -126,7 +126,7 @@ export default function AdminSubscriptionsPage() {
                           if (confirm('Cancel this subscription?'))
                             cancelSubscription.mutate(s.id);
                         }}
-                        className="text-red-400 text-xs hover:underline"
+                        className="text-clay text-xs hover:underline"
                       >
                         Cancel
                       </button>

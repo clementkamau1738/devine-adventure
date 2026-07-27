@@ -12,7 +12,7 @@ export default function BlogPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-forest/10 rounded-full mb-6">
             <BookOpen className="w-8 h-8 text-forest" />
           </div>
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Stories from the Trail
           </span>
           <h1 className="font-display text-4xl md:text-5xl font-black text-white mt-3 mb-4">

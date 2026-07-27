@@ -48,7 +48,7 @@ export default function EventsPage() {
                   onClick={() => setFilters((f) => ({ ...f, page: i + 1 }))}
                   className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${
                     filters.page === i + 1
-                      ? 'bg-amber-400 text-stone-950'
+                      ? 'bg-forest text-neutral-50'
                       : 'border border-stone-700 text-stone-400 hover:border-stone-500'
                   }`}
                 >

@@ -59,7 +59,7 @@ export function Navbar() {
               className={cn(
                 'text-sm font-medium transition-colors',
                 pathname === href
-                  ? 'text-amber-400'
+                  ? 'text-forest'
                   : 'text-stone-300 hover:text-white',
               )}
             >

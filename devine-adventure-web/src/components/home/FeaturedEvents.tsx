@@ -11,7 +11,7 @@ export function FeaturedEvents() {
     <section className="max-w-7xl mx-auto px-6 py-24">
       <div className="flex items-end justify-between mb-10">
         <div>
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Handpicked
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-2">
@@ -20,7 +20,7 @@ export function FeaturedEvents() {
         </div>
         <Link
           href="/events"
-          className="hidden sm:inline-flex items-center gap-2 text-stone-300 hover:text-amber-400 text-sm font-medium transition-colors"
+          className="hidden sm:inline-flex items-center gap-2 text-stone-300 hover:text-forest text-sm font-medium transition-colors"
         >
           View all <ArrowRight className="w-4 h-4" />
         </Link>
@@ -49,7 +49,7 @@ export function FeaturedEvents() {
 
       <Link
         href="/events"
-        className="sm:hidden mt-8 inline-flex items-center gap-2 text-amber-400 text-sm font-medium"
+        className="sm:hidden mt-8 inline-flex items-center gap-2 text-forest text-sm font-medium"
       >
         View all adventures <ArrowRight className="w-4 h-4" />
       </Link>

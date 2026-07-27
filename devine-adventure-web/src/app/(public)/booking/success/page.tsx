@@ -56,7 +56,7 @@ function BookingSuccessContent() {
       <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6">
         <div className="flex items-center justify-between mb-4 pb-4 border-b border-stone-800">
           <span className="text-stone-400 text-sm">Reference</span>
-          <span className="text-amber-400 font-mono font-semibold">
+          <span className="text-forest font-mono font-semibold">
             {booking.referenceCode}
           </span>
         </div>

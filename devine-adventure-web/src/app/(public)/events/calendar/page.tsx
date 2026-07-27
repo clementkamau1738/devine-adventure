@@ -50,7 +50,7 @@ export default function EventsCalendarPage() {
           ) : (
             Array.from(grouped.entries()).map(([month, monthEvents]) => (
               <div key={month} className="mb-10">
-                <h2 className="text-amber-400 font-display font-bold text-xl mb-4">
+                <h2 className="text-forest font-display font-bold text-xl mb-4">
                   {month}
                 </h2>
                 <div className="space-y-3">

@@ -58,14 +58,14 @@ export default function AdminRevenuePage() {
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-amber-400"
+            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           />
           <span className="text-stone-500 text-sm">to</span>
           <input
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-amber-400"
+            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-3 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           />
         </div>
       </div>
@@ -144,7 +144,7 @@ export default function AdminRevenuePage() {
                       <td className="px-4 py-3 text-stone-300 text-xs">
                         {methodLabel[p.method]}
                       </td>
-                      <td className="px-4 py-3 font-mono text-amber-400 text-xs">
+                      <td className="px-4 py-3 font-mono text-forest text-xs">
                         {p.transactionRef}
                       </td>
                       <td className="px-4 py-3 text-stone-300">

@@ -26,7 +26,7 @@ export default function AboutPage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-24">
         <div className="max-w-4xl mx-auto px-6 mb-16 text-center">
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             About Us
           </span>
           <h1 className="font-display text-5xl md:text-6xl font-black text-white mt-3 mb-6">

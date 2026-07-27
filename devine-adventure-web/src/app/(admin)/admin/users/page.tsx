@@ -51,7 +51,7 @@ export default function AdminUsersPage() {
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-amber-400"
+          className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
         >
           <option value="">All Roles</option>
           {ROLES.map((r) => (
@@ -107,7 +107,7 @@ export default function AdminUsersPage() {
                       onChange={(e) =>
                         updateRole.mutate({ id: u.id, role: e.target.value })
                       }
-                      className="bg-stone-800 border border-stone-700 text-stone-200 text-xs px-2.5 py-1.5 rounded-lg focus:outline-none focus:border-amber-400"
+                      className="bg-stone-800 border border-stone-700 text-stone-200 text-xs px-2.5 py-1.5 rounded-lg focus:outline-none focus:border-forest"
                     >
                       {ROLES.map((r) => (
                         <option key={r} value={r}>

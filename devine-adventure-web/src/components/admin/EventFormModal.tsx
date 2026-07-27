@@ -32,7 +32,7 @@ const eventFormSchema = z.object({
 type EventFormValues = z.infer<typeof eventFormSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors';
+  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors';
 
 function Field({
   label,
@@ -49,7 +49,7 @@ function Field({
         {label}
       </label>
       {children}
-      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+      {error && <p className="text-clay text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -236,7 +236,7 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
                     type="checkbox"
                     checked={field.value}
                     onChange={(e) => field.onChange(e.target.checked)}
-                    className="rounded border-stone-700 bg-stone-800 text-amber-400 focus:ring-amber-400"
+                    className="rounded border-stone-700 bg-stone-800 text-forest focus:ring-forest"
                   />
                   Featured event
                 </label>

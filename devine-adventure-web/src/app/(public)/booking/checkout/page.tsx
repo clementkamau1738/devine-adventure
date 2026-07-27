@@ -67,7 +67,7 @@ export default function CheckoutPage() {
           </h1>
           <p className="text-stone-400 mb-8">
             Ref:{' '}
-            <span className="text-amber-400 font-mono">
+            <span className="text-forest font-mono">
               {currentBooking.referenceCode}
             </span>
           </p>
@@ -91,7 +91,7 @@ export default function CheckoutPage() {
                 onClick={() => setPaymentMethod('mpesa')}
                 className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all ${
                   paymentMethod === 'mpesa'
-                    ? 'border-amber-400 bg-amber-400/5'
+                    ? 'border-forest bg-forest/5'
                     : 'border-stone-700 hover:border-stone-500'
                 }`}
               >
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
                 onClick={() => setPaymentMethod('card')}
                 className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all ${
                   paymentMethod === 'card'
-                    ? 'border-amber-400 bg-amber-400/5'
+                    ? 'border-forest bg-forest/5'
                     : 'border-stone-700 hover:border-stone-500'
                 }`}
               >
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+254712345678"
-                className="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-amber-400"
+                className="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-forest"
               />
             </div>
           )}
@@ -157,7 +157,7 @@ export default function CheckoutPage() {
                     `/booking/success?ref=${currentBooking.referenceCode}`,
                   )
                 }
-                className="mt-6 text-amber-400 text-sm underline"
+                className="mt-6 text-forest text-sm underline"
               >
                 I&apos;ve completed payment →
               </button>

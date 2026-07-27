@@ -121,7 +121,7 @@ export default function DashboardPage() {
       <div>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-white font-bold text-lg">Recent Bookings</h2>
-          <Link href="/dashboard/bookings" className="text-amber-400 text-sm">
+          <Link href="/dashboard/bookings" className="text-forest text-sm">
             View all →
           </Link>
         </div>

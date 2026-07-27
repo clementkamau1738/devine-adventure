@@ -62,7 +62,7 @@ export default function AdminBookingsPage() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-amber-400"
+            className="bg-stone-800 border border-stone-700 text-stone-200 text-sm px-4 py-2.5 rounded-xl focus:outline-none focus:border-forest"
           >
             <option value="">All Statuses</option>
             <option value="PENDING">Pending</option>
@@ -113,7 +113,7 @@ export default function AdminBookingsPage() {
                   key={b.id}
                   className="border-b border-stone-800/50 hover:bg-stone-800/30"
                 >
-                  <td className="px-4 py-3 font-mono text-amber-400 text-xs">
+                  <td className="px-4 py-3 font-mono text-forest text-xs">
                     {b.referenceCode}
                   </td>
                   <td className="px-4 py-3">

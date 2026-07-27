@@ -30,7 +30,7 @@ const DIFFICULTIES = [
 ];
 
 const selectClass =
-  'bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 text-sm text-stone-200 focus:outline-none focus:border-amber-400 transition-colors';
+  'bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 text-sm text-stone-200 focus:outline-none focus:border-forest transition-colors';
 
 export function EventFilters({ filters, onChange }: Props) {
   const hasActiveFilters =
@@ -47,7 +47,7 @@ export function EventFilters({ filters, onChange }: Props) {
             onChange((f) => ({ ...f, search: e.target.value, page: 1 }))
           }
           placeholder="Search by name, location, or description"
-          className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-11 pr-4 py-3 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors"
+          className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-11 pr-4 py-3 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-forest transition-colors"
         />
       </div>
 

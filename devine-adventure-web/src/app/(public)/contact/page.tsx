@@ -35,7 +35,7 @@ export default function ContactPage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-24">
         <div className="max-w-3xl mx-auto px-6 text-center mb-14">
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Contact
           </span>
           <h1 className="font-display text-5xl font-black text-white mt-3 mb-4">

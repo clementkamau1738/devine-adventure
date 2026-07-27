@@ -18,7 +18,7 @@ const loginSchema = z.object({
 type LoginValues = z.infer<typeof loginSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors';
+  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors';
 
 function LoginForm() {
   const router = useRouter();
@@ -54,7 +54,7 @@ function LoginForm() {
           placeholder="you@example.com"
         />
         {errors.email && (
-          <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+          <p className="text-clay text-xs mt-1">{errors.email.message}</p>
         )}
       </div>
 
@@ -69,7 +69,7 @@ function LoginForm() {
           placeholder="••••••••"
         />
         {errors.password && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-clay text-xs mt-1">
             {errors.password.message}
           </p>
         )}
@@ -109,7 +109,7 @@ export default function LoginPage() {
 
         <p className="text-center text-stone-500 text-sm mt-6">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-amber-400 hover:underline">
+          <Link href="/register" className="text-forest hover:underline">
             Create one
           </Link>
         </p>

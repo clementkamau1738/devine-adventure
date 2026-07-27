@@ -176,7 +176,7 @@ export default function EventDetailPage() {
 
                 {!isAuthenticated && (
                   <p className="text-center text-stone-500 text-xs mt-4">
-                    <Link href="/login" className="text-amber-400 underline">
+                    <Link href="/login" className="text-forest underline">
                       Sign in
                     </Link>{' '}
                     to see member pricing

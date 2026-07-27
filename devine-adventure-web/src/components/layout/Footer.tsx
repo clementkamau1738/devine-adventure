@@ -49,7 +49,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-stone-500 hover:text-amber-400 transition-colors"
+                className="text-stone-500 hover:text-forest transition-colors"
               >
                 <Share2 className="w-5 h-5" />
               </a>
@@ -58,14 +58,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-stone-500 hover:text-amber-400 transition-colors"
+                className="text-stone-500 hover:text-forest transition-colors"
               >
                 <Globe className="w-5 h-5" />
               </a>
               <a
                 href="mailto:hello@devineadventure.co.ke"
                 aria-label="Email"
-                className="text-stone-500 hover:text-amber-400 transition-colors"
+                className="text-stone-500 hover:text-forest transition-colors"
               >
                 <Mail className="w-5 h-5" />
               </a>

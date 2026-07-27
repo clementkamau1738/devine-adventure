@@ -25,7 +25,7 @@ export function TestimonialsSection() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-24">
       <div className="text-center mb-16">
-        <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+        <span className="text-forest text-sm font-semibold tracking-widest uppercase">
           Community
         </span>
         <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-2">
@@ -43,7 +43,7 @@ export function TestimonialsSection() {
               {Array.from({ length: 5 }, (_, i) => (
                 <Star
                   key={i}
-                  className="w-4 h-4 text-amber-400 fill-amber-400"
+                  className="w-4 h-4 text-sun fill-sun"
                 />
               ))}
             </div>

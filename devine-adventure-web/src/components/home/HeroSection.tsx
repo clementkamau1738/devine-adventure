@@ -17,12 +17,12 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-2xl">
-          <span className="inline-block text-amber-400 text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+          <span className="inline-block text-forest text-sm font-semibold tracking-[0.2em] uppercase mb-6">
             Kenya&apos;s Adventure Collective
           </span>
 
           <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-none mb-6 text-white">
-            Find Your <em className="not-italic text-amber-400">Wild</em>
+            Find Your <em className="not-italic text-sun">Wild</em>
           </h1>
 
           <p className="text-stone-300 text-xl leading-relaxed mb-10 max-w-xl">

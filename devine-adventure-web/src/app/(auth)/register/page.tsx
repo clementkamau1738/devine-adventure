@@ -36,7 +36,7 @@ const registerSchema = z
 type RegisterValues = z.infer<typeof registerSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors';
+  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors';
 
 function RegisterForm() {
   const router = useRouter();
@@ -77,7 +77,7 @@ function RegisterForm() {
           placeholder="Jane Wanjiru"
         />
         {errors.name && (
-          <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
+          <p className="text-clay text-xs mt-1">{errors.name.message}</p>
         )}
       </div>
 
@@ -92,7 +92,7 @@ function RegisterForm() {
           placeholder="you@example.com"
         />
         {errors.email && (
-          <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+          <p className="text-clay text-xs mt-1">{errors.email.message}</p>
         )}
       </div>
 
@@ -106,7 +106,7 @@ function RegisterForm() {
           placeholder="+254712345678"
         />
         {errors.phone && (
-          <p className="text-red-400 text-xs mt-1">{errors.phone.message}</p>
+          <p className="text-clay text-xs mt-1">{errors.phone.message}</p>
         )}
       </div>
 
@@ -121,7 +121,7 @@ function RegisterForm() {
           placeholder="••••••••"
         />
         {errors.password && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-clay text-xs mt-1">
             {errors.password.message}
           </p>
         )}
@@ -138,7 +138,7 @@ function RegisterForm() {
           placeholder="••••••••"
         />
         {errors.confirmPassword && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-clay text-xs mt-1">
             {errors.confirmPassword.message}
           </p>
         )}
@@ -178,7 +178,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-stone-500 text-sm mt-6">
           Already have an account?{' '}
-          <Link href="/login" className="text-amber-400 hover:underline">
+          <Link href="/login" className="text-forest hover:underline">
             Sign in
           </Link>
         </p>

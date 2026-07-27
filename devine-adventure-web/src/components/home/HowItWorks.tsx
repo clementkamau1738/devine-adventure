@@ -26,7 +26,7 @@ export function HowItWorks() {
     <section className="bg-stone-900/40 border-y border-stone-800">
       <div className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+          <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             How it works
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-2">

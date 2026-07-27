@@ -80,7 +80,7 @@ export default function MembershipPage() {
       <main className="min-h-screen pt-28 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">
+            <span className="text-forest text-sm font-semibold tracking-widest uppercase">
               Membership
             </span>
             <h1 className="font-display text-5xl md:text-6xl font-black text-white mt-3 mb-4">

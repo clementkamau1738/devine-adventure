@@ -20,7 +20,7 @@ const profileSchema = z.object({
 type ProfileValues = z.infer<typeof profileSchema>;
 
 const inputClass =
-  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors disabled:opacity-50';
+  'w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-stone-500 focus:outline-none focus:border-forest transition-colors disabled:opacity-50';
 
 export default function DashboardProfilePage() {
   const { user, updateUser } = useAuthStore();
@@ -104,7 +104,7 @@ export default function DashboardProfilePage() {
             </label>
             <input {...register('name')} className={inputClass} />
             {errors.name && (
-              <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
+              <p className="text-clay text-xs mt-1">{errors.name.message}</p>
             )}
           </div>
 
@@ -118,7 +118,7 @@ export default function DashboardProfilePage() {
               placeholder="+254712345678"
             />
             {errors.phone && (
-              <p className="text-red-400 text-xs mt-1">
+              <p className="text-clay text-xs mt-1">
                 {errors.phone.message}
               </p>
             )}

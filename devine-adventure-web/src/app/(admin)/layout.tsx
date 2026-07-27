@@ -56,9 +56,9 @@ export default function AdminLayout({
     <div className="min-h-screen flex bg-stone-950">
       <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-stone-800 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-amber-400" />
+          <Shield className="w-5 h-5 text-forest" />
           <span className="font-display font-black text-white">
-            Admin<span className="text-amber-400">.</span>
+            Admin<span className="text-forest">.</span>
           </span>
         </div>
 
@@ -70,7 +70,7 @@ export default function AdminLayout({
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors',
                 pathname === href
-                  ? 'bg-amber-400/10 text-amber-400 font-medium'
+                  ? 'bg-forest/10 text-forest font-medium'
                   : 'text-stone-400 hover:text-white hover:bg-stone-800',
               )}
             >
