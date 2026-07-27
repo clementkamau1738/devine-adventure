@@ -7,6 +7,7 @@ import { useAuthStore } from '@/store/auth.store';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { Logo } from '@/components/layout/Logo';
+import { WhatsAppLink } from '@/components/layout/WhatsAppLink';
 
 const navLinks = [
   { label: 'Adventures', href: '/events' },
@@ -70,6 +71,7 @@ export function Navbar() {
 
         {/* Auth actions */}
         <div className="hidden md:flex items-center gap-4">
+          <WhatsAppLink className="text-stone-400" />
           {isAuthenticated ? (
             <>
               {user?.role === 'ADMIN' && (
@@ -134,8 +136,11 @@ export function Navbar() {
               {label}
             </Link>
           ))}
+          <div className="pt-4 border-t border-stone-800">
+            <WhatsAppLink className="mb-4" />
+          </div>
           {!isAuthenticated ? (
-            <div className="pt-4 flex flex-col gap-3 border-t border-stone-800">
+            <div className="flex flex-col gap-3">
               <Link href="/login" className="text-stone-300">
                 Sign In
               </Link>
@@ -147,7 +152,7 @@ export function Navbar() {
               </Link>
             </div>
           ) : (
-            <div className="pt-4 border-t border-stone-800">
+            <div>
               <Link href="/dashboard" className="block text-stone-300 mb-3">
                 Dashboard
               </Link>

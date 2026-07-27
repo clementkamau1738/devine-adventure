@@ -1,13 +1,15 @@
 import { Mail, MapPin, Share2, Globe } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { WhatsAppLink } from '@/components/layout/WhatsAppLink';
+import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '@/lib/contact';
 
 const channels = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@devineadventure.co.ke',
-    href: 'mailto:hello@devineadventure.co.ke',
+    value: CONTACT_EMAIL,
+    href: `mailto:${CONTACT_EMAIL}`,
   },
   {
     icon: MapPin,
@@ -45,6 +47,11 @@ export default function ContactPage() {
             Questions about an upcoming adventure, group bookings, or
             membership? Reach out — we usually reply within a day.
           </p>
+          <div className="mt-8 flex justify-center">
+            <WhatsAppLink variant="button">
+              WhatsApp us · +{WHATSAPP_NUMBER}
+            </WhatsAppLink>
+          </div>
         </div>
 
         <div className="max-w-2xl mx-auto px-6 grid sm:grid-cols-2 gap-4">
