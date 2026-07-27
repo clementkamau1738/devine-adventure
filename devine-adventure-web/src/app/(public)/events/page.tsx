@@ -14,22 +14,24 @@ import { DifficultyFilterStrip } from '@/components/home/DifficultyFilterStrip';
 function EventsPageInner() {
   const searchParams = useSearchParams();
   const difficultyParam = searchParams.get('difficulty') ?? '';
+  const searchParam = searchParams.get('search') ?? '';
 
   const [filters, setFilters] = useState<EventFiltersState>({
     category: '',
     difficulty: difficultyParam,
-    search: '',
+    search: searchParam,
     page: 1,
   });
 
-  // Keep filters in sync when strip navigates with ?difficulty=
+  // Sync when difficulty strip or destination grid navigates with query params
   useEffect(() => {
     setFilters((f) => ({
       ...f,
       difficulty: difficultyParam,
+      search: searchParam,
       page: 1,
     }));
-  }, [difficultyParam]);
+  }, [difficultyParam, searchParam]);
 
   const { data, isLoading } = useEvents(filters);
 
