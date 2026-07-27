@@ -63,7 +63,7 @@ export default function AdminEventsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-black text-white font-display">
+          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
             Events
           </h1>
           <p className="text-stone-400 mt-1">

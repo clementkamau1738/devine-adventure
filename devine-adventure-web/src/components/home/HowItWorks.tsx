@@ -29,7 +29,7 @@ export function HowItWorks() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             How it works
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-2">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
             Three Steps to Your Next Trail
           </h2>
         </div>
@@ -41,11 +41,13 @@ export function HowItWorks() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-forest/10 border border-forest/30">
                   <Icon className="w-5 h-5 text-forest" />
                 </div>
-                <span className="font-display text-3xl font-black text-stone-700">
+                <span className="font-display text-3xl font-normal tracking-normal text-stone-700">
                   0{i + 1}
                 </span>
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+              <h3 className="font-display font-normal uppercase tracking-normal text-white text-lg mb-2">
+                {title}
+              </h3>
               <p className="text-stone-400 text-sm leading-relaxed">
                 {description}
               </p>

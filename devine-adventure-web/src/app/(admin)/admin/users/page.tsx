@@ -45,7 +45,7 @@ export default function AdminUsersPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-black text-white font-display">Users</h1>
+          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">Users</h1>
           <p className="text-stone-400 mt-1">{data?.meta?.total ?? 0} total users</p>
         </div>
         <select

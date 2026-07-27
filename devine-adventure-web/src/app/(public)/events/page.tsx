@@ -22,7 +22,7 @@ export default function EventsPage() {
       <main className="min-h-screen pt-28 pb-20">
         {/* Header */}
         <div className="max-w-7xl mx-auto px-6 mb-12">
-          <h1 className="font-display text-5xl font-black text-white mb-3">
+          <h1 className="font-display text-5xl font-normal text-white mb-3 uppercase tracking-normal">
             Adventures
           </h1>
           <p className="text-stone-400 text-lg">

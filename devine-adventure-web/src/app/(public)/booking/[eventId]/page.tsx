@@ -51,7 +51,7 @@ export default function BookingInitiatePage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
-          <h1 className="font-display text-4xl font-black text-white mb-8">
+          <h1 className="font-display text-4xl font-normal text-white mb-8 uppercase tracking-normal">
             Confirm Booking
           </h1>
 
@@ -68,9 +68,9 @@ export default function BookingInitiatePage() {
                   <span>- {formatKES(pricing.discount)}</span>
                 </div>
               )}
-              <div className="border-t border-stone-700 pt-3 flex justify-between text-white font-bold text-lg">
-                <span>Total</span>
-                <span>
+              <div className="border-t border-stone-700 pt-3 flex justify-between text-white text-lg">
+                <span className="font-sans font-bold">Total</span>
+                <span className="font-display font-normal tracking-normal">
                   {pricing.finalPrice === 0
                     ? 'FREE'
                     : formatKES(pricing.finalPrice)}

@@ -62,7 +62,7 @@ export default function CheckoutPage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-lg mx-auto px-6">
-          <h1 className="font-display text-4xl font-black text-white mb-2">
+          <h1 className="font-display text-4xl font-normal text-white mb-2 uppercase tracking-normal">
             Payment
           </h1>
           <p className="text-stone-400 mb-8">
@@ -74,7 +74,7 @@ export default function CheckoutPage() {
 
           <div className="bg-stone-900 border border-stone-800 rounded-xl p-4 mb-8 flex justify-between items-center">
             <span className="text-stone-300">Amount due</span>
-            <span className="text-white font-black text-2xl">
+            <span className="font-display font-normal tracking-normal text-white text-2xl">
               {formatKES(pricing.finalPrice)}
             </span>
           </div>

@@ -15,7 +15,7 @@ export default function BlogPage() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Stories from the Trail
           </span>
-          <h1 className="font-display text-4xl md:text-5xl font-black text-white mt-3 mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
             Coming soon
           </h1>
           <p className="text-stone-400 text-lg leading-relaxed mb-8">

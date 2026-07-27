@@ -32,7 +32,7 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-black text-white font-display">
+        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
           Welcome back, {user?.name.split(' ')[0]} 👋
         </h1>
         <p className="text-stone-400 mt-1">Here&apos;s your adventure summary</p>

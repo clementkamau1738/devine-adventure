@@ -83,7 +83,7 @@ export default function MembershipPage() {
             <span className="text-forest text-sm font-semibold tracking-widest uppercase">
               Membership
             </span>
-            <h1 className="font-display text-5xl md:text-6xl font-black text-white mt-3 mb-4">
+            <h1 className="font-display text-5xl md:text-6xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
               Adventure Unlimited
             </h1>
             <p className="text-stone-400 text-xl max-w-xl mx-auto">
@@ -123,27 +123,16 @@ export default function MembershipPage() {
                 <div className="text-stone-400 text-sm mb-1">
                   {plan.tagline}
                 </div>
-                {/* Phase 2 preview: display face only on featured pricing card */}
-                <div
-                  className={
-                    plan.featured
-                      ? 'font-display-preview text-2xl font-normal uppercase tracking-tight text-white mb-1'
-                      : 'font-display text-2xl font-black text-white mb-1'
-                  }
-                >
+                <div className="font-display text-2xl font-normal uppercase tracking-normal text-white mb-1">
                   {plan.label}
                 </div>
                 <div className="flex items-baseline gap-1 mb-6">
-                  <span
-                    className={
-                      plan.featured
-                        ? 'font-display-preview text-4xl font-normal tracking-tight text-white'
-                        : 'text-4xl font-black text-white'
-                    }
-                  >
+                  <span className="font-display text-4xl font-normal tracking-normal text-white">
                     KES {plan.price.toLocaleString()}
                   </span>
-                  <span className="text-stone-500 text-sm">{plan.period}</span>
+                  <span className="text-stone-500 text-sm font-sans">
+                    {plan.period}
+                  </span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (

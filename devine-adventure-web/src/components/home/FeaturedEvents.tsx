@@ -14,7 +14,7 @@ export function FeaturedEvents() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Handpicked
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-2">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-2 uppercase tracking-normal">
             Featured Adventures
           </h2>
         </div>

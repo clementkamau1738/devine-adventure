@@ -45,7 +45,7 @@ function BookingSuccessContent() {
         <div className="inline-flex items-center justify-center w-16 h-16 bg-forest/10 rounded-full mb-5">
           <CheckCircle className="w-8 h-8 text-forest" />
         </div>
-        <h1 className="font-display text-3xl font-black text-white mb-2">
+        <h1 className="font-display text-3xl font-normal text-white mb-2 uppercase tracking-normal">
           Booking Confirmed
         </h1>
         <p className="text-stone-400">
@@ -84,7 +84,7 @@ function BookingSuccessContent() {
         </div>
         <div className="flex items-center justify-between mt-2">
           <span className="text-stone-400 text-sm">Amount Paid</span>
-          <span className="text-white font-bold">
+          <span className="font-display font-normal tracking-normal text-white">
             {formatKES(booking.totalAmount)}
           </span>
         </div>

@@ -38,7 +38,7 @@ export default function ContactPage() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Contact
           </span>
-          <h1 className="font-display text-5xl font-black text-white mt-3 mb-4">
+          <h1 className="font-display text-5xl font-normal text-white mt-3 mb-4 uppercase tracking-normal">
             Get in Touch
           </h1>
           <p className="text-stone-400 text-lg">

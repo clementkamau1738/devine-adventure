@@ -122,7 +122,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                     </span>
                   ) : (
                     <div className="flex items-center gap-2">
-                      <span className="text-white font-bold">
+                      <span className="font-display font-normal tracking-normal text-white">
                         {formatKES(pricingOverride.finalPrice)}
                       </span>
                       {pricingOverride.finalPrice < event.price && (
@@ -138,7 +138,7 @@ export function EventCard({ event, pricingOverride }: Props) {
                 </div>
               ) : (
                 <div>
-                  <span className="text-white font-bold text-lg">
+                  <span className="font-display font-normal tracking-normal text-white text-lg">
                     {formatKES(event.price)}
                   </span>
                   {event.memberPrice !== undefined &&

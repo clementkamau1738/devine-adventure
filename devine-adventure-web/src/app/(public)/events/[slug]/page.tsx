@@ -69,7 +69,7 @@ export default function EventDetailPage() {
                 </span>
               </div>
 
-              <h1 className="font-display text-4xl md:text-5xl font-black text-white mb-6">
+              <h1 className="font-display text-4xl md:text-5xl font-normal text-white mb-6 uppercase tracking-normal">
                 {event.title}
               </h1>
 
@@ -117,12 +117,12 @@ export default function EventDetailPage() {
                         {pricing.reason}
                       </div>
                       {pricing.finalPrice === 0 ? (
-                        <div className="text-3xl font-black text-forest">
+                        <div className="font-display text-3xl font-normal tracking-normal text-forest">
                           Free
                         </div>
                       ) : (
                         <div className="flex items-baseline gap-3">
-                          <div className="text-3xl font-black text-white">
+                          <div className="font-display text-3xl font-normal tracking-normal text-white">
                             {formatKES(pricing.finalPrice)}
                           </div>
                           {pricing.discount > 0 && (
@@ -135,7 +135,7 @@ export default function EventDetailPage() {
                     </>
                   ) : (
                     <>
-                      <div className="text-3xl font-black text-white">
+                      <div className="font-display text-3xl font-normal tracking-normal text-white">
                         {formatKES(event.price)}
                       </div>
                       {event.memberPrice !== null &&

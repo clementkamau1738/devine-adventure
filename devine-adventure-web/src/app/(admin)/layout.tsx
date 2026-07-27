@@ -57,7 +57,7 @@ export default function AdminLayout({
       <aside className="w-64 bg-stone-900 border-r border-stone-800 flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-stone-800 flex items-center gap-2">
           <Shield className="w-5 h-5 text-forest" />
-          <span className="font-display font-black text-white">
+          <span className="font-display font-normal text-white uppercase tracking-normal">
             Admin<span className="text-forest">.</span>
           </span>
         </div>

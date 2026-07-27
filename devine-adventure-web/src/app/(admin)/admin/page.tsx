@@ -47,7 +47,7 @@ export default function AdminDashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-black text-white font-display">
+        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
           Dashboard
         </h1>
         <p className="text-stone-400 mt-1">Platform overview — live data</p>
@@ -99,7 +99,7 @@ export default function AdminDashboardPage() {
           <div className="text-stone-400 text-sm mb-1">
             Total Revenue (All Time)
           </div>
-          <div className="text-4xl font-black text-white">
+          <div className="font-display text-4xl font-normal tracking-normal text-white">
             {formatKES(kpis.totalRevenue)}
           </div>
         </div>

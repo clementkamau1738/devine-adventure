@@ -8,6 +8,7 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
 });
 /** Block display face — branding.md §3 (H1–H3 / price numerals). */
 const anton = Anton({

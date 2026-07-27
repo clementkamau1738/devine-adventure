@@ -95,7 +95,7 @@ export default function LoginPage() {
         </div>
 
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8">
-          <h1 className="font-display text-2xl font-black text-white mb-1">
+          <h1 className="font-display text-2xl font-normal text-white mb-1 uppercase tracking-normal">
             Welcome back
           </h1>
           <p className="text-stone-400 text-sm mb-8">

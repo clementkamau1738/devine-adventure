@@ -15,7 +15,7 @@ export function MembershipTeaser() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             Membership
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white mt-3 mb-5">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-white mt-3 mb-5 uppercase tracking-normal">
             Adventure Unlimited
           </h2>
           <p className="text-stone-300 text-lg leading-relaxed mb-8">

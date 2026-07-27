@@ -7,12 +7,8 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
-  /*
-    Phase 2 preview: Anton is loaded as --font-anton but NOT bound to
-    --font-display yet (that would flip every font-display site-wide).
-    Preview utility only — after approval, set --font-display: var(--font-anton).
-  */
-  --font-display-preview: var(--font-anton);
+  /* Branding §3: block headings = Anton; script = Playfair via font-serif */
+  --font-display: var(--font-anton);
 
   /* Core palette */
   --color-sun: #edba0e;

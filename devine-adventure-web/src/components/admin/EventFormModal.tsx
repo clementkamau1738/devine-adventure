@@ -128,7 +128,7 @@ export function EventFormModal({ event, onClose, onSuccess }: Props) {
         <Dialog.Overlay className="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-40" />
         <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg max-h-[90vh] overflow-y-auto bg-stone-900 border border-stone-800 rounded-2xl p-6 z-50">
           <div className="flex items-center justify-between mb-6">
-            <Dialog.Title className="text-white font-bold text-xl font-display">
+            <Dialog.Title className="text-white font-normal text-xl font-display uppercase tracking-normal">
               {event ? 'Edit Event' : 'New Event'}
             </Dialog.Title>
             <Dialog.Close className="text-stone-400 hover:text-white">

@@ -57,7 +57,7 @@ export default function DashboardProfilePage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-black text-white font-display">
+        <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
           Profile
         </h1>
         <p className="text-stone-400 mt-1">Manage your account details</p>

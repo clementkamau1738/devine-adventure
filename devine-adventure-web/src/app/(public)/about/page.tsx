@@ -29,7 +29,7 @@ export default function AboutPage() {
           <span className="text-forest text-sm font-semibold tracking-widest uppercase">
             About Us
           </span>
-          <h1 className="font-display text-5xl md:text-6xl font-black text-white mt-3 mb-6">
+          <h1 className="font-display text-5xl md:text-6xl font-normal text-white mt-3 mb-6 uppercase tracking-normal">
             Kenya&apos;s Adventure Collective
           </h1>
           <p className="text-stone-400 text-xl leading-relaxed max-w-2xl mx-auto">

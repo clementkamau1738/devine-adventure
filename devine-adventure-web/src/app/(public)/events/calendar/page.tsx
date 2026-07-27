@@ -29,7 +29,7 @@ export default function EventsCalendarPage() {
       <Navbar />
       <main className="min-h-screen pt-28 pb-20">
         <div className="max-w-4xl mx-auto px-6 mb-12">
-          <h1 className="font-display text-5xl font-black text-white mb-3">
+          <h1 className="font-display text-5xl font-normal text-white mb-3 uppercase tracking-normal">
             Calendar
           </h1>
           <p className="text-stone-400 text-lg">
@@ -50,7 +50,7 @@ export default function EventsCalendarPage() {
           ) : (
             Array.from(grouped.entries()).map(([month, monthEvents]) => (
               <div key={month} className="mb-10">
-                <h2 className="text-forest font-display font-bold text-xl mb-4">
+                <h2 className="text-forest font-display font-normal text-xl mb-4 uppercase tracking-normal">
                   {month}
                 </h2>
                 <div className="space-y-3">

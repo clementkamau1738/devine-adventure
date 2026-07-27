@@ -11,7 +11,7 @@ export default function BookingCancelPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-clay/10 rounded-full mb-5">
             <XCircle className="w-8 h-8 text-clay" />
           </div>
-          <h1 className="font-display text-3xl font-black text-white mb-2">
+          <h1 className="font-display text-3xl font-normal text-white mb-2 uppercase tracking-normal">
             Payment Cancelled
           </h1>
           <p className="text-stone-400 mb-8">

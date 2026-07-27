@@ -48,7 +48,7 @@ export default function AdminRevenuePage() {
     <div>
       <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-black text-white font-display">
+          <h1 className="text-3xl font-normal text-white font-display uppercase tracking-normal">
             Revenue
           </h1>
           <p className="text-stone-400 mt-1">Payment analytics</p>
@@ -80,7 +80,7 @@ export default function AdminRevenuePage() {
               <div className="text-stone-400 text-sm mb-1">
                 Total Revenue{from || to ? ' (filtered)' : ''}
               </div>
-              <div className="text-4xl font-black text-white">
+              <div className="font-display text-4xl font-normal tracking-normal text-white">
                 {formatKES(data.total)}
               </div>
             </div>
