@@ -45,9 +45,6 @@ export function Footer() {
               bikes, and wilderness experiences across the highlands, forests,
               and valleys.
             </p>
-            <div className="mt-5">
-              <WhatsAppLink variant="button" />
-            </div>
             <div className="flex items-center gap-4 mt-6">
               <WhatsAppLink variant="icon" />
               <a

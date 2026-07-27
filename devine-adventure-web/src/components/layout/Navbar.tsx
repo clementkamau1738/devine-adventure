@@ -7,7 +7,6 @@ import { useAuthStore } from '@/store/auth.store';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 import { Logo } from '@/components/layout/Logo';
-import { WhatsAppLink } from '@/components/layout/WhatsAppLink';
 
 const navLinks = [
   { label: 'Adventures', href: '/events' },
