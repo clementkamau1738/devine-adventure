@@ -215,23 +215,6 @@ export function HeroSection() {
                   className="w-full h-full object-cover"
                 />
               </div>
-
-              {/* Floating trust card */}
-              <div className="absolute -bottom-2 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:w-56 z-20 bg-white rounded-xl shadow-[0_8px_28px_rgba(17,15,13,0.12)] border border-neutral-200 px-4 py-3.5">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center shrink-0">
-                    <Users className="w-5 h-5 text-forest" />
-                  </div>
-                  <div>
-                    <div className="font-display text-lg font-normal tracking-normal text-ink leading-none">
-                      2,400+
-                    </div>
-                    <div className="text-xs text-neutral-500 font-sans mt-1">
-                      members exploring Kenya
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
