@@ -9,7 +9,6 @@ import {
   EventFiltersState,
 } from '@/components/events/EventFilters';
 import { useEvents } from '@/hooks/useEvents';
-import { DifficultyFilterStrip } from '@/components/home/DifficultyFilterStrip';
 import { PageHeroBanner } from '@/components/layout/PageHeroBanner';
 
 const EVENTS_BANNER =
@@ -38,9 +37,10 @@ function EventsPageInner() {
 
   const { data, isLoading } = useEvents(filters);
 
+  const total = data?.meta?.total;
   const subtitle =
-    data?.meta?.total != null
-      ? `${data.meta.total} experience${data.meta.total === 1 ? '' : 's'} across Kenya`
+    total != null
+      ? `${total} experience${total === 1 ? '' : 's'} across Kenya`
       : 'Curated hikes, rides, and wilderness days across Kenya';
 
   return (
@@ -55,15 +55,22 @@ function EventsPageInner() {
           size="short"
         />
 
-        <DifficultyFilterStrip className="mb-8 md:mb-10 !bg-neutral-100" />
-
-        <div className="max-w-7xl mx-auto px-6 mb-10">
-          <div className="bg-white rounded-2xl shadow-[0_4px_16px_rgba(17,15,13,0.08)] p-3 sm:p-4">
-            <EventFilters filters={filters} onChange={setFilters} />
+        {/*
+          Single discovery surface under the banner (Airbnb / GetYourGuide).
+          Difficulty chips live inside EventFilters — no second band.
+        */}
+        <div className="sticky top-[4.5rem] z-30 -mt-5 mb-8 px-6 md:-mt-6 md:mb-10">
+          <div className="mx-auto max-w-7xl">
+            <EventFilters
+              filters={filters}
+              onChange={setFilters}
+              resultCount={total}
+              isLoading={isLoading}
+            />
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="mx-auto max-w-7xl px-6">
           <EventGrid events={data?.events ?? []} isLoading={isLoading} />
 
           {data && data.meta.totalPages > 1 && (
@@ -73,7 +80,7 @@ function EventsPageInner() {
                   key={i}
                   type="button"
                   onClick={() => setFilters((f) => ({ ...f, page: i + 1 }))}
-                  className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${
+                  className={`h-10 w-10 rounded-full text-sm font-medium transition-colors ${
                     filters.page === i + 1
                       ? 'bg-forest text-neutral-50'
                       : 'bg-white text-neutral-600 shadow-[0_2px_8px_rgba(17,15,13,0.06)] hover:text-ink'
