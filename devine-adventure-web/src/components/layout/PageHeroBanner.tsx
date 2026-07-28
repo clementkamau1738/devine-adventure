@@ -30,7 +30,7 @@ export function PageHeroBanner({
         'relative flex items-center justify-center overflow-hidden',
         size === 'tall'
           ? 'min-h-[70vh] md:min-h-[78vh]'
-          : 'min-h-[240px] md:min-h-[280px]',
+          : 'min-h-[280px] md:min-h-[320px]',
         className,
       )}
     >
@@ -45,7 +45,10 @@ export function PageHeroBanner({
       <div
         className={cn(
           'relative z-10 mx-auto max-w-3xl px-6 text-center',
-          size === 'tall' ? 'py-28 md:py-32' : 'py-16 md:py-20',
+          // Extra top pad so copy clears the fixed navbar
+          size === 'tall'
+            ? 'pt-32 pb-28 md:pt-36 md:pb-32'
+            : 'pt-28 pb-12 md:pt-32 md:pb-14',
         )}
       >
         <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-sun sm:text-sm md:mb-5">
