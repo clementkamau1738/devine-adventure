@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   addMonths,
   format,
   isSameDay,
+  isSameMonth,
   startOfMonth,
   subMonths,
 } from 'date-fns';
@@ -17,6 +18,7 @@ import {
   CalendarDays,
   Clock,
   ArrowRight,
+  Sparkles,
 } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -88,99 +90,136 @@ function descriptionSnippet(text: string, max = 110): string {
   return `${clean.slice(0, max).replace(/\s+\S*$/, '')}…`;
 }
 
-/** Photo-forward trip card for panel + month strip */
+function isSoldOut(event: Event): boolean {
+  return spotsLeft(event) === 0;
+}
+
+/** Next trip from today (or first in list). */
+function nextUpcoming(events: Event[], from = new Date()): Event | null {
+  const upcoming = [...events]
+    .filter((e) => new Date(e.dateTime).getTime() >= from.getTime() - 36e5)
+    .sort(
+      (a, b) =>
+        new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime(),
+    );
+  return upcoming[0] ?? events[0] ?? null;
+}
+
+/** Photo trip card — strip, panel, or hero spotlight */
 function CalendarEventCard({
   event,
   variant = 'panel',
+  selected = false,
+  onSelectDay,
 }: {
   event: Event;
-  variant?: 'panel' | 'strip';
+  variant?: 'panel' | 'strip' | 'spotlight';
+  selected?: boolean;
+  onSelectDay?: (d: Date) => void;
 }) {
   const spots = spotsLabel(event);
   const duration = durationLabel(event);
   const fill = capacityPercent(event.enrolled, event.capacity);
   const isStrip = variant === 'strip';
+  const isSpotlight = variant === 'spotlight';
+  const soldOut = isSoldOut(event);
 
-  return (
-    <Link
-      href={`/events/${event.slug}`}
-      className={cn(
-        'group block overflow-hidden bg-white transition-all duration-300',
-        isStrip
-          ? 'rounded-2xl shadow-[0_4px_16px_rgba(17,15,13,0.08)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(17,15,13,0.12)] shrink-0 w-[260px] sm:w-[280px]'
-          : 'rounded-xl border border-neutral-100 hover:border-forest/25 hover:shadow-[0_6px_20px_rgba(17,15,13,0.08)]',
-      )}
-    >
+  const body = (
+    <>
       <div
         className={cn(
           'relative overflow-hidden',
-          isStrip ? 'aspect-[16/10]' : 'aspect-[16/9]',
+          isSpotlight
+            ? 'aspect-[21/9] sm:aspect-[2.4/1] md:aspect-auto md:h-full md:min-h-[280px]'
+            : isStrip
+              ? 'aspect-[16/10]'
+              : 'aspect-[16/9]',
         )}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={eventCover(event)}
           alt={event.title}
-          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-void/70 via-void/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-void/25 to-transparent" />
 
-        {event.isFeatured && (
-          <span className="absolute top-2.5 left-2.5 bg-sun text-ink text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+        {isSpotlight && (
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-sun px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-ink">
+            <Sparkles className="h-3.5 w-3.5" />
+            Next up
+          </span>
+        )}
+
+        {event.isFeatured && !isSpotlight && (
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-sun px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">
             Featured
           </span>
         )}
 
         <span
           className={cn(
-            'absolute top-2.5 right-2.5 text-[10px] font-semibold px-2 py-0.5 rounded-full',
+            'absolute text-[10px] font-semibold px-2 py-0.5 rounded-full',
+            isSpotlight ? 'right-4 top-4' : 'right-2.5 top-2.5',
             difficultyPillOnPhoto(event.difficulty),
           )}
         >
           {difficultyLabel(event.difficulty)}
         </span>
 
-        <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-end justify-between gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-50/90 bg-void/40 backdrop-blur-sm px-2 py-0.5 rounded-full">
+        <div
+          className={cn(
+            'absolute flex items-end justify-between gap-2',
+            isSpotlight ? 'bottom-4 left-4 right-4' : 'bottom-2.5 left-2.5 right-2.5',
+          )}
+        >
+          <span className="rounded-full bg-void/45 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-neutral-50/95 backdrop-blur-sm">
             {CATEGORY_LABEL[event.category] ?? event.category}
           </span>
           {spots.scarce && (
-            <span className="text-[10px] font-bold uppercase tracking-wide text-neutral-50 bg-clay px-2 py-0.5 rounded-full">
+            <span className="rounded-full bg-clay px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-neutral-50">
               {spots.text}
             </span>
           )}
         </div>
       </div>
 
-      <div className={cn(isStrip ? 'p-4' : 'p-3.5')}>
-        <div className="text-[11px] font-semibold text-forest uppercase tracking-wide font-sans mb-1">
+      <div
+        className={cn(
+          isSpotlight ? 'flex flex-1 flex-col justify-center p-6 sm:p-8' : isStrip ? 'p-4' : 'p-3.5',
+        )}
+      >
+        <div className="mb-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-forest">
           {format(new Date(event.dateTime), 'EEE d MMM · h:mm a')}
           {duration ? ` · ${duration}` : ''}
         </div>
 
         <h3
           className={cn(
-            'font-display font-normal uppercase tracking-normal text-ink leading-tight group-hover:text-forest transition-colors',
-            isStrip ? 'text-lg line-clamp-2' : 'text-base line-clamp-2',
+            'font-display font-normal uppercase tracking-normal leading-tight text-ink transition-colors group-hover:text-forest',
+            isSpotlight
+              ? 'text-2xl sm:text-3xl line-clamp-2'
+              : isStrip
+                ? 'text-lg line-clamp-2'
+                : 'text-base line-clamp-2',
           )}
         >
           {event.title}
         </h3>
 
-        <div className="mt-1.5 flex items-center gap-1.5 text-neutral-500 text-xs font-sans">
-          <MapPin className="w-3 h-3 text-forest shrink-0" />
+        <div className="mt-1.5 flex items-center gap-1.5 font-sans text-xs text-neutral-500">
+          <MapPin className="h-3 w-3 shrink-0 text-forest" />
           <span className="truncate">{destinationLabel(event.location)}</span>
         </div>
 
-        {!isStrip && event.description && (
-          <p className="mt-2 text-xs text-neutral-600 font-sans leading-relaxed line-clamp-2">
-            {descriptionSnippet(event.description)}
+        {(isSpotlight || !isStrip) && event.description && (
+          <p className="mt-2 line-clamp-2 font-sans text-xs leading-relaxed text-neutral-600 sm:text-sm">
+            {descriptionSnippet(event.description, isSpotlight ? 160 : 110)}
           </p>
         )}
 
-        {/* Capacity bar */}
         <div className="mt-3">
-          <div className="h-1 rounded-full bg-neutral-100 overflow-hidden">
+          <div className="h-1 overflow-hidden rounded-full bg-neutral-100">
             <div
               className={cn(
                 'h-full rounded-full transition-all',
@@ -189,30 +228,33 @@ function CalendarEventCard({
               style={{ width: `${Math.min(100, fill)}%` }}
             />
           </div>
-          <div className="mt-1.5 flex items-center justify-between gap-2 text-[11px] font-sans text-neutral-500">
+          <div className="mt-1.5 flex items-center justify-between gap-2 font-sans text-[11px] text-neutral-500">
             <span className="flex items-center gap-1">
-              <Users className="w-3 h-3" />
-              {event.enrolled}/{event.capacity} enrolled
+              <Users className="h-3 w-3" />
+              {event.enrolled}/{event.capacity} joined
             </span>
             <span
-              className={cn(
-                spots.scarce ? 'text-clay font-semibold' : 'text-neutral-500',
-              )}
+              className={cn(spots.scarce ? 'font-semibold text-clay' : '')}
             >
               {spots.text}
             </span>
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+        <div
+          className={cn(
+            'mt-4 flex flex-wrap items-center justify-between gap-3',
+            isSpotlight && 'mt-6',
+          )}
+        >
           <div className="min-w-0">
             {event.isFree || Number(event.price) === 0 ? (
-              <span className="text-forest font-semibold text-sm font-sans">
+              <span className="font-sans text-sm font-semibold text-forest">
                 Free
               </span>
             ) : (
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="font-display text-xl font-normal tracking-normal text-ink">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="font-display text-xl font-normal tracking-normal text-ink sm:text-2xl">
                   {formatKES(Number(event.price))}
                 </span>
                 <MpesaMark />
@@ -221,19 +263,87 @@ function CalendarEventCard({
             {event.memberPrice !== undefined &&
               event.memberPrice !== null &&
               Number(event.memberPrice) !== Number(event.price) && (
-                <p className="text-xs text-forest font-sans mt-0.5">
+                <p className="mt-0.5 font-sans text-xs text-forest">
                   {Number(event.memberPrice) === 0
                     ? 'Free for members'
-                    : `${formatKES(Number(event.memberPrice))} members`}
+                    : `${formatKES(Number(event.memberPrice))} for members`}
                 </p>
               )}
           </div>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-forest group-hover:gap-1.5 transition-all">
-            Details
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+
+          {isSpotlight ? (
+            <span
+              className={cn(
+                'inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors',
+                soldOut
+                  ? 'bg-neutral-200 text-neutral-600'
+                  : 'bg-forest text-neutral-50 group-hover:bg-forest-hover',
+              )}
+            >
+              {soldOut ? 'View trip' : 'Reserve a spot'}
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          ) : isStrip && onSelectDay ? (
+            // Floating Reserve pill rendered outside the select-day button
+            <span className="h-7" aria-hidden />
+          ) : (
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-forest transition-all group-hover:gap-1.5">
+              {soldOut ? 'View' : 'Reserve'}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </span>
+          )}
         </div>
       </div>
+    </>
+  );
+
+  if (isStrip && onSelectDay) {
+    return (
+      <div
+        className={cn(
+          'group relative w-[260px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] transition-all duration-300 sm:w-[280px]',
+          selected
+            ? 'shadow-[0_8px_24px_rgba(17,15,13,0.12)] ring-2 ring-forest ring-offset-2'
+            : 'hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(17,15,13,0.12)]',
+        )}
+      >
+        <button
+          type="button"
+          onClick={() => onSelectDay(new Date(event.dateTime))}
+          className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-forest"
+          aria-label={`Show ${event.title} on ${format(new Date(event.dateTime), 'd MMM')}`}
+          aria-pressed={selected}
+        >
+          {body}
+        </button>
+        <div className="absolute bottom-3.5 right-3.5 z-10">
+          <Link
+            href={`/events/${event.slug}`}
+            className="inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-forest shadow-sm ring-1 ring-neutral-200 backdrop-blur-sm hover:bg-forest hover:text-neutral-50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {soldOut ? 'View' : 'Reserve'}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      href={`/events/${event.slug}`}
+      className={cn(
+        'group block overflow-hidden bg-white transition-all duration-300',
+        isSpotlight
+          ? 'rounded-2xl shadow-[0_8px_28px_rgba(17,15,13,0.1)] hover:shadow-[0_12px_36px_rgba(17,15,13,0.12)] md:grid md:grid-cols-[1.15fr_1fr]'
+          : isStrip
+            ? 'w-[260px] shrink-0 rounded-2xl shadow-[0_4px_16px_rgba(17,15,13,0.08)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(17,15,13,0.12)] sm:w-[280px]'
+            : 'rounded-xl border border-neutral-100 hover:border-forest/25 hover:shadow-[0_6px_20px_rgba(17,15,13,0.08)]',
+        selected && !isSpotlight && 'ring-2 ring-forest ring-offset-2',
+      )}
+    >
+      {body}
     </Link>
   );
 }
@@ -245,6 +355,8 @@ export default function EventsCalendarPage() {
   const [month, setMonth] = useState<Date>(() => startOfMonth(new Date()));
   const [selected, setSelected] = useState<Date | null>(null);
   const [initialized, setInitialized] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (initialized || isLoading) return;
@@ -255,7 +367,12 @@ export default function EventsCalendarPage() {
     const m = initialCalendarMonth(events);
     setMonth(m);
     const inM = eventsInMonth(events, m);
-    if (inM[0]) setSelected(new Date(inM[0].dateTime));
+    const next = nextUpcoming(events);
+    if (next && isSameMonth(new Date(next.dateTime), m)) {
+      setSelected(new Date(next.dateTime));
+    } else if (inM[0]) {
+      setSelected(new Date(inM[0].dateTime));
+    }
     setInitialized(true);
   }, [events, isLoading, initialized]);
 
@@ -281,6 +398,40 @@ export default function EventsCalendarPage() {
     [monthEvents],
   );
 
+  const spotlight = useMemo(() => {
+    const inMonth = monthEvents.filter(
+      (e) => new Date(e.dateTime).getTime() >= Date.now() - 36e5,
+    );
+    if (inMonth[0]) return inMonth[0];
+    return monthEvents[0] ?? null;
+  }, [monthEvents]);
+
+  const nextMonthWithTrips = useMemo(() => {
+    if (monthEvents.length > 0) return null;
+    const sorted = [...events].sort(
+      (a, b) =>
+        new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime(),
+    );
+    const future = sorted.find(
+      (e) =>
+        startOfMonth(new Date(e.dateTime)).getTime() >
+        startOfMonth(month).getTime(),
+    );
+    return future ? startOfMonth(new Date(future.dateTime)) : null;
+  }, [events, month, monthEvents.length]);
+
+  const selectDay = (d: Date, scrollPanel = true) => {
+    setSelected(d);
+    if (!isSameMonth(d, month)) {
+      setMonth(startOfMonth(d));
+    }
+    if (scrollPanel && typeof window !== 'undefined' && window.innerWidth < 1024) {
+      requestAnimationFrame(() => {
+        panelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  };
+
   const goPrev = () => {
     setMonth((m) => subMonths(m, 1));
     setSelected(null);
@@ -290,10 +441,18 @@ export default function EventsCalendarPage() {
     setSelected(null);
   };
   const goToday = () => {
-    const t = startOfMonth(new Date());
-    setMonth(t);
-    setSelected(new Date());
+    const t = new Date();
+    setMonth(startOfMonth(t));
+    setSelected(t);
   };
+
+  // Keep selected strip card in view
+  useEffect(() => {
+    if (!selected || !stripRef.current) return;
+    const id = dayKey(selected);
+    const el = stripRef.current.querySelector(`[data-day="${id}"]`);
+    el?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, [selected]);
 
   return (
     <>
@@ -303,32 +462,52 @@ export default function EventsCalendarPage() {
           image={CALENDAR_BANNER}
           eyebrow="Schedule"
           title="The month on the trail"
-          subtitle="Real trips, real dates. Pick a day to see photos, prices, and open spots before you book."
+          subtitle="Tap a day, skim the photos, reserve your seat — all before you leave the page."
           size="short"
         />
 
-        <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-10">
+        <div className="mx-auto max-w-7xl px-6 pt-8 md:pt-10">
           {isLoading ? (
             <div className="space-y-6">
-              <div className="h-48 rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] animate-pulse" />
-              <div className="grid lg:grid-cols-[1fr_380px] gap-6 md:gap-8">
-                <div className="h-[520px] rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] animate-pulse" />
-                <div className="h-[520px] rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] animate-pulse" />
+              <div className="h-56 animate-pulse rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)]" />
+              <div className="grid gap-6 md:gap-8 lg:grid-cols-[1fr_400px]">
+                <div className="h-[520px] animate-pulse rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)]" />
+                <div className="h-[520px] animate-pulse rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)]" />
               </div>
             </div>
           ) : (
             <>
-              {/*
-                Month strip header carries consumer-facing context (not KPI chips).
-                Pattern: GetYourGuide / Airbnb Experiences — count lives in prose
-                next to the section title, not floating admin metrics.
-              */}
+              {/* Next-up spotlight — primary consumer hook */}
+              {spotlight && (
+                <section className="mb-8 md:mb-10">
+                  <div className="mb-4 flex items-end justify-between gap-4">
+                    <div>
+                      <p className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-forest">
+                        Start here
+                      </p>
+                      <h2 className="mt-1 font-display text-2xl font-normal uppercase tracking-normal text-ink sm:text-3xl">
+                        Your next trail day
+                      </h2>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => selectDay(new Date(spotlight.dateTime))}
+                      className="hidden text-sm font-semibold text-forest hover:text-forest-hover sm:inline-flex"
+                    >
+                      Jump to day on calendar
+                    </button>
+                  </div>
+                  <CalendarEventCard event={spotlight} variant="spotlight" />
+                </section>
+              )}
+
+              {/* Month strip — photo lane tied to selection */}
               {monthEvents.length > 0 && (
                 <section className="mb-8 md:mb-10">
                   <div className="mb-5 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
                     <div className="min-w-0">
                       <h2 className="font-display text-2xl font-normal uppercase tracking-normal text-ink sm:text-3xl">
-                        {format(month, 'MMMM')} on the trail
+                        {format(month, 'MMMM')} lineup
                       </h2>
                       <p className="mt-1.5 font-sans text-sm text-neutral-600 sm:text-base">
                         <span className="font-semibold text-ink">
@@ -349,7 +528,7 @@ export default function EventsCalendarPage() {
                         )}
                         <span className="text-neutral-500">
                           {' '}
-                          · scroll for photos &amp; prices
+                          · tap a card to open that day
                         </span>
                       </p>
                     </div>
@@ -361,64 +540,93 @@ export default function EventsCalendarPage() {
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
-                  <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2">
-                    {monthEvents.map((event) => (
-                      <div key={event.id} className="snap-start">
-                        <CalendarEventCard event={event} variant="strip" />
-                      </div>
-                    ))}
+                  <div
+                    ref={stripRef}
+                    className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2"
+                  >
+                    {monthEvents.map((event) => {
+                      const day = new Date(event.dateTime);
+                      const isSel = selected ? isSameDay(day, selected) : false;
+                      return (
+                        <div
+                          key={event.id}
+                          data-day={dayKey(day)}
+                          className="snap-start"
+                        >
+                          <CalendarEventCard
+                            event={event}
+                            variant="strip"
+                            selected={isSel}
+                            onSelectDay={(d) => selectDay(d)}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </section>
               )}
 
               {monthEvents.length === 0 && events.length > 0 && (
-                <div className="mb-8 rounded-2xl border border-dashed border-neutral-200 bg-white px-5 py-8 text-center md:mb-10">
+                <div className="mb-8 rounded-2xl border border-dashed border-neutral-200 bg-white px-5 py-10 text-center md:mb-10">
                   <p className="font-sans text-sm text-neutral-600">
-                    No trips in {format(month, 'MMMM')} yet. Use the arrows on
-                    the calendar to find the next adventure.
+                    Quiet month — no trips in {format(month, 'MMMM')} yet.
                   </p>
+                  {nextMonthWithTrips && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMonth(nextMonthWithTrips);
+                        const first = eventsInMonth(events, nextMonthWithTrips)[0];
+                        if (first) setSelected(new Date(first.dateTime));
+                      }}
+                      className="mt-4 inline-flex items-center gap-1 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-neutral-50 hover:bg-forest-hover"
+                    >
+                      Jump to {format(nextMonthWithTrips, 'MMMM')}
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               )}
 
-              <div className="grid lg:grid-cols-[1fr_380px] gap-6 md:gap-8 items-start">
+              <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[1fr_400px]">
                 {/* Month grid */}
-                <div className="bg-white rounded-2xl shadow-[0_4px_16px_rgba(17,15,13,0.08)] p-4 sm:p-6">
-                  <div className="flex items-center justify-between gap-3 mb-6">
+                <div className="rounded-2xl bg-white p-4 shadow-[0_4px_16px_rgba(17,15,13,0.08)] sm:p-6">
+                  <div className="mb-5 flex items-center justify-between gap-3">
                     <button
                       type="button"
                       onClick={goPrev}
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-ink hover:bg-neutral-100 transition-colors"
+                      className="flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-neutral-100"
                       aria-label="Previous month"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <div className="text-center min-w-0">
-                      <h2 className="font-display text-2xl sm:text-3xl font-normal uppercase tracking-normal text-ink">
+                    <div className="min-w-0 text-center">
+                      <h2 className="font-display text-2xl font-normal uppercase tracking-normal text-ink sm:text-3xl">
                         {format(month, 'MMMM yyyy')}
                       </h2>
                       <button
                         type="button"
                         onClick={goToday}
-                        className="mt-1 text-xs font-semibold text-forest hover:text-forest-hover uppercase tracking-wider"
+                        className="mt-1 text-xs font-semibold uppercase tracking-wider text-forest hover:text-forest-hover"
                       >
-                        Today
+                        Jump to today
                       </button>
                     </div>
                     <button
                       type="button"
                       onClick={goNext}
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-ink hover:bg-neutral-100 transition-colors"
+                      className="flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-neutral-100"
                       aria-label="Next month"
                     >
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRight className="h-5 w-5" />
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-7 mb-2">
+                  <div className="mb-2 grid grid-cols-7">
                     {WEEKDAYS.map((d) => (
                       <div
                         key={d}
-                        className="text-center text-[11px] font-semibold uppercase tracking-wider text-neutral-500 py-2 font-sans"
+                        className="py-2 text-center font-sans text-[11px] font-semibold uppercase tracking-wider text-neutral-500"
                       >
                         {d}
                       </div>
@@ -434,19 +642,31 @@ export default function EventsCalendarPage() {
                       const cover = hasEvents
                         ? eventCover(cell.events[0])
                         : null;
+                      const daySpots = cell.events.reduce(
+                        (s, e) => s + spotsLeft(e),
+                        0,
+                      );
+                      const dayScarce =
+                        hasEvents && daySpots > 0 && daySpots <= 3;
 
                       return (
                         <button
                           key={key}
                           type="button"
-                          onClick={() => setSelected(cell.date)}
+                          onClick={() => selectDay(cell.date)}
                           disabled={!cell.inCurrentMonth && !hasEvents}
+                          aria-pressed={!!isSelected}
+                          aria-label={
+                            hasEvents
+                              ? `${format(cell.date, 'd MMMM')}, ${cell.events.length} trip${cell.events.length === 1 ? '' : 's'}`
+                              : format(cell.date, 'd MMMM')
+                          }
                           className={cn(
-                            'relative aspect-square rounded-xl overflow-hidden flex flex-col items-center justify-start pt-1.5 sm:pt-2 transition-all',
+                            'relative flex aspect-square flex-col items-center justify-start overflow-hidden rounded-xl pt-1.5 transition-all sm:pt-2',
                             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2',
                             !cell.inCurrentMonth && 'opacity-35',
                             isSelected
-                              ? 'ring-2 ring-forest ring-offset-1 shadow-md'
+                              ? 'shadow-md ring-2 ring-forest ring-offset-1'
                               : hasEvents
                                 ? 'hover:ring-1 hover:ring-forest/40'
                                 : 'hover:bg-neutral-50',
@@ -456,21 +676,18 @@ export default function EventsCalendarPage() {
                                 : 'bg-transparent'),
                           )}
                         >
-                          {/* Day photo thumb when trips exist */}
                           {cover && (
                             <>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={cover}
                                 alt=""
-                                className="absolute inset-0 w-full h-full object-cover"
+                                className="absolute inset-0 h-full w-full object-cover"
                               />
                               <div
                                 className={cn(
                                   'absolute inset-0',
-                                  isSelected
-                                    ? 'bg-forest/75'
-                                    : 'bg-void/45 group-hover:bg-void/35',
+                                  isSelected ? 'bg-forest/75' : 'bg-void/50',
                                 )}
                               />
                             </>
@@ -478,7 +695,7 @@ export default function EventsCalendarPage() {
 
                           <span
                             className={cn(
-                              'relative z-10 text-sm sm:text-base font-semibold font-sans leading-none',
+                              'relative z-10 font-sans text-sm font-semibold leading-none sm:text-base',
                               isSelected || cover
                                 ? 'text-neutral-50'
                                 : cell.isToday
@@ -492,23 +709,25 @@ export default function EventsCalendarPage() {
                           </span>
 
                           {hasEvents && (
-                            <span className="relative z-10 mt-auto mb-1.5 flex flex-col items-center gap-0.5">
+                            <span className="relative z-10 mb-1.5 mt-auto flex flex-col items-center gap-0.5">
                               <span
                                 className={cn(
-                                  'text-[9px] sm:text-[10px] font-bold tabular-nums px-1.5 py-0.5 rounded-full',
-                                  isSelected || cover
-                                    ? 'bg-neutral-50/95 text-ink'
-                                    : 'bg-forest text-neutral-50',
+                                  'rounded-full px-1.5 py-0.5 text-[9px] font-bold tabular-nums sm:text-[10px]',
+                                  dayScarce && !isSelected
+                                    ? 'bg-clay text-neutral-50'
+                                    : isSelected || cover
+                                      ? 'bg-neutral-50/95 text-ink'
+                                      : 'bg-forest text-neutral-50',
                                 )}
                               >
                                 {cell.events.length}
                               </span>
-                              <span className="hidden sm:flex items-center justify-center gap-0.5">
+                              <span className="hidden items-center justify-center gap-0.5 sm:flex">
                                 {cell.events.slice(0, 3).map((e) => (
                                   <span
                                     key={e.id}
                                     className={cn(
-                                      'w-1 h-1 rounded-full',
+                                      'h-1 w-1 rounded-full',
                                       isSelected || cover
                                         ? 'bg-neutral-50'
                                         : difficultyDotClass(e.difficulty),
@@ -523,55 +742,60 @@ export default function EventsCalendarPage() {
                     })}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-neutral-100 flex flex-wrap items-center gap-4 text-xs font-sans text-neutral-600">
+                  <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-neutral-100 pt-4 font-sans text-xs text-neutral-600">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-forest" />{' '}
-                      Beginner
+                      <span className="h-2 w-2 rounded-full bg-forest" /> Beginner
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-sun" /> Moderate
+                      <span className="h-2 w-2 rounded-full bg-sun" /> Moderate
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-clay" /> Advanced
+                      <span className="h-2 w-2 rounded-full bg-clay" /> Advanced
                     </span>
                     <span className="ml-auto text-neutral-500">
-                      Photo days have trips; number = count
+                      Photo = trip day · red badge = few seats left
                     </span>
                   </div>
                 </div>
 
-                {/* Side panel — rich day/month detail */}
-                <aside className="bg-white rounded-2xl shadow-[0_4px_16px_rgba(17,15,13,0.08)] p-5 sm:p-6 lg:sticky lg:top-28 max-h-[calc(100vh-8rem)] overflow-y-auto">
-                  <div className="flex items-center gap-2 mb-1">
-                    <CalendarDays className="w-4 h-4 text-forest" />
+                {/* Day panel — booking-focused */}
+                <aside
+                  ref={panelRef}
+                  className="max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl bg-white p-5 shadow-[0_4px_16px_rgba(17,15,13,0.08)] sm:p-6 lg:sticky lg:top-28"
+                >
+                  <div className="mb-1 flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-forest" />
                     <h3 className="font-display text-lg font-normal uppercase tracking-normal text-ink">
                       {selected
                         ? format(selected, 'EEE d MMM')
                         : format(month, 'MMMM')}
                     </h3>
                   </div>
-                  <p className="text-neutral-500 text-xs font-sans mb-5">
+                  <p className="mb-5 font-sans text-xs text-neutral-500">
                     {selected
                       ? selectedEvents.length
-                        ? `${selectedEvents.length} adventure${selectedEvents.length === 1 ? '' : 's'} · full details`
+                        ? `${selectedEvents.length} adventure${selectedEvents.length === 1 ? '' : 's'} — pick one to reserve`
                         : 'No adventures on this day'
-                      : 'Select a day, or browse every trip this month'}
+                      : 'Select a photo day on the calendar'}
                   </p>
 
                   {panelEvents.length === 0 ? (
-                    <div className="rounded-xl bg-neutral-50 border border-dashed border-neutral-200 px-4 py-10 text-center">
-                      <p className="text-sm text-neutral-500 font-sans">
+                    <div className="rounded-xl border border-dashed border-neutral-200 bg-neutral-50 px-4 py-10 text-center">
+                      <p className="font-sans text-sm text-neutral-500">
                         {events.length === 0
-                          ? 'No published adventures yet.'
-                          : 'Nothing scheduled here. Try another day or month.'}
+                          ? 'No adventures on the calendar yet.'
+                          : 'Nothing on this day. Try a photo day or another month.'}
                       </p>
-                      {events.length > 0 && (
-                        <Link
-                          href="/events"
-                          className="inline-block mt-3 text-sm font-semibold text-forest hover:text-forest-hover"
+                      {spotlight && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            selectDay(new Date(spotlight.dateTime))
+                          }
+                          className="mt-4 text-sm font-semibold text-forest hover:text-forest-hover"
                         >
-                          Browse all adventures
-                        </Link>
+                          Go to next trip day
+                        </button>
                       )}
                     </div>
                   ) : (
@@ -585,10 +809,10 @@ export default function EventsCalendarPage() {
                   )}
 
                   {panelEvents.length > 0 && (
-                    <div className="mt-5 pt-4 border-t border-neutral-100">
-                      <p className="text-[11px] text-neutral-500 font-sans flex items-start gap-1.5">
-                        <Clock className="w-3.5 h-3.5 mt-0.5 shrink-0 text-forest" />
-                        Times shown in local time. Member rates apply after you
+                    <div className="mt-5 border-t border-neutral-100 pt-4">
+                      <p className="flex items-start gap-1.5 font-sans text-[11px] text-neutral-500">
+                        <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-forest" />
+                        Local departure times. Member prices unlock when you
                         sign in with an active plan.
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -602,7 +826,7 @@ export default function EventsCalendarPage() {
                               <span
                                 key={d}
                                 className={cn(
-                                  'text-[10px] font-semibold px-2 py-0.5 rounded-full',
+                                  'rounded-full px-2 py-0.5 text-[10px] font-semibold',
                                   difficultyColor(d),
                                 )}
                               >
