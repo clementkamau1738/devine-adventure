@@ -39,11 +39,15 @@ import {
 } from '@/lib/calendar';
 import { Event } from '@/types';
 import { MpesaMark } from '@/components/payments/MpesaMark';
+import { PageHeroBanner } from '@/components/layout/PageHeroBanner';
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200';
+
+const CALENDAR_BANNER =
+  'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920';
 
 const CATEGORY_LABEL: Record<string, string> = {
   HIKE: 'Hike',
@@ -294,52 +298,45 @@ export default function EventsCalendarPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 min-h-0 bg-neutral-50 pt-28 pb-16 md:pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Header + live stats */}
-          <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
-                Schedule
-              </span>
-              <h1 className="font-display text-5xl md:text-6xl font-normal text-ink uppercase tracking-normal mb-3">
-                Calendar
-              </h1>
-              <p className="text-neutral-600 text-base md:text-lg font-sans max-w-xl">
-                Real trips, real dates. Pick a day to see photos, prices, and
-                open spots before you book.
-              </p>
-            </div>
+      <main className="flex-1 min-h-0 bg-neutral-50 pb-16 md:pb-20">
+        <PageHeroBanner
+          image={CALENDAR_BANNER}
+          eyebrow="Schedule"
+          title="The month on the trail"
+          subtitle="Real trips, real dates. Pick a day to see photos, prices, and open spots before you book."
+          size="short"
+        />
 
-            {!isLoading && events.length > 0 && (
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                  <div className="font-display text-3xl text-ink leading-none">
-                    {monthEvents.length}
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                    This month
-                  </div>
+        <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-10">
+          {/* Live stats under banner */}
+          {!isLoading && events.length > 0 && (
+            <div className="mb-8 md:mb-10 flex flex-wrap gap-3 sm:gap-4">
+              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
+                <div className="font-display text-3xl text-ink leading-none">
+                  {monthEvents.length}
                 </div>
-                <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                  <div className="font-display text-3xl text-forest leading-none">
-                    {monthSpotsOpen}
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                    Spots open
-                  </div>
-                </div>
-                <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                  <div className="font-display text-3xl text-ink leading-none">
-                    {events.length}
-                  </div>
-                  <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                    Published
-                  </div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
+                  This month
                 </div>
               </div>
-            )}
-          </div>
+              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
+                <div className="font-display text-3xl text-forest leading-none">
+                  {monthSpotsOpen}
+                </div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
+                  Spots open
+                </div>
+              </div>
+              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
+                <div className="font-display text-3xl text-ink leading-none">
+                  {events.length}
+                </div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
+                  Published
+                </div>
+              </div>
+            </div>
+          )}
 
           {isLoading ? (
             <div className="space-y-6">

@@ -1,6 +1,7 @@
 import { Mountain, Users, Calendar, ShieldCheck } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { PageHeroBanner } from '@/components/layout/PageHeroBanner';
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920';
@@ -28,30 +29,13 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main className="flex-1 min-h-0 bg-neutral-50">
-        {/* Full-bleed atmospheric hero — Playfair Regular (not italic) */}
-        <section className="relative min-h-[70vh] md:min-h-[78vh] flex items-center justify-center overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={HERO_IMAGE}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          {/* Ink scrim ~40% — warm, not a teal color-wash */}
-          <div className="absolute inset-0 bg-ink/40" aria-hidden />
-
-          <div className="relative z-10 max-w-3xl mx-auto px-6 py-28 md:py-32 text-center">
-            <span className="inline-block text-sun text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-5">
-              Kenya&apos;s Adventure Collective
-            </span>
-            <h1 className="font-atmospheric text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.15] not-italic">
-              Where the light finds the ridge first
-            </h1>
-            <p className="mt-6 text-neutral-50 text-base sm:text-lg font-sans max-w-xl mx-auto leading-relaxed">
-              Guided days on foot and by bike, held by people who know these
-              highlands by heart.
-            </p>
-          </div>
-        </section>
+        <PageHeroBanner
+          image={HERO_IMAGE}
+          eyebrow="Kenya's Adventure Collective"
+          title="Where the light finds the ridge first"
+          subtitle="Guided days on foot and by bike, held by people who know these highlands by heart."
+          size="tall"
+        />
 
         <div className="max-w-5xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-3 gap-6">
           {values.map(({ icon: Icon, title, body }) => (
