@@ -1,59 +1,88 @@
 import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
-
-const perks = [
-  'Member discounts on all events',
-  'Free access to freemium hikes',
-  'Priority booking on every trip',
-];
+import { Check } from 'lucide-react';
+import { MpesaMark } from '@/components/payments/MpesaMark';
+import { MEMBERSHIP_PLANS } from '@/lib/membership-plans';
+import { cn } from '@/lib/utils';
 
 /**
- * Membership teaser — single elevated card on neutral-100 band.
- * Full pricing stays on /membership; no photo split.
+ * Homepage membership band — same three plan cards as /membership
+ * (Monthly / Quarterly / Annual). CTAs go to the full membership page.
  */
 export function MembershipTeaser() {
   return (
-    <section className="bg-neutral-100 border-y border-neutral-200">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16 flex justify-center">
-        <div
-          className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 w-full max-w-2xl
-            shadow-[0_4px_16px_rgba(17,15,13,0.08)]"
-        >
-          <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+    <section className="border-y border-neutral-200 bg-neutral-100">
+      <div className="mx-auto max-w-5xl px-6 py-14 md:py-16">
+        <div className="mb-12 text-center md:mb-14">
+          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
             Membership
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal mb-4">
+          <h2 className="mt-3 font-display text-4xl font-normal uppercase tracking-normal text-ink md:text-5xl lg:text-6xl">
             Adventure Unlimited
           </h2>
-          <p className="text-neutral-600 text-base md:text-lg leading-relaxed font-sans mb-8 max-w-lg">
-            Join Devine Adventure membership and unlock discounted pricing,
-            free access to selected hikes, and priority booking on every
-            event we host.
+          <p className="mx-auto mt-4 max-w-xl font-sans text-base text-neutral-500 md:text-lg">
+            Get member discounts, free access to selected hikes, and priority
+            booking on all events.
           </p>
+        </div>
 
-          <ul className="space-y-3 mb-10">
-            {perks.map((perk) => (
-              <li
-                key={perk}
-                className="flex items-center gap-3 text-ink text-sm font-sans"
-              >
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-forest/10 shrink-0">
-                  <Check
-                    className="w-3.5 h-3.5 text-forest"
-                    strokeWidth={2.5}
-                  />
+        <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+          {MEMBERSHIP_PLANS.map((plan) => (
+            <div
+              key={plan.type}
+              className={cn(
+                'relative rounded-2xl border-2 bg-white p-6',
+                plan.color,
+                plan.featured && 'md:scale-105 md:shadow-[0_8px_24px_rgba(17,15,13,0.1)]',
+              )}
+            >
+              {plan.featured && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-sun px-4 py-1.5 text-xs font-bold text-ink">
+                  Most Popular
+                </div>
+              )}
+
+              <div className="mb-1 font-sans text-sm text-neutral-500">
+                {plan.tagline}
+              </div>
+              <div className="mb-1 font-display text-2xl font-normal uppercase tracking-normal text-ink">
+                {plan.label}
+              </div>
+
+              <div className="mb-6 flex flex-wrap items-baseline gap-x-2 gap-y-2">
+                <span className="font-display text-4xl font-normal tracking-normal text-ink">
+                  KES {plan.price.toLocaleString()}
                 </span>
-                {perk}
-              </li>
-            ))}
-          </ul>
+                <span className="font-sans text-sm text-neutral-500">
+                  {plan.period}
+                </span>
+                <MpesaMark className="self-center" />
+              </div>
 
-          <Link
-            href="/membership"
-            className="inline-flex items-center gap-2 bg-forest text-neutral-50 font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-forest-hover transition-colors"
-          >
-            View Membership Plans <ArrowRight className="w-4 h-4" />
-          </Link>
+              <ul className="mb-8 space-y-3">
+                {plan.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2 font-sans text-sm text-neutral-600"
+                  >
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/membership"
+                className={cn(
+                  'block w-full rounded-xl py-3.5 text-center text-sm font-bold transition-colors',
+                  plan.featured
+                    ? 'bg-forest text-neutral-50 hover:bg-forest-hover'
+                    : 'border border-neutral-300 text-ink hover:border-ink',
+                )}
+              >
+                Get Started
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </section>
