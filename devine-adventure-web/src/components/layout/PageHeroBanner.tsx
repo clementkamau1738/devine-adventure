@@ -1,19 +1,21 @@
+'use client';
+
+import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { easeOut, fadeUp, stagger } from '@/lib/motion';
 
 type PageHeroBannerProps = {
   image: string;
   eyebrow: string;
   title: string;
   subtitle?: string;
-  /** About-style tall hero vs short listing banner */
   size?: 'short' | 'tall';
   className?: string;
   children?: React.ReactNode;
 };
 
 /**
- * Atmospheric photo banner (About language).
- * short = Adventures / Calendar; tall = About.
+ * Atmospheric photo banner with light entrance motion.
  */
 export function PageHeroBanner({
   image,
@@ -24,6 +26,8 @@ export function PageHeroBanner({
   className,
   children,
 }: PageHeroBannerProps) {
+  const reduce = useReducedMotion();
+
   return (
     <section
       className={cn(
@@ -35,26 +39,35 @@ export function PageHeroBanner({
       )}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <motion.img
         src={image}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
+        initial={reduce ? false : { scale: 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.2, ease: easeOut }}
       />
       <div className="absolute inset-0 bg-ink/40" aria-hidden />
 
-      <div
+      <motion.div
         className={cn(
           'relative z-10 mx-auto max-w-3xl px-6 text-center',
-          // Extra top pad so copy clears the fixed navbar
           size === 'tall'
             ? 'pt-32 pb-28 md:pt-36 md:pb-32'
             : 'pt-28 pb-12 md:pt-32 md:pb-14',
         )}
+        variants={stagger}
+        initial={reduce ? false : 'hidden'}
+        animate="visible"
       >
-        <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-sun sm:text-sm md:mb-5">
+        <motion.span
+          variants={fadeUp}
+          className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-sun sm:text-sm md:mb-5"
+        >
           {eyebrow}
-        </span>
-        <h1
+        </motion.span>
+        <motion.h1
+          variants={fadeUp}
           className={cn(
             'font-atmospheric font-normal not-italic leading-[1.15] text-white',
             size === 'tall'
@@ -63,9 +76,10 @@ export function PageHeroBanner({
           )}
         >
           {title}
-        </h1>
+        </motion.h1>
         {subtitle ? (
-          <p
+          <motion.p
+            variants={fadeUp}
             className={cn(
               'mx-auto max-w-xl font-sans leading-relaxed text-neutral-50',
               size === 'tall'
@@ -74,10 +88,10 @@ export function PageHeroBanner({
             )}
           >
             {subtitle}
-          </p>
+          </motion.p>
         ) : null}
         {children}
-      </div>
+      </motion.div>
     </section>
   );
 }

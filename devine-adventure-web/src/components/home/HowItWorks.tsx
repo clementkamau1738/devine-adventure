@@ -1,4 +1,7 @@
+'use client';
+
 import { Search, CalendarCheck, Backpack } from 'lucide-react';
+import { FadeUp, Stagger, StaggerItem } from '@/components/motion/Motion';
 
 const steps = [
   {
@@ -23,21 +26,21 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="bg-white border-y border-neutral-100">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
-        <div className="text-center mb-10 md:mb-12">
-          <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+    <section className="border-y border-neutral-100 bg-white">
+      <div className="mx-auto max-w-7xl px-6 py-14 md:py-16">
+        <FadeUp inView className="mb-10 text-center md:mb-12">
+          <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
             How it works
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal">
+          <h2 className="font-display text-4xl font-normal uppercase tracking-normal text-ink md:text-5xl">
             Three Steps to Your Next Trail
           </h2>
-        </div>
+        </FadeUp>
 
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12">
+        <Stagger className="grid gap-10 md:grid-cols-3 md:gap-12" inView>
           {steps.map(({ icon: Icon, title, description }, i) => (
-            <div key={title} className="text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-4 mb-5">
+            <StaggerItem key={title} className="text-center md:text-left">
+              <div className="mb-5 flex items-center justify-center gap-4 md:justify-start">
                 <div className="flex items-center justify-center w-14 h-14 rounded-full bg-forest/10">
                   <Icon className="w-6 h-6 text-forest" strokeWidth={1.75} />
                 </div>
@@ -48,12 +51,12 @@ export function HowItWorks() {
               <h3 className="font-display text-xl font-normal uppercase tracking-normal text-ink mb-2">
                 {title}
               </h3>
-              <p className="text-neutral-600 text-sm leading-relaxed font-sans max-w-sm mx-auto md:mx-0">
+              <p className="mx-auto max-w-sm font-sans text-sm leading-relaxed text-neutral-600 md:mx-0">
                 {description}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

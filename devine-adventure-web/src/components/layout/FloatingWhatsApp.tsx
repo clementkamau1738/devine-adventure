@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { WHATSAPP_URL } from '@/lib/contact';
 import { cn } from '@/lib/utils';
+import { springSoft } from '@/lib/motion';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -18,40 +19,35 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 /**
- * Fixed WhatsApp FAB — primary channel entry (Phase 3c).
- * Visible site-wide; label expands on hover/focus (desktop).
+ * Fixed WhatsApp FAB — spring entrance + hover scale.
  */
 export function FloatingWhatsApp() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setVisible(true), 400);
-    return () => window.clearTimeout(t);
-  }, []);
+  const reduce = useReducedMotion();
 
   return (
-    <a
+    <motion.a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp us"
+      initial={reduce ? false : { opacity: 0, y: 16, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ...springSoft, delay: 0.6 }}
+      whileHover={reduce ? undefined : { scale: 1.05 }}
+      whileTap={reduce ? undefined : { scale: 0.97 }}
       className={cn(
-        'fixed z-[60] bottom-5 right-5 sm:bottom-6 sm:right-6',
+        'fixed bottom-5 right-5 z-[60] sm:bottom-6 sm:right-6',
         'group flex items-center gap-0 rounded-full',
         'bg-[#25D366] text-white shadow-lg shadow-black/30',
         'hover:bg-[#1ebe57] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50',
-        'transition-all duration-300 ease-out',
-        visible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-3 pointer-events-none',
       )}
     >
-      <span className="flex items-center justify-center w-14 h-14 shrink-0">
-        <WhatsAppIcon className="w-7 h-7" />
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center">
+        <WhatsAppIcon className="h-7 w-7" />
       </span>
       <span
         className={cn(
-          'max-w-0 overflow-hidden whitespace-nowrap font-semibold text-sm',
+          'max-w-0 overflow-hidden whitespace-nowrap text-sm font-semibold',
           'transition-[max-width,padding] duration-300 ease-out',
           'group-hover:max-w-[9rem] group-hover:pr-5',
           'group-focus-visible:max-w-[9rem] group-focus-visible:pr-5',
@@ -59,6 +55,6 @@ export function FloatingWhatsApp() {
       >
         WhatsApp us
       </span>
-    </a>
+    </motion.a>
   );
 }

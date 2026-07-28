@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useFeaturedEvents } from '@/hooks/useEvents';
 import { EventCard } from '@/components/events/EventCard';
+import { FadeUp, Stagger, StaggerItem } from '@/components/motion/Motion';
 
 export function FeaturedEvents() {
   const { data: events, isLoading } = useFeaturedEvents();
@@ -11,23 +12,26 @@ export function FeaturedEvents() {
 
   return (
     <section className="bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-10">
+      <div className="mx-auto max-w-7xl px-6 py-14 md:py-16">
+        <FadeUp
+          inView
+          className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between"
+        >
           <div>
-            <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
               Handpicked
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-normal text-ink uppercase tracking-normal">
+            <h2 className="font-display text-4xl font-normal uppercase tracking-normal text-ink md:text-5xl">
               Featured Adventures
             </h2>
           </div>
           <Link
             href="/events"
-            className="inline-flex items-center gap-1.5 text-forest hover:text-forest-hover text-sm font-semibold transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest transition-colors hover:text-forest-hover"
           >
-            View all <ArrowRight className="w-4 h-4" />
+            View all <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+        </FadeUp>
 
         {isLoading ? (
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
@@ -50,11 +54,16 @@ export function FeaturedEvents() {
             No featured adventures right now — check back soon.
           </p>
         ) : (
-          <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
+          <Stagger
+            className="grid gap-6 sm:grid-cols-2 md:gap-8"
+            inView
+          >
             {list.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <StaggerItem key={event.id}>
+                <EventCard event={event} />
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         )}
       </div>
     </section>

@@ -1,18 +1,30 @@
+'use client';
+
 import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { MpesaMark } from '@/components/payments/MpesaMark';
 import { MEMBERSHIP_PLANS } from '@/lib/membership-plans';
 import { cn } from '@/lib/utils';
+import {
+  FadeUp,
+  Stagger,
+  StaggerItem,
+  motion,
+  useReducedMotion,
+} from '@/components/motion/Motion';
+import { springSoft } from '@/lib/motion';
 
 /**
  * Homepage membership band — same three plan cards as /membership
  * (Monthly / Quarterly / Annual). CTAs go to the full membership page.
  */
 export function MembershipTeaser() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="border-y border-neutral-200 bg-neutral-100">
       <div className="mx-auto max-w-5xl px-6 py-14 md:py-16">
-        <div className="mb-12 text-center md:mb-14">
+        <FadeUp inView className="mb-12 text-center md:mb-14">
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
             Membership
           </span>
@@ -23,16 +35,19 @@ export function MembershipTeaser() {
             Get member discounts, free access to selected hikes, and priority
             booking on all events.
           </p>
-        </div>
+        </FadeUp>
 
-        <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+        <Stagger className="grid items-stretch gap-6 md:grid-cols-3" inView>
           {MEMBERSHIP_PLANS.map((plan) => (
-            <div
-              key={plan.type}
+            <StaggerItem key={plan.type}>
+            <motion.div
+              whileHover={reduce ? undefined : { y: -4 }}
+              transition={springSoft}
               className={cn(
-                'relative rounded-2xl border-2 bg-white p-6',
+                'relative h-full rounded-2xl border-2 bg-white p-6',
                 plan.color,
-                plan.featured && 'md:scale-105 md:shadow-[0_8px_24px_rgba(17,15,13,0.1)]',
+                plan.featured &&
+                  'md:scale-105 md:shadow-[0_8px_24px_rgba(17,15,13,0.1)]',
               )}
             >
               {plan.featured && (
@@ -81,9 +96,10 @@ export function MembershipTeaser() {
               >
                 Get Started
               </Link>
-            </div>
+            </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

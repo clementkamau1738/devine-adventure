@@ -6,6 +6,13 @@ import { Calendar, Mountain, Search, Users } from 'lucide-react';
 import { useEvents, useFeaturedEvents } from '@/hooks/useEvents';
 import { Event } from '@/types';
 import { cn, destinationLabel } from '@/lib/utils';
+import {
+  motion,
+  useReducedMotion,
+  Stagger,
+  StaggerItem,
+} from '@/components/motion/Motion';
+import { fadeUp, scaleIn, springSoft, stagger } from '@/lib/motion';
 
 const STATS = [
   { icon: Mountain, value: '50+', label: 'Adventures' },
@@ -21,6 +28,7 @@ function uniqueSorted(values: string[]) {
 
 export function HeroSection() {
   const router = useRouter();
+  const reduce = useReducedMotion();
   const { data: listData } = useEvents({ limit: 48, page: 1 });
   const { data: featured } = useFeaturedEvents();
   const events = (listData?.events ?? []) as Event[];
@@ -80,27 +88,38 @@ export function HeroSection() {
       <div className="mx-auto w-full max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* ── Left: copy + search + stats ── */}
-          <div className="order-2 lg:order-1">
-            <span className="inline-block text-forest text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-5">
-              Kenya&apos;s Adventure Collective
-            </span>
+          <Stagger
+            className="order-2 lg:order-1"
+            inView={false}
+            variants={stagger}
+          >
+            <StaggerItem>
+              <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
+                Kenya&apos;s Adventure Collective
+              </span>
+            </StaggerItem>
 
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal uppercase tracking-normal leading-[0.95] text-ink mb-5">
-              Find Your{' '}
-              <em className="font-serif italic normal-case tracking-normal text-sun">
-                Wild
-              </em>
-            </h1>
+            <StaggerItem>
+              <h1 className="mb-5 font-display text-5xl font-normal uppercase leading-[0.95] tracking-normal text-ink sm:text-6xl md:text-7xl">
+                Find Your{' '}
+                <em className="font-serif italic normal-case tracking-normal text-sun">
+                  Wild
+                </em>
+              </h1>
+            </StaggerItem>
 
-            <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-md mb-8 font-sans">
-              Curated hikes, rides, and wilderness days across Kenya —
-              book in minutes with M-Pesa.
-            </p>
+            <StaggerItem>
+              <p className="mb-8 max-w-md font-sans text-base leading-relaxed text-neutral-600 sm:text-lg">
+                Curated hikes, rides, and wilderness days across Kenya —
+                book in minutes with M-Pesa.
+              </p>
+            </StaggerItem>
 
             {/* Search / filter bar */}
+            <StaggerItem>
             <form
               onSubmit={onSearch}
-              className="bg-white rounded-2xl shadow-[0_4px_24px_rgba(17,15,13,0.08)] border border-neutral-200 p-2 sm:p-2.5 mb-10"
+              className="mb-10 rounded-2xl border border-neutral-200 bg-white p-2 shadow-[0_4px_24px_rgba(17,15,13,0.08)] sm:p-2.5"
             >
               <div className="flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-0">
                 <label className="flex-1 min-w-0 px-3 py-2 sm:border-r border-neutral-200">
@@ -168,36 +187,54 @@ export function HeroSection() {
                 </div>
               </div>
             </form>
+            </StaggerItem>
 
             {/* Stat mini-cards */}
+            <StaggerItem>
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {STATS.map(({ icon: Icon, value, label }) => (
-                <div
+                <motion.div
                   key={label}
-                  className="bg-white rounded-lg shadow-[0_4px_16px_rgba(17,15,13,0.08)] border border-neutral-200 px-3 py-4 sm:px-4 sm:py-5 text-center sm:text-left"
+                  whileHover={reduce ? undefined : { y: -3 }}
+                  transition={springSoft}
+                  className="rounded-lg border border-neutral-200 bg-white px-3 py-4 text-center shadow-[0_4px_16px_rgba(17,15,13,0.08)] sm:px-4 sm:py-5 sm:text-left"
                 >
-                  <Icon className="w-4 h-4 text-forest mx-auto sm:mx-0 mb-2" />
-                  <div className="font-display text-xl sm:text-2xl font-normal tracking-normal text-ink">
+                  <Icon className="mx-auto mb-2 h-4 w-4 text-forest sm:mx-0" />
+                  <div className="font-display text-xl font-normal tracking-normal text-ink sm:text-2xl">
                     {value}
                   </div>
-                  <div className="text-[11px] sm:text-xs text-neutral-500 font-sans mt-0.5 leading-snug">
+                  <div className="mt-0.5 font-sans text-[11px] leading-snug text-neutral-500 sm:text-xs">
                     {label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+            </StaggerItem>
+          </Stagger>
 
-          {/* ── Right: sun disc + organic photo + floating trust ── */}
-          <div className="order-1 lg:order-2 relative mx-auto w-full max-w-md lg:max-w-none">
-            {/* Sun field — echoes logo disc */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[88%] aspect-square rounded-full bg-sun -z-0"
+          {/* ── Right: sun disc + organic photo ── */}
+          <motion.div
+            className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none"
+            initial={reduce ? false : 'hidden'}
+            animate="visible"
+            variants={scaleIn}
+          >
+            <motion.div
+              className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sun"
               aria-hidden
+              animate={
+                reduce
+                  ? undefined
+                  : { scale: [1, 1.03, 1], opacity: [1, 0.92, 1] }
+              }
+              transition={
+                reduce
+                  ? undefined
+                  : { duration: 8, repeat: Infinity, ease: 'easeInOut' }
+              }
             />
 
-            {/* Organic photo mask */}
-            <div className="relative z-10 mx-auto w-[92%] aspect-[4/5] max-h-[520px]">
+            <div className="relative z-10 mx-auto aspect-[4/5] max-h-[520px] w-[92%]">
               <div
                 className="absolute inset-0 overflow-hidden shadow-[0_12px_40px_rgba(17,15,13,0.18)]"
                 style={{
@@ -205,18 +242,21 @@ export function HeroSection() {
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <motion.img
                   src={
                     heroImage.includes('?')
                       ? `${heroImage}&w=900`
                       : `${heroImage}?w=900`
                   }
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
+                  initial={reduce ? false : { scale: 1.06 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
