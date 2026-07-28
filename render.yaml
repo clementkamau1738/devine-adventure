@@ -14,7 +14,8 @@ services:
     plan: free
     region: oregon
     rootDir: devine-adventure-api
-    buildCommand: npm ci && npm run build
+    # --include=dev so nest CLI is present when NODE_ENV=production
+    buildCommand: npm ci --include=dev && npm run build
     # Sets DIRECT_URL from DATABASE_URL when unset (avoids P1012 on free-tier deploys)
     startCommand: npm run release
     healthCheckPath: /api/v1/health
