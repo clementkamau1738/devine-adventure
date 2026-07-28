@@ -308,36 +308,6 @@ export default function EventsCalendarPage() {
         />
 
         <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-10">
-          {/* Live stats under banner */}
-          {!isLoading && events.length > 0 && (
-            <div className="mb-8 md:mb-10 flex flex-wrap gap-3 sm:gap-4">
-              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                <div className="font-display text-3xl text-ink leading-none">
-                  {monthEvents.length}
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                  This month
-                </div>
-              </div>
-              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                <div className="font-display text-3xl text-forest leading-none">
-                  {monthSpotsOpen}
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                  Spots open
-                </div>
-              </div>
-              <div className="rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] px-5 py-3.5 min-w-[120px]">
-                <div className="font-display text-3xl text-ink leading-none">
-                  {events.length}
-                </div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 font-sans">
-                  Published
-                </div>
-              </div>
-            </div>
-          )}
-
           {isLoading ? (
             <div className="space-y-6">
               <div className="h-48 rounded-2xl bg-white shadow-[0_4px_16px_rgba(17,15,13,0.08)] animate-pulse" />
@@ -348,28 +318,50 @@ export default function EventsCalendarPage() {
             </div>
           ) : (
             <>
-              {/* Month photo strip — captivates before the grid */}
+              {/*
+                Month strip header carries consumer-facing context (not KPI chips).
+                Pattern: GetYourGuide / Airbnb Experiences — count lives in prose
+                next to the section title, not floating admin metrics.
+              */}
               {monthEvents.length > 0 && (
                 <section className="mb-8 md:mb-10">
-                  <div className="flex items-end justify-between gap-4 mb-4">
-                    <div>
-                      <h2 className="font-display text-2xl sm:text-3xl font-normal uppercase tracking-normal text-ink">
+                  <div className="mb-5 flex flex-col gap-4 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="min-w-0">
+                      <h2 className="font-display text-2xl font-normal uppercase tracking-normal text-ink sm:text-3xl">
                         {format(month, 'MMMM')} on the trail
                       </h2>
-                      <p className="text-sm text-neutral-500 font-sans mt-1">
-                        Scroll the month&apos;s adventures: photos, pricing, and
-                        seats left
+                      <p className="mt-1.5 font-sans text-sm text-neutral-600 sm:text-base">
+                        <span className="font-semibold text-ink">
+                          {monthEvents.length} trip
+                          {monthEvents.length === 1 ? '' : 's'}
+                        </span>
+                        {monthSpotsOpen > 0 ? (
+                          <>
+                            {' '}
+                            ·{' '}
+                            <span className="font-semibold text-forest">
+                              {monthSpotsOpen} seat
+                              {monthSpotsOpen === 1 ? '' : 's'} still open
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-clay"> · sold out this month</span>
+                        )}
+                        <span className="text-neutral-500">
+                          {' '}
+                          · scroll for photos &amp; prices
+                        </span>
                       </p>
                     </div>
                     <Link
                       href="/events"
-                      className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-forest hover:text-forest-hover shrink-0"
+                      className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-forest hover:text-forest-hover"
                     >
-                      All adventures
-                      <ArrowRight className="w-4 h-4" />
+                      Browse all adventures
+                      <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
-                  <div className="-mx-6 px-6 flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-thin">
+                  <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2">
                     {monthEvents.map((event) => (
                       <div key={event.id} className="snap-start">
                         <CalendarEventCard event={event} variant="strip" />
@@ -377,6 +369,15 @@ export default function EventsCalendarPage() {
                     ))}
                   </div>
                 </section>
+              )}
+
+              {monthEvents.length === 0 && events.length > 0 && (
+                <div className="mb-8 rounded-2xl border border-dashed border-neutral-200 bg-white px-5 py-8 text-center md:mb-10">
+                  <p className="font-sans text-sm text-neutral-600">
+                    No trips in {format(month, 'MMMM')} yet. Use the arrows on
+                    the calendar to find the next adventure.
+                  </p>
+                </div>
               )}
 
               <div className="grid lg:grid-cols-[1fr_380px] gap-6 md:gap-8 items-start">
