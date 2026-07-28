@@ -1,17 +1,8 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import {
-  ArrowRight,
-  Calendar,
-  ChevronDown,
-  Mountain,
-  Search,
-  Users,
-} from 'lucide-react';
-import { format } from 'date-fns';
+import { Calendar, Mountain, Search, Users } from 'lucide-react';
 import { useEvents, useFeaturedEvents } from '@/hooks/useEvents';
 import { Event } from '@/types';
 import { cn, destinationLabel } from '@/lib/utils';
@@ -21,12 +12,12 @@ import {
   Stagger,
   StaggerItem,
 } from '@/components/motion/Motion';
-import { scaleIn, stagger } from '@/lib/motion';
+import { fadeUp, scaleIn, springSoft, stagger } from '@/lib/motion';
 
 const STATS = [
   { icon: Mountain, value: '50+', label: 'Adventures' },
   { icon: Users, value: '2,400+', label: 'Members' },
-  { icon: Calendar, value: '120+', label: 'Events hosted' },
+  { icon: Calendar, value: '120+', label: 'Events Hosted' },
 ] as const;
 
 function uniqueSorted(values: string[]) {
@@ -43,7 +34,8 @@ export function HeroSection() {
   const events = (listData?.events ?? []) as Event[];
 
   const destinations = useMemo(
-    () => uniqueSorted(events.map((e) => destinationLabel(e.location))),
+    () =>
+      uniqueSorted(events.map((e) => destinationLabel(e.location))),
     [events],
   );
 
@@ -56,6 +48,7 @@ export function HeroSection() {
     const opts = events.map((e) => {
       const d = new Date(e.dateTime);
       if (Number.isNaN(d.getTime())) return '';
+      // Month + year as selectable bucket from real event data
       return d.toLocaleDateString('en-KE', {
         month: 'long',
         year: 'numeric',
@@ -64,16 +57,7 @@ export function HeroSection() {
     return uniqueSorted(opts);
   }, [events]);
 
-  const nextTrip = useMemo(() => {
-    const upcoming = [...events]
-      .filter((e) => new Date(e.dateTime).getTime() >= Date.now() - 36e5)
-      .sort(
-        (a, b) =>
-          new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime(),
-      );
-    return upcoming[0] ?? null;
-  }, [events]);
-
+  // Prefer hike/terrain photography from live event data when available
   const heroImage =
     featured?.find((e) => e.category === 'HIKE')?.images?.[0] ??
     events.find((e) => e.category === 'HIKE')?.images?.[0] ??
@@ -90,43 +74,33 @@ export function HeroSection() {
     const params = new URLSearchParams();
     if (destination) params.set('search', destination);
     if (difficulty) params.set('difficulty', difficulty);
+    // Date is month label — pass as search refinement when no destination
     if (date && !destination) params.set('search', date.split(' ')[0] ?? date);
     const q = params.toString();
     router.push(q ? `/events?${q}` : '/events');
   };
 
   const fieldClass =
-    'w-full cursor-pointer appearance-none bg-transparent font-sans text-sm font-medium text-ink focus:outline-none min-w-0 pr-5';
+    'w-full bg-transparent text-sm text-ink placeholder:text-neutral-400 focus:outline-none font-sans min-w-0';
 
   return (
-    <section className="relative overflow-hidden bg-neutral-50 text-ink">
-      {/* Soft radial wash — fills empty cream without noise */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-70"
-        aria-hidden
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(237,186,14,0.12), transparent 55%), radial-gradient(ellipse 50% 40% at 15% 80%, rgba(41,105,48,0.06), transparent 50%)',
-        }}
-      />
-
-      <div className="relative mx-auto flex min-h-[min(100dvh,920px)] w-full max-w-7xl flex-col justify-center px-6 pb-14 pt-28 md:pb-20 md:pt-32">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 xl:gap-16">
-          {/* ── Copy column ── */}
+    <section className="flex min-h-dvh flex-col justify-center bg-neutral-50 text-ink pt-28 md:pt-32 pb-16 md:pb-24">
+      <div className="mx-auto w-full max-w-7xl px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* ── Left: copy + search + stats ── */}
           <Stagger
             className="order-2 lg:order-1"
             inView={false}
             variants={stagger}
           >
             <StaggerItem>
-              <span className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-forest sm:text-sm">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-sun" />
+              <span className="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-forest sm:text-sm">
                 Kenya&apos;s Adventure Collective
               </span>
             </StaggerItem>
 
             <StaggerItem>
-              <h1 className="mb-4 max-w-xl font-display text-[2.75rem] font-normal uppercase leading-[0.92] tracking-normal text-ink sm:text-6xl md:text-7xl">
+              <h1 className="mb-5 font-display text-5xl font-normal uppercase leading-[0.95] tracking-normal text-ink sm:text-6xl md:text-7xl">
                 Find Your{' '}
                 <em className="font-serif italic normal-case tracking-normal text-sun">
                   Wild
@@ -135,197 +109,150 @@ export function HeroSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className="mb-7 max-w-md font-sans text-base leading-relaxed text-neutral-600 sm:text-lg">
+              <p className="mb-8 max-w-md font-sans text-base leading-relaxed text-neutral-600 sm:text-lg">
                 Curated hikes, rides, and wilderness days across Kenya —
                 book in minutes with M-Pesa.
               </p>
             </StaggerItem>
 
-            {nextTrip && (
-              <StaggerItem>
-                <Link
-                  href={`/events/${nextTrip.slug}`}
-                  className="mb-7 inline-flex max-w-full items-center gap-2 rounded-full border border-forest/20 bg-forest/5 px-3.5 py-2 font-sans text-sm text-forest transition-colors hover:border-forest/40 hover:bg-forest/10"
-                >
-                  <span className="shrink-0 rounded-full bg-forest px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-neutral-50">
-                    Next up
-                  </span>
-                  <span className="min-w-0 truncate font-medium text-ink">
-                    {nextTrip.title}
-                  </span>
-                  <span className="hidden shrink-0 text-neutral-500 sm:inline">
-                    · {format(new Date(nextTrip.dateTime), 'EEE d MMM')}
-                  </span>
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
-                </Link>
-              </StaggerItem>
-            )}
-
-            {/* Search — single elevated unit */}
+            {/* Search / filter bar */}
             <StaggerItem>
-              <form
-                onSubmit={onSearch}
-                className="mb-6 overflow-hidden rounded-2xl bg-white shadow-[0_8px_32px_rgba(17,15,13,0.1)] ring-1 ring-neutral-200/90"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-stretch">
-                  <label className="group relative flex min-w-0 flex-1 cursor-pointer flex-col justify-center px-4 py-3.5 transition-colors hover:bg-neutral-50/80 sm:border-r sm:border-neutral-100">
-                    <span className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
-                      Destination
-                    </span>
-                    <div className="relative">
-                      <select
-                        value={destination}
-                        onChange={(e) => setDestination(e.target.value)}
-                        className={fieldClass}
-                      >
-                        <option value="">All destinations</option>
-                        {destinations.map((d) => (
-                          <option key={d} value={d}>
-                            {d}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
-                    </div>
-                  </label>
+            <form
+              onSubmit={onSearch}
+              className="mb-10 rounded-2xl border border-neutral-200 bg-white p-2 shadow-[0_4px_24px_rgba(17,15,13,0.08)] sm:p-2.5"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-0">
+                <label className="flex-1 min-w-0 px-3 py-2 sm:border-r border-neutral-200">
+                  <span className="block text-[10px] font-semibold tracking-widest uppercase text-neutral-500 mb-1">
+                    Destination
+                  </span>
+                  <select
+                    value={destination}
+                    onChange={(e) => setDestination(e.target.value)}
+                    className={cn(fieldClass, 'cursor-pointer appearance-none')}
+                  >
+                    <option value="">All destinations</option>
+                    {destinations.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-                  <label className="group relative flex min-w-0 flex-1 cursor-pointer flex-col justify-center px-4 py-3.5 transition-colors hover:bg-neutral-50/80 sm:border-r sm:border-neutral-100">
-                    <span className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
-                      When
-                    </span>
-                    <div className="relative">
-                      <select
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        className={fieldClass}
-                      >
-                        <option value="">Any date</option>
-                        {dates.map((d) => (
-                          <option key={d} value={d}>
-                            {d}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
-                    </div>
-                  </label>
+                <label className="flex-1 min-w-0 px-3 py-2 sm:border-r border-neutral-200">
+                  <span className="block text-[10px] font-semibold tracking-widest uppercase text-neutral-500 mb-1">
+                    Date
+                  </span>
+                  <select
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className={cn(fieldClass, 'cursor-pointer appearance-none')}
+                  >
+                    <option value="">Any date</option>
+                    {dates.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-                  <label className="group relative flex min-w-0 flex-1 cursor-pointer flex-col justify-center px-4 py-3.5 transition-colors hover:bg-neutral-50/80">
-                    <span className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">
-                      Level
-                    </span>
-                    <div className="relative">
-                      <select
-                        value={difficulty}
-                        onChange={(e) => setDifficulty(e.target.value)}
-                        className={fieldClass}
-                      >
-                        <option value="">All levels</option>
-                        {difficulties.map((d) => (
-                          <option key={d} value={d}>
-                            {d.charAt(0) + d.slice(1).toLowerCase()}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
-                    </div>
-                  </label>
+                <label className="flex-1 min-w-0 px-3 py-2">
+                  <span className="block text-[10px] font-semibold tracking-widest uppercase text-neutral-500 mb-1">
+                    Difficulty
+                  </span>
+                  <select
+                    value={difficulty}
+                    onChange={(e) => setDifficulty(e.target.value)}
+                    className={cn(fieldClass, 'cursor-pointer appearance-none')}
+                  >
+                    <option value="">All levels</option>
+                    {difficulties.map((d) => (
+                      <option key={d} value={d}>
+                        {d.charAt(0) + d.slice(1).toLowerCase()}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-                  <div className="flex items-center p-2 sm:pl-1 sm:pr-2">
-                    <motion.button
-                      type="submit"
-                      whileHover={reduce ? undefined : { scale: 1.02 }}
-                      whileTap={reduce ? undefined : { scale: 0.98 }}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-forest px-6 py-3.5 text-sm font-semibold text-neutral-50 transition-colors hover:bg-forest-hover sm:w-auto"
-                    >
-                      <Search className="h-4 w-4" />
-                      Search
-                    </motion.button>
-                  </div>
+                <div className="sm:pl-2 sm:flex sm:items-center">
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-forest text-neutral-50 font-semibold text-sm px-5 py-3.5 rounded-xl hover:bg-forest-hover transition-colors"
+                  >
+                    <Search className="w-4 h-4" />
+                    Search
+                  </button>
                 </div>
-              </form>
-            </StaggerItem>
-
-            <StaggerItem>
-              <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2">
-                <Link
-                  href="/events"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-forest hover:text-forest-hover"
-                >
-                  Browse all adventures
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/events/calendar"
-                  className="text-sm font-medium text-neutral-500 transition-colors hover:text-ink"
-                >
-                  View calendar
-                </Link>
               </div>
+            </form>
             </StaggerItem>
 
-            {/* Stats — one quiet strip, not three heavy boxes */}
+            {/* Stat mini-cards */}
             <StaggerItem>
-              <div className="flex flex-wrap gap-x-8 gap-y-4 border-t border-neutral-200/80 pt-6">
-                {STATS.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="flex min-w-[5.5rem] items-start gap-2.5">
-                    <Icon className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
-                    <div>
-                      <div className="font-display text-2xl font-normal leading-none tracking-normal text-ink">
-                        {value}
-                      </div>
-                      <div className="mt-1 font-sans text-xs text-neutral-500">
-                        {label}
-                      </div>
-                    </div>
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+              {STATS.map(({ icon: Icon, value, label }) => (
+                <motion.div
+                  key={label}
+                  whileHover={reduce ? undefined : { y: -3 }}
+                  transition={springSoft}
+                  className="rounded-lg border border-neutral-200 bg-white px-3 py-4 text-center shadow-[0_4px_16px_rgba(17,15,13,0.08)] sm:px-4 sm:py-5 sm:text-left"
+                >
+                  <Icon className="mx-auto mb-2 h-4 w-4 text-forest sm:mx-0" />
+                  <div className="font-display text-xl font-normal tracking-normal text-ink sm:text-2xl">
+                    {value}
                   </div>
-                ))}
-              </div>
+                  <div className="mt-0.5 font-sans text-[11px] leading-snug text-neutral-500 sm:text-xs">
+                    {label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
             </StaggerItem>
           </Stagger>
 
-          {/* ── Photo column ── */}
+          {/* ── Right: sun disc + organic photo ── */}
           <motion.div
-            className="relative order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none"
+            className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none"
             initial={reduce ? false : 'hidden'}
             animate="visible"
             variants={scaleIn}
           >
-            {/* Soft sun halo behind the circle */}
             <motion.div
-              className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[94%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sun/90"
+              className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sun"
               aria-hidden
               animate={
                 reduce
                   ? undefined
-                  : { scale: [1, 1.025, 1], opacity: [0.95, 1, 0.95] }
+                  : { scale: [1, 1.03, 1], opacity: [1, 0.92, 1] }
               }
               transition={
                 reduce
                   ? undefined
-                  : { duration: 7, repeat: Infinity, ease: 'easeInOut' }
+                  : { duration: 8, repeat: Infinity, ease: 'easeInOut' }
               }
             />
-            <div
-              className="absolute left-1/2 top-1/2 -z-0 aspect-square w-[102%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sun/25 blur-2xl"
-              aria-hidden
-            />
 
-            <div className="relative z-10 mx-auto aspect-square w-[min(100%,420px)] lg:w-full lg:max-w-[480px]">
-              <div className="absolute inset-[3%] overflow-hidden rounded-full shadow-[0_20px_50px_rgba(17,15,13,0.18)] ring-4 ring-white/40">
+            <div className="relative z-10 mx-auto aspect-[4/5] max-h-[520px] w-[92%]">
+              <div
+                className="absolute inset-0 overflow-hidden shadow-[0_12px_40px_rgba(17,15,13,0.18)]"
+                style={{
+                  borderRadius: '42% 58% 48% 52% / 48% 42% 58% 52%',
+                }}
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <motion.img
                   src={
                     heroImage.includes('?')
-                      ? `${heroImage}&w=1000`
-                      : `${heroImage}?w=1000`
+                      ? `${heroImage}&w=900`
+                      : `${heroImage}?w=900`
                   }
-                  alt="Hikers on a highland trail"
+                  alt=""
                   className="h-full w-full object-cover"
-                  initial={reduce ? false : { scale: 1.08 }}
+                  initial={reduce ? false : { scale: 1.06 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={reduce ? undefined : { scale: 1.03 }}
+                  transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
             </div>
